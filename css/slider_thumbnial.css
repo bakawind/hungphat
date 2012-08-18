@@ -1,0 +1,136 @@
+			
+			#wrapper {
+				float:left;
+				width: 450px;	
+					text-align:center;
+			}
+			#carousel-wrapper {
+				
+				padding-bottom: 10px;
+				position: relative;
+				
+				height:400px;
+			}
+			#carousel, #thumbs {
+				overflow: hidden;
+			}
+			#thumbs{
+				margin: 0 0 0 0px;
+				height:100px;
+			}
+			#carousel-wrapper .caroufredsel_wrapper {
+				border-radius: 5px;
+				box-shadow: 0 0 5px #899;
+				height:100px;
+
+				border: 1px solid #899;
+			}
+
+			#carousel span, #carousel img,
+			#thumbs a, #thumbs img  {
+				display: block;
+				float: left;
+				text-align:center;
+			}
+			#carousel span, #carousel a,
+			#thumbs span, #thumbs a {
+				position: relative;
+				
+				margin-right:auto;
+				
+			}
+			#carousel img,
+			#thumbs img {
+				border: none;
+				
+				height: 100%;
+				
+				margin-left:auto;
+				margin-right:auto;
+				float: left;
+				/*
+				position: absolute;
+				top: 5;
+				left: 20;
+				*/
+				position: absolute;
+				
+				
+				top: 0;
+			}
+			#carousel img.glare,
+			#thumbs img.glare {
+				width: 102%;
+				height: auto;
+			}
+
+			#carousel span {
+				
+				height: 100%;
+			}
+
+			#thumbs-wrapper {
+				/*background-color: #000;*/
+				width:auto;
+				height:180px;				
+				position: relative;
+				border: 1px solid #899;
+				border-radius: 5px;
+				box-shadow: 0 0 5px #899;
+			}
+			#thumbs a {			
+					
+				width: 100px;
+				height: 150px;
+				
+				overflow: hidden;
+				border-radius: 10px;
+				margin: 20px 10px 20px 10px;
+				-webkit-transition: border-color .5s;
+				-moz-transition: border-color .5s;
+				-ms-transition: border-color .5s;
+				transition: border-color .5s;
+				text-align:center;
+			}
+			#thumbs img{
+				height:100%;
+				margin-left:auto;
+				margin-right:auto;
+				
+			}
+			#thumbs a:hover, #thumbs a.selected {
+				border-color: #566;
+			}
+			
+			#wrapper img#shadow {
+				width: 100%;
+				position: absolute;
+				bottom: 0;
+			}
+
+			#prev, #next {
+				background: transparent url('../images/gui/carousel_nav.png') no-repeat 0 0;
+				display: block;
+				width: 19px;
+				height: 20px;
+				margin-top: -10px;
+				position: absolute;
+				top: 50%;
+			}
+			#prev {
+				background-position: 0 0;
+				left: 10px;
+			}
+			#next {
+				background-position: -19px 0;
+				right: 10px;
+			}			
+			#prev:hover { 
+				background-position: 0 -20px;				
+			}
+			#next:hover {
+				background-position: -19px -20px;				
+			}
+			#prev.disabled, #next.disabled {
+				display: none !important;
+			}
