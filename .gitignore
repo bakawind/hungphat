@@ -6,3 +6,8 @@
 /protected/scripts/set_env.sh
 /.vagrant
 /logs
+Vagrantfile
+chef/
+protected/scripts/
+themes/
+
