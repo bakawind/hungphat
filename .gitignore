@@ -11,4 +11,5 @@ chef/
 protected/scripts/
 themes/
 index.php
+db.json
 
