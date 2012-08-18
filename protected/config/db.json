@@ -1,6 +1,0 @@
-{
-    "database": "hungphat",
-    "host"    : "localhost",
-    "user"    : "hungphat",
-    "password": "vagrant"
-}
