@@ -10,4 +10,5 @@ Vagrantfile
 chef/
 protected/scripts/
 themes/
+index.php
 
