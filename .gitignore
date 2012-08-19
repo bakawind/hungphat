@@ -2,6 +2,7 @@
 *~
 /assets
 /protected/config/local.php
+/protected/config/db.json
 /protected/runtime/
 /protected/scripts/set_env.sh
 /.vagrant
@@ -11,5 +12,4 @@ chef/
 protected/scripts/
 themes/
 index.php
-db.json
 

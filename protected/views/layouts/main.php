@@ -18,24 +18,24 @@
     <div class = "header">
         <ul class='menu'>
             <li>
-                <a href='home.html'>Trang chủ</a>
+                <?=CHtml::link('Trang chủ', '/site/index')?>
             </li>
             <li>
-                <a href='product.html'>Sản phẩm</a>
+                <?=CHtml::link('Sản phẩm', '/products/index')?>
                <ul class="subnav">
-                    <li><a href="/video/index/channel/featuredvids">Búp bê Sinfa</a></li>
-                    <li><a href="/video/index/channel/gdbhighlights">Rô bô ráp hình</a></li>
-                    <li><a href="/video/index/channel/gdbhighlights">Vỉ đồ chơi ráp hình</a></li>
+                    <li><?=CHtml::link('Búp bê Sinfa', '/products/dolls')?></li>
+                    <li><?=CHtml::link('Rô bô ráp hình', '/products/robots')?></li>
+                    <li><?=CHtml::link('Vỉ đồ chơi ráp hình', '/products/toys')?></li>
                 </ul>
             </li>
             <li>
-                <a href='about.html'>Giới thiệu</a>
+                <?=CHtml::link('Giới thiệu', '/site/about')?>
             </li>
             <li>
-                <a href='pay_method.html'>Thanh Toán</a>
+                <?=CHtml::link('Thanh Toán', '/site/payment')?>
             </li>
             <li>
-                <a href='contact.html'>Liên hệ</a>
+                <?=CHtml::link('Liên hệ', '/site/contact')?>
             </li>
         </ul>
     </div>
