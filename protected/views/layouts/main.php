@@ -43,13 +43,13 @@
         <div class='space'></div>
         <div class='container'>
             <div class='cart'>
-                <img src="images/cart.png"/>
+                <?=CHtml::image("/images/cart.png")?>
                 <p id='view_count'>Lượt truy cập: 103</p>
                 <p id='cart_detail'>2 (click để xem giỏ hàng)</p>
             </div>
             <div class='search'>
                 <input type='textfield'/>
-                <img src='images/search.png'/>
+                <?=CHtml::image("/images/search.png")?>
             </div>
         </div>
         <br class='clear'/>
