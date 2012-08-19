@@ -70,6 +70,10 @@ class SiteController extends Controller
 		$this->render('about');
 	}
 
+	public function actionArticle(){
+		$this->render('article');
+	}
+	
 	/**
 	 * Displays the login page
 	 */

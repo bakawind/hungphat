@@ -1,9 +1,9 @@
 <div class='banner'>
 	<div id="SliderName_2" class="SliderName_2">
-                <?=CHtml::image("/images/cart.png")?>
-		<img src="images/banners/banner1.jpg" width="900" height="350" alt="Demo2 first" title="Demo2 first" usemap="#img1map" />
-		<img src="images/banners/banner2.jpg" width="900" height="350" alt="Demo2 second" title="Demo2 second" />
-		<img src="images/banners/banner3.jpg" width="900" height="350" alt="Demo2 third" title="Demo2 third" />
+                
+		<?=CHtml::image("/images/banners/banner1.jpg",'',array('width'=>"900", 'height'=>"350", 'title'=>"Demo2 first", 'usemap'=>"#img1map")) ?>
+		<?=CHtml::image("/images/banners/banner2.jpg",'',array('width'=>"900", 'height'=>"350", 'title'=>"Demo2 second", 'usemap'=>"#img1map")) ?>
+		<?=CHtml::image("/images/banners/banner3.jpg",'',array('width'=>"900", 'height'=>"350", 'title'=>"Demo2 third", 'usemap'=>"#img1map")) ?>
 	</div>
 	<div class="c"></div>
 	<div id="SliderNameNavigation_2"></div>
