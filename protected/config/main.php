@@ -41,7 +41,7 @@ return CMap::mergeArray(array(
 		// uncomment the following to use a MySQL database
 		'db'=>array(
             'class'=>'system.db.CDbConnection',
-            'connectionString'=>"pgsql:dbname={$dbConfig['database']};host={$dbConfig['host']}",
+            'connectionString'=>"mysql:dbname={$dbConfig['database']};host={$dbConfig['host']}",
             'username'=>$dbConfig['user'],
             'password'=>$dbConfig['password'],
             'charset'=>'utf8',

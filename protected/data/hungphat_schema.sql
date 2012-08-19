@@ -35,7 +35,7 @@ create table orders (
     address varchar(256) not null,
     phone varchar(16) not null,
     status int not null default 0,
-    total double not null,
+    total double not null
 );
 
 create table order_items (
