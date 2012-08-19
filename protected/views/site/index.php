@@ -1,10 +1,9 @@
 <div class='banner'>
 	<div id="SliderName_2" class="SliderName_2">
-        <?=CHtml::image("/images/banners/banner1.jpg", '', array('width'=>"900", 'height'=>"350", title="Demo2 first" usemap="#img1map" ))?>
-		<img src="" />
 		<!--<div class="SliderName_2Description">Fist banner</div>-->
-		<img src="images/banners/banner2.jpg" width="900" height="350" alt="Demo2 second" title="Demo2 second" />
-		<img src="images/banners/banner3.jpg" width="900" height="350" alt="Demo2 third" title="Demo2 third" />
+        <?=CHtml::image("/images/banners/banner1.jpg", '', array('width'=>"900", 'height'=>"350", 'title'=>"Demo2 first", 'usemap'=>"#img1map"))?>
+        <?=CHtml::image("/images/banners/banner2.jpg", '', array('width'=>"900", 'height'=>"350", 'title'=>"Demo2 first", 'usemap'=>"#img1map"))?>
+        <?=CHtml::image("/images/banners/banner3.jpg", '', array('width'=>"900", 'height'=>"350", 'title'=>"Demo2 first", 'usemap'=>"#img1map"))?>
 	</div>
 	<div class="c"></div>
 	<div id="SliderNameNavigation_2"></div>
@@ -25,16 +24,22 @@
 </div><!--close banner-->
 <div class='categories'>
     <div class='category' style='margin-left: 10px;'>
-        <div id='doll'></div>
-        BÚP BÊ SINFA
+        <a href='/ products/dolls'>
+            <div id='doll'></div>
+            BÚP BÊ SINFA
+        </a>
     </div>
     <div class='category'>
-        <div id='robot'></div>
-        RÔ BÔ RÁP HÌNH
+        <a href='/ products/dolls'>
+            <div id='robot'></div>
+            RÔ BÔ RÁP HÌNH
+        </a>
     </div>
     <div class='category'>
-        <div id='toys'></div>
-        VỈ ĐỒ CHƠI GIA ĐÌNH
+        <a href='/ products/dolls'>
+            <div id='toys'></div>
+            VỈ ĐỒ CHƠI GIA ĐÌNH
+        </a>
     </div>
 </div> <!--close category-->
 <div class='space'></div>
@@ -46,6 +51,7 @@
                 <td> Từ: </td>
                 <td>
                     <select>
+                        <option>0</option>
                         <option>50.000</option>
                         <option>100.000</option>
                         <option>200.000</option>
@@ -56,6 +62,7 @@
                 <td> Đến:</td>
                 <td>
                     <select>
+                        <option>0</option>
                         <option>50.000</option>
                         <option>100.000</option>
                         <option>200.000</option>
@@ -70,7 +77,7 @@
             <legend><h1>NÓI VỀ CHÚNG TÔI:</h1></legend>
             Cơ sở sản xuất và lắp ráp đồ chơi trẻ em Hưng Phát được thành lập vào ngày 15 tháng 10 năm 2001. Tại địa chỉ 118 Lò Siêu, Phường 12, Quận 11, thành phố Hồ Chí Minh, sau 12 năm hoạt động đã mở thêm chi nhánh cơ sở Hưng Phát 2 được thành lập ngày 11 tháng 6 năm 2011, tại ấp 5, xã Nhân Nghĩa, huyện Cảm Mỹ, tỉnh Đồng Nai ...
       </fieldset>
-      <a href='about.html'><img id='more_btn' src="images/more_btn.png"/></a>
+      <a href='/site/about'><?=CHtml::image("/images/more_btn.png", '', array('id'=>'more_btn'))?></a>
     </div>
 </div> <!--close container-->
 <br class='clear'/>

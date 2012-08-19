@@ -13,7 +13,7 @@
 
 <body>
 
-<div class="container" id="page">
+<div>
 
     <div class = "header">
         <ul class='menu'>
