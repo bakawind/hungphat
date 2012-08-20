@@ -46,3 +46,13 @@ create table order_items (
     order_id int not null,
     foreign key (order_id) references orders(id)
 );
+
+-- alter tables, update id comlumns to auto_increment 
+ALTER TABLE article MODIFY COLUMN id int AUTO_INCREMENT;
+ALTER TABLE categories MODIFY COLUMN id int AUTO_INCREMENT;
+ALTER TABLE orders MODIFY COLUMN id int AUTO_INCREMENT;
+ALTER TABLE product_photos MODIFY COLUMN id int AUTO_INCREMENT;
+ALTER TABLE products MODIFY COLUMN id int AUTO_INCREMENT;
+ALTER TABLE order_items MODIFY COLUMN id int AUTO_INCREMENT;
+
+-- SHOW COLUMNS FROM article FROM hungphat;
