@@ -56,3 +56,4 @@ ALTER TABLE products MODIFY COLUMN id int AUTO_INCREMENT;
 ALTER TABLE order_items MODIFY COLUMN id int AUTO_INCREMENT;
 
 -- SHOW COLUMNS FROM article FROM hungphat;
+INSERT INTO article(title, content) VALUES('example','example_content');
