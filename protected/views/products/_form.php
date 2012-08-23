@@ -49,11 +49,11 @@
 		<?php echo $form->error($model,'image');  ?>
 	</div>
 
-	<div class="row">
-		<?php echo $form->labelEx($model,'modified_date'); ?>
+	<!-- div class="row" Hung - Remove modified date textFiled>
+		<? /*php echo $form->labelEx($model,'modified_date'); ?>
 		<?php echo $form->textField($model,'modified_date'); ?>
-		<?php echo $form->error($model,'modified_date'); //Hung - pick current day on view or in model? ?>
-	</div> 
+		<?php echo $form->error($model,'modified_date'); //Hung - pick current day on view or in model? */ ?>
+	</div --> 
 
 	<!--div class="row" Hung - remove category_id Textfield>
 		<?/*php echo $form->labelEx($model,'category_id'); ?>
