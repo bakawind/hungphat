@@ -75,5 +75,7 @@ return CMap::mergeArray(array(
 	'params'=>array(
 		// this is used in contact page
 		'adminEmail'=>'webmaster@example.com',
+		'imagePATH'=>'images/uploads',
+		'pathSep'=>'/path/to/css/',
 	),
 ), $pre_config);

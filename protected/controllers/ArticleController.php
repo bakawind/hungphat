@@ -70,7 +70,8 @@ class ArticleController extends Controller
 		{
 			$model->attributes=$_POST['Article'];
 			if($model->save())
-				$this->redirect(array('view','id'=>$model->id));
+				$this->redirect(array('admin')); //Hung - redirect to article management page instead of view detials
+				/*$this->redirect(array('view','id'=>$model->id));*/
 		}
 
 		$this->render('create',array(

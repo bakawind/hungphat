@@ -70,7 +70,8 @@ class CategoriesController extends Controller
 		{
 			$model->attributes=$_POST['Categories'];
 			if($model->save())
-				$this->redirect(array('view','id'=>$model->id));
+				$this->redirect(array('admin')); //Hung - redirect to Categories admin page
+				//$this->redirect(array('view','id'=>$model->id));
 		}
 
 		$this->render('create',array(

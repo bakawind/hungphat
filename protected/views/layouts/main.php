@@ -37,6 +37,9 @@
             <li>
                 <?=CHtml::link('Liên hệ', '/site/contact')?>
             </li>
+			<li>
+                <?=CHtml::link('Tin tức', '/site/article')?>
+            </li>
         </ul>
     </div>
     <div class='wrapper'>
