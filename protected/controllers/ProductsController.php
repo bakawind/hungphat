@@ -69,14 +69,59 @@ class ProductsController extends Controller
 		if(isset($_POST['Products']))
 		{
 			$model->attributes=$_POST['Products'];
+					
+					//$model->attributes=$_POST['Photos']; //Hung - code
+			        $myfile = CUploadedFile::getInstance($model,'image'); // Hung - upload image code
+                    $model->image=$myfile; // Hung - upload image code
+					
 			if($model->save())
-				$this->redirect(array('view','id'=>$model->id));
+				$this->updatePhoto($model, $myfile); // Hung - upload image code
+				$this->redirect(array('admin'));//Hung - redirect to Products admin page
+				//$this->redirect(array('view','id'=>$model->id));
 		}
 
 		$this->render('create',array(
 			'model'=>$model,
 		));
 	}
+	
+        /*--------------
+        * Upload and crunch an image Hung-code
+        ----------------*/
+        public function updatePhoto($model, $myfile ) {
+           if (is_object($myfile) && get_class($myfile)==='CUploadedFile') {
+                $ext = $model->image->getExtensionName();
+		//generate a filename for the uploaded image based on a random number
+		// but check that the random number has not already been used
+                if ($model->filename=='' or is_null($model->filename)) {
+                    $n=1;
+                    // loop until random is unqiue - which it probably is first time!
+                    while ($n>0) {
+                        $rnd=dechex(rand()%999999999);
+                        $filename=$model->id . '_' . $rnd . '.' . $ext;
+                        //$n=Photos::model()->count('filename=:filename',array('filename'=>$filename));
+						$n=0;
+                    }
+                $model->filename=$filename;
+                }				
+                $model->save();
+				$model->image->saveAs($model->getPath());  //model->getPath see below				
+				//Yii::import('application.extensions.images.Image');
+				//$image = new Image($model->getPath());
+                //$image = Yii::app()->image->load($model->getPath());
+				
+		//Crunch the photo to a size set in my System Options Table
+		//I hold the max size as 800 meaning to fit in an 800px x 800px square
+                //$size=$this->getOption('PhotoLarge');
+                //$image->resize($size[0], $size[0])->quality(75)->sharpen(20);
+                //$image->save(); 
+		// Now create a thumb - again the thumb size is held in System Options Table
+				//$size=$this->getOption('PhotoThumb');
+                //$image->resize($size[0], $size[0])->quality(75)->sharpen(20);
+                //$image->save($model->getThumb()); // or $image->save('images/small.jpg');
+                return true;
+             } else return false;
+        }
 
 	/**
 	 * Updates a particular model.
