@@ -71,10 +71,11 @@ class Products extends CActiveRecord
                  // I hold the image path and system directory separator in the config/main.php
                  // this is because I develop on a windows server and normally deploy on Linux
                  $this->_PhotoPath=Yii::app()->params['imagePATH'];
+				 //$this->_PhotoPath=Yii::app()->PathOfAlias['uploadPath'];
                  $this->_PathSep=Yii::app()->params['pathSep'];
             }
             //$path=$this->_PhotoPath.$this->_PathSep;
-			$path=$this->_PhotoPath;
+			$path=$this->_PhotoPath . '/';
             if ($all) $path.=$this->filename;
             return $path;
         }
