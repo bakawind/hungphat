@@ -36,7 +36,7 @@ class Article extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('id, content', 'required'),
+			array('content', 'required'), //Hung - remove requirement for id column
 			array('id', 'numerical', 'integerOnly'=>true),
 			array('title', 'length', 'max'=>128),
 			// The following rule is used by search().

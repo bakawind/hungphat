@@ -15,6 +15,12 @@
  */
 class Products extends CActiveRecord
 {
+	//Hung - add new property
+	var $_PhotoPath;
+	var $_PathSep;
+	var $filename;
+	var $tempFile;
+
 	/**
 	 * Returns the static model of the specified AR class.
 	 * @param string $className active record class name.
@@ -41,7 +47,7 @@ class Products extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('id, code, name', 'required'),
+			array('code, name', 'required'), //Hung - remove id column from requirement
 			array('id, category_id', 'numerical', 'integerOnly'=>true),
 			array('price', 'numerical'),
 			array('code', 'length', 'max'=>64),
@@ -53,6 +59,29 @@ class Products extends CActiveRecord
 			array('id, code, name, price, description, image, modified_date, category_id', 'safe', 'on'=>'search'),
 		);
 	}
+	
+	public function getThumbnail(){ // Hung - get thumbnail for photo
+         // here i return the image
+            if (!empty($this->image) && $this->image!='')
+             return CHtml::image('/' . $this->getPath(),$this->image,array('width'=>'300px','max-height'=>'200px'));			 
+        }
+		
+		
+	public function getPath($all=true){ //Hung - get path for photo
+            if (is_null($this->_PhotoPath)) {
+                 // I hold the image path and system directory separator in the config/main.php
+                 // this is because I develop on a windows server and normally deploy on Linux
+                 $this->_PhotoPath=Yii::app()->params['imagePATH'];
+				 //$this->_PhotoPath=Yii::app()->PathOfAlias['uploadPath'];
+                 $this->_PathSep=Yii::app()->params['pathSep'];
+            }
+            //$path=$this->_PhotoPath.$this->_PathSep;
+			$path=$this->_PhotoPath;
+            if ($all) 
+				$path.=$this->image;
+            return $path;
+        }
+
 
 	/**
 	 * @return array relational rules.

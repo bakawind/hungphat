@@ -65,7 +65,15 @@ class SiteController extends Controller
 		}
 		$this->render('contact',array('model'=>$model));
 	}
+	
+	public function actionAbout(){
+		$this->render('about');
+	}
 
+	public function actionArticle(){
+		$this->render('article');
+	}
+	
 	/**
 	 * Displays the login page
 	 */
