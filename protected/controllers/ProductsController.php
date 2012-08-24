@@ -68,16 +68,15 @@ class ProductsController extends Controller
 
 		if(isset($_POST['Products']))
 		{
-			$model->attributes=$_POST['Products'];					
-			//$model->attributes=$_POST['Photos']; //Hung - code
-			$myfile = CUploadedFile::getInstance($model,'image'); // Hung - upload image code
-			$model->image=$myfile; // Hung - upload image code
+			$model->attributes=$_POST['Products'];			
+			$myfile = CUploadedFile::getInstance($model,'tempFile'); // Hung - upload image code
+			$model->tempFile=$myfile; // Hung - upload image code
 			$model->modified_date= $this->getCurrentDate();
 					
 			if($model->save()){
-				$this->updatePhoto($model, $myfile); // Hung - upload image code
-				$this->redirect(array('admin'));//Hung - redirect to Products admin page
+				$this->updatePhoto($model, $myfile); // Hung - upload image code				
 			}
+			$this->redirect(array('admin'));//Hung - redirect to Products admin page
 				//$this->redirect(array('view','id'=>$model->id));
 		}
 
@@ -96,24 +95,19 @@ class ProductsController extends Controller
 	----------------*/
 	public function updatePhoto($model, $myfile ) {
 	   if (is_object($myfile) && get_class($myfile)==='CUploadedFile') {
-			$ext = $model->image->getExtensionName();
-	//generate a filename for the uploaded image based on a random number
-	// but check that the random number has not already been used
-			if ($model->filename=='' or is_null($model->filename)) {
-				$n=1;
-				// loop until random is unqiue - which it probably is first time!
-				while ($n>0) {
-					$rnd=dechex(rand()%999999999);
-					$filename=$model->id . '_' . $rnd . '.' . $ext;
-					//$n=Photos::model()->count('filename=:filename',array('filename'=>$filename));
-					$n=0;
-				}
-			$model->filename=$filename;				
-			}				
+			$ext = $model->tempFile->getExtensionName();
+	//generate a filename for the uploaded image based on a random number	
+			if ($model->image=='' or is_null($model->image)) {				
+				$rnd=dechex(rand()%999999999);
+				$filename=$model->id . '_' . $rnd . '.' . $ext;
+				//$n=Photos::model()->count('filename=:filename',array('filename'=>$filename));					
+				$model->image=$filename;				
+			}
 			
-			$model->image->saveAs($model->getPath());  
-			$model->image=$model->filename;
-			$model->save();				
+			$model->save();			
+			$model->tempFile->saveAs($model->getPath());  
+			
+							
 			//Yii::import('application.extensions.images.Image');
 			//$image = new Image($model->getPath());
 			//$image = Yii::app()->image->load($model->getPath());
@@ -139,15 +133,22 @@ class ProductsController extends Controller
 	public function actionUpdate($id)
 	{
 		$model=$this->loadModel($id);
-
+		
+		
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 
 		if(isset($_POST['Products']))
 		{
 			$model->attributes=$_POST['Products'];
-			if($model->save())
-				$this->redirect(array('view','id'=>$model->id));
+			$myfile = CUploadedFile::getInstance($model,'tempFile'); // Hung - upload image code
+			$model->tempFile=$myfile; // Hung - upload image code
+			$model->modified_date= $this->getCurrentDate();
+			
+			if($model->save()){
+				$this->updatePhoto($model, $myfile); // Hung - upload image code		
+			}
+			$this->redirect(array('view','id'=>$model->id));
 		}
 
 		$this->render('update',array(

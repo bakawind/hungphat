@@ -19,6 +19,7 @@ class Products extends CActiveRecord
 	var $_PhotoPath;
 	var $_PathSep;
 	var $filename;
+	var $tempFile;
 
 	/**
 	 * Returns the static model of the specified AR class.
@@ -62,7 +63,7 @@ class Products extends CActiveRecord
 	public function getThumbnail(){ // Hung - get thumbnail for photo
          // here i return the image
             if (!empty($this->image) && $this->image!='')
-             return CHtml::image($this->getURL(),$this->alt_text,array('width'=>options::model()->getOption('PhotoThumb').'px','max-height'=>options::model()->getOption('PhotoThumb').'px'));
+             return CHtml::image('/' . $this->getPath(),$this->image,array('width'=>'300px','max-height'=>'200px'));			 
         }
 		
 		
@@ -75,8 +76,9 @@ class Products extends CActiveRecord
                  $this->_PathSep=Yii::app()->params['pathSep'];
             }
             //$path=$this->_PhotoPath.$this->_PathSep;
-			$path=$this->_PhotoPath . '/';
-            if ($all) $path.=$this->filename;
+			$path=$this->_PhotoPath;
+            if ($all) 
+				$path.=$this->image;
             return $path;
         }
 
