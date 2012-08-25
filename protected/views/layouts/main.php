@@ -21,7 +21,7 @@
                 <?=CHtml::link('Trang chủ', '/site/index')?>
             </li>
             <li>
-                <?=CHtml::link('Sản phẩm', '/products/index')?>
+                <?=CHtml::link('Sản phẩm', '')?>
                <ul class="subnav">
                     <li><?=CHtml::link('Búp bê Sinfa', '/products/dolls')?></li>
                     <li><?=CHtml::link('Rô bô ráp hình', '/products/robots')?></li>
@@ -47,7 +47,6 @@
         <div class='container'>
             <div class='cart'>
                 <?=CHtml::image("/images/cart.png")?>
-                <p id='view_count'>Lượt truy cập: 103</p>
                 <p id='cart_detail'>2 (click để xem giỏ hàng)</p>
             </div>
             <div class='search'>
