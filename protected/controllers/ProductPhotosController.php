@@ -69,8 +69,14 @@ class ProductPhotosController extends Controller
 		if(isset($_POST['ProductPhotos']))
 		{
 			$model->attributes=$_POST['ProductPhotos'];
-			if($model->save())
+			$myfile = CUploadedFile::getInstance($model,'tempFile'); // Hung - upload image code
+			$model->tempFile=$myfile; // Hung - upload image code
+			$model->url='temp'; //Hung - code tam - can url de luu xuong database
+			if($model->save()){
+				$model->url=''; //Hung - code tam - xoa blank url
+				$this->updatePhoto($model, $myfile); // Hung - upload image code
 				$this->redirect(array('view','id'=>$model->id));
+			}
 		}
 
 		$this->render('create',array(
@@ -93,8 +99,12 @@ class ProductPhotosController extends Controller
 		if(isset($_POST['ProductPhotos']))
 		{
 			$model->attributes=$_POST['ProductPhotos'];
-			if($model->save())
-				$this->redirect(array('view','id'=>$model->id));
+			$myfile = CUploadedFile::getInstance($model,'tempFile'); // Hung - upload image code
+			$model->tempFile=$myfile; // Hung - upload image code
+			if($model->save()){
+				$this->updatePhoto($model, $myfile); // Hung - upload image code
+				$this->redirect(array('products/view','id'=>$model->product_id));
+			}
 		}
 
 		$this->render('update',array(
@@ -173,4 +183,18 @@ class ProductPhotosController extends Controller
 			Yii::app()->end();
 		}
 	}
+	
+	public function updatePhoto($model, $myfile) {
+	   if (is_object($myfile) && get_class($myfile)==='CUploadedFile') {			
+			$nameOfFile = $model->tempFile->getName();			
+			$model->url= $model->id . '_' . $nameOfFile;
+			
+			$myfile->saveAs($model->getPath() . '/' . $model->url); //upload picture to server
+			$model->url=Yii::getPathOfAlias('uploadURL') . '/' . $model->url;
+			$model->save();
+			
+			return true;
+		 } else return false;
+	}
+
 }

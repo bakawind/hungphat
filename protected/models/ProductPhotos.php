@@ -10,6 +10,8 @@
  */
 class ProductPhotos extends CActiveRecord
 {
+	var $tempFile;
+
 	/**
 	 * Returns the static model of the specified AR class.
 	 * @param string $className active record class name.
@@ -36,7 +38,7 @@ class ProductPhotos extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('id, url', 'required'),
+			array('id', 'required'), //Hung - remove riquire for url
 			array('id, product_id', 'numerical', 'integerOnly'=>true),
 			array('url', 'length', 'max'=>256),
 			// The following rule is used by search().
@@ -88,7 +90,7 @@ class ProductPhotos extends CActiveRecord
 		));
 	}
 	
-	public function searchBy($search_value)
+	public function searchBy($search_value) //Hung - create data depend on foreign key products_id
 	{
 		// Warning: Please modify the following code to remove attributes that
 		// should not be searched.
@@ -103,4 +105,14 @@ class ProductPhotos extends CActiveRecord
 			'criteria'=>$criteria,
 		));
 	}
+	
+	public function getThumbnail(){ // Hung - get thumbnail for photo
+		if (!empty($this->url) && $this->url!='')
+		return CHtml::image($this->url,'text_' . $this->url,array('width'=>'300px','max-height'=>'200px'));			 
+	}
+	
+	public function getPath(){ //Hung - get path for photo                     
+		$path=Yii::getPathOfAlias('uploadPath') . '/';            
+		return $path;
+    }
 }

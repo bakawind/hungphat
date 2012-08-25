@@ -121,24 +121,16 @@ class ProductsController extends Controller
 	public function updatePhoto($model, $myfile ) {
 	   if (is_object($myfile) && get_class($myfile)==='CUploadedFile') {
 			$ext = $model->tempFile->getExtensionName();
-	//generate a filename for the uploaded image based on a random number
-			if ($model->image=='' or is_null($model->image)) {
-				$rnd=dechex(rand()%999999999);
-				$filename=$model->id . '_' . $rnd . '.' . $ext;
-				//$n=Photos::model()->count('filename=:filename',array('filename'=>$filename));
-				$model->image=$filename;
-			}
+			$nameOfFile = $model->tempFile->getName();			
+			$model->image= $model->id . '_' . $nameOfFile;	
 
-
-			$model->tempFile->saveAs($model->getPath());
-			//$model->tempFile->saveAs($model->image);
+			$model->tempFile->saveAs($model->getPath(). '/' . $model->image);			
 			$model->image=Yii::getPathOfAlias('uploadURL') . '/' . $model->image;
 			$model->save();
 
 			//Yii::import('application.extensions.images.Image');
 			//$image = new Image($model->getPath());
 			//$image = Yii::app()->image->load($model->getPath());
-
 	//Crunch the photo to a size set in my System Options Table
 	//I hold the max size as 800 meaning to fit in an 800px x 800px square
 			//$size=$this->getOption('PhotoLarge');
@@ -174,8 +166,9 @@ class ProductsController extends Controller
 
 			if($model->save()){
 				$this->updatePhoto($model, $myfile); // Hung - upload image code
+				$this->redirect(array('view','id'=>$model->id));
 			}
-			$this->redirect(array('view','id'=>$model->id));
+			
 		}
 
 		$this->render('update',array(

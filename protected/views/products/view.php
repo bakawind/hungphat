@@ -24,7 +24,7 @@ $this->menu=array(
 		'price',
 		'description',
 		'image',
-		array(               // related city displayed as a link
+		array(// Hung - view image
             'label'=>'Show Image',
             'type'=>'raw',
             'value'=>$model->getThumbnail(),
@@ -44,12 +44,19 @@ $this->widget('zii.widgets.grid.CGridView', array(
 		array(			
 			'type'=>'raw',
 			'header'=>'Picture',                                
-			'value'=> 'CHtml::image($data->url)',
-			),
-		'product_id',
+			'value'=> 'CHtml::image($data->url,$data->url, array("width"=>100))',			
+			),	
+		
 		array(
-			'class'=>'CButtonColumn',
-		),
+            'class'=>'CButtonColumn',
+            'template'=>'{view}{update}{delete}',
+            'viewButtonUrl' => 'array("productPhotos/view",
+            "id"=>$data->id)',
+            'updateButtonUrl' => 'array("productPhotos/update",
+            "id"=>$data->id)',
+            'deleteButtonUrl' => 'array("productPhotos/delete",
+            "id"=>$data->id)',
+        ),
 	),
 )); 
 ?>
