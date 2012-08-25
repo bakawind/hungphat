@@ -41,6 +41,7 @@
 	</div>
 
 	<div class="row"> <!-- Hung - add upload image input -->  
+		
 		<?php echo $model->getThumbnail(); ?>
         <br>
 		<?php echo $form->labelEx($model,'image'); ?>
@@ -63,12 +64,12 @@
 	
 	<!-- Hung - add dropdownlist-->
 	<div class="row">
-		<?php echo $form->labelEx($model,'category_id'); ?>
+		<?= $form->labelEx($model,'category_id'); ?>
 		<?php 
 			$models = categories::model()->findAll(); 
 			$list = CHtml::listData($models, 'id', 'name'); 			
-		
-			echo $form->dropDownList($model,'category_id',  $list, array('empty' => 'Select a Category')); ?>
+		?>
+		<?=	$form->dropDownList($model,'category_id',  $list, array('empty' => 'Select a Category')); ?>
 		<?php echo $form->error($model,'category_id'); ?>
 	</div>
 

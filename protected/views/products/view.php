@@ -24,7 +24,35 @@ $this->menu=array(
 		'price',
 		'description',
 		'image',
+		array(               // related city displayed as a link
+            'label'=>'Show Image',
+            'type'=>'raw',
+            'value'=>$model->getThumbnail(),
+        ),
 		'modified_date',
 		'category_id',
 	),
 )); ?>
+
+<?php 
+$this->widget('zii.widgets.grid.CGridView', array(
+	'id'=>'product-photos-grid',
+	'dataProvider'=>$photoData,	
+	'columns'=>array(
+		'id',
+		'url',
+		array(			
+			'type'=>'raw',
+			'header'=>'Picture',                                
+			'value'=> 'CHtml::image($data->url)',
+			),
+		'product_id',
+		array(
+			'class'=>'CButtonColumn',
+		),
+	),
+)); 
+?>
+
+
+
