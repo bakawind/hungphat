@@ -27,7 +27,7 @@ class ProductsController extends Controller
 	{
 		return array(
 			array('allow',  // allow all users to perform 'index' and 'view' actions
-				'actions'=>array('index','view'),
+				'actions'=>array('index','view', 'list'),
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
@@ -56,6 +56,30 @@ class ProductsController extends Controller
 		));
 	}
 
+    public function actionList(){
+        if (isset($_GET['type'])){
+            $type = $_GET['type'];
+            $category = Categories::model()->find('name=:name', array(':name'=>$type));
+
+            if (isset($category)){
+		        $criteria=new CDbCriteria;
+		        $criteria->compare('category_id',$category->id);
+		        $dataProvider = new CActiveDataProvider('Products', array(
+			        'criteria'=>$criteria,
+                    'pagination'=>array(
+                        'pageSize'=>6,
+                    ),
+		        ));
+                $this->render('list', array('dataProvider'=>$dataProvider));
+            }
+            else{
+                echo 'hehehehehee';
+            }
+        }else{
+            echo 'shit';
+        }
+    }
+
 	/**
 	 * Creates a new model.
 	 * If creation is successful, the browser will be redirected to the 'view' page.
@@ -69,13 +93,13 @@ class ProductsController extends Controller
 
 		if(isset($_POST['Products']))
 		{
-			$model->attributes=$_POST['Products'];			
+			$model->attributes=$_POST['Products'];
 			$myfile = CUploadedFile::getInstance($model,'tempFile'); // Hung - upload image code
 			$model->tempFile=$myfile; // Hung - upload image code
 			$model->modified_date= $this->getCurrentDate();
-					
+
 			if($model->save()){
-				$this->updatePhoto($model, $myfile); // Hung - upload image code				
+				$this->updatePhoto($model, $myfile); // Hung - upload image code
 			}
 			$this->redirect(array('admin'));//Hung - redirect to Products admin page
 				//$this->redirect(array('view','id'=>$model->id));
@@ -85,41 +109,41 @@ class ProductsController extends Controller
 			'model'=>$model,
 		));
 	}
-	
+
 	public function getCurrentDate(){ //Hung - get current date for modifying record
 		$currentDate = "" . date("Y/m/d");
 		return $currentDate;
 	}
-	
+
 	/*--------------
 	* Upload and crunch an image Hung-code
 	----------------*/
 	public function updatePhoto($model, $myfile ) {
 	   if (is_object($myfile) && get_class($myfile)==='CUploadedFile') {
 			$ext = $model->tempFile->getExtensionName();
-	//generate a filename for the uploaded image based on a random number	
-			if ($model->image=='' or is_null($model->image)) {				
+	//generate a filename for the uploaded image based on a random number
+			if ($model->image=='' or is_null($model->image)) {
 				$rnd=dechex(rand()%999999999);
 				$filename=$model->id . '_' . $rnd . '.' . $ext;
-				//$n=Photos::model()->count('filename=:filename',array('filename'=>$filename));					
-				$model->image=$filename;				
+				//$n=Photos::model()->count('filename=:filename',array('filename'=>$filename));
+				$model->image=$filename;
 			}
-			
-						
-			$model->tempFile->saveAs($model->getPath());  
-			//$model->tempFile->saveAs($model->image);  
+
+
+			$model->tempFile->saveAs($model->getPath());
+			//$model->tempFile->saveAs($model->image);
 			$model->image=Yii::getPathOfAlias('uploadURL') . '/' . $model->image;
 			$model->save();
-							
+
 			//Yii::import('application.extensions.images.Image');
 			//$image = new Image($model->getPath());
 			//$image = Yii::app()->image->load($model->getPath());
-			
+
 	//Crunch the photo to a size set in my System Options Table
 	//I hold the max size as 800 meaning to fit in an 800px x 800px square
 			//$size=$this->getOption('PhotoLarge');
 			//$image->resize($size[0], $size[0])->quality(75)->sharpen(20);
-			//$image->save(); 
+			//$image->save();
 	// Now create a thumb - again the thumb size is held in System Options Table
 			//$size=$this->getOption('PhotoThumb');
 			//$image->resize($size[0], $size[0])->quality(75)->sharpen(20);
@@ -136,8 +160,8 @@ class ProductsController extends Controller
 	public function actionUpdate($id)
 	{
 		$model=$this->loadModel($id);
-		
-		
+
+
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 
@@ -147,9 +171,9 @@ class ProductsController extends Controller
 			$myfile = CUploadedFile::getInstance($model,'tempFile'); // Hung - upload image code
 			$model->tempFile=$myfile; // Hung - upload image code
 			$model->modified_date= $this->getCurrentDate();
-			
+
 			if($model->save()){
-				$this->updatePhoto($model, $myfile); // Hung - upload image code		
+				$this->updatePhoto($model, $myfile); // Hung - upload image code
 			}
 			$this->redirect(array('view','id'=>$model->id));
 		}
@@ -217,11 +241,11 @@ class ProductsController extends Controller
 			throw new CHttpException(404,'The requested page does not exist.');
 		return $model;
 	}
-	
+
 	public function loadPhotoData($id) // Hung - load Photo according to product id
 	{
 		$photoData = ProductPhotos::model()->searchBy($id);
-		
+
 		if($photoData===null)
 			throw new CHttpException(404,'The requested page does not exist.');
 		return $photoData;

@@ -23,9 +23,9 @@
             <li>
                 <?=CHtml::link('Sản phẩm', '')?>
                <ul class="subnav">
-                    <li><?=CHtml::link('Búp bê Sinfa', '/products/dolls')?></li>
-                    <li><?=CHtml::link('Rô bô ráp hình', '/products/robots')?></li>
-                    <li><?=CHtml::link('Vỉ đồ chơi ráp hình', '/products/toys')?></li>
+                    <li><?=CHtml::link('Búp bê Sinfa', '/products/list?type=doll')?></li>
+                    <li><?=CHtml::link('Rô bô ráp hình', '/products/list?type=robot')?></li>
+                    <li><?=CHtml::link('Vỉ đồ chơi ráp hình', '/products/list?type=toy')?></li>
                 </ul>
             </li>
             <li>
