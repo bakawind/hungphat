@@ -17,8 +17,7 @@ class Products extends CActiveRecord
 {
 	//Hung - add new property
 	var $_PhotoPath;
-	var $_PathSep;
-	var $filename;
+	var $_PathSep;	
 	var $tempFile;
 
 	/**
@@ -63,7 +62,7 @@ class Products extends CActiveRecord
 	public function getThumbnail(){ // Hung - get thumbnail for photo
          // here i return the image
             if (!empty($this->image) && $this->image!='')
-             return CHtml::image('/' . $this->getPath(),$this->image,array('width'=>'300px','max-height'=>'200px'));			 
+             return CHtml::image($this->image,'text_' . $this->image,array('width'=>'300px','max-height'=>'200px'));			 
         }
 		
 		
@@ -71,12 +70,12 @@ class Products extends CActiveRecord
             if (is_null($this->_PhotoPath)) {
                  // I hold the image path and system directory separator in the config/main.php
                  // this is because I develop on a windows server and normally deploy on Linux
-                 $this->_PhotoPath=Yii::app()->params['imagePATH'];
+                 //$this->_PhotoPath=Yii::app()->params['imagePATH'];
+				 $this->_PhotoPath=Yii::getPathOfAlias('uploadPath');
 				 //$this->_PhotoPath=Yii::app()->PathOfAlias['uploadPath'];
-                 $this->_PathSep=Yii::app()->params['pathSep'];
-            }
-            //$path=$this->_PhotoPath.$this->_PathSep;
-			$path=$this->_PhotoPath;
+                 //$this->_PathSep=Yii::app()->params['pathSep'];
+            }            
+			$path=$this->_PhotoPath . '/';
             if ($all) 
 				$path.=$this->image;
             return $path;

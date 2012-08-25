@@ -52,6 +52,7 @@ class ProductsController extends Controller
 	{
 		$this->render('view',array(
 			'model'=>$this->loadModel($id),
+			'photoData'=>$this->loadPhotoData($id),
 		));
 	}
 
@@ -104,9 +105,11 @@ class ProductsController extends Controller
 				$model->image=$filename;				
 			}
 			
-			$model->save();			
+						
 			$model->tempFile->saveAs($model->getPath());  
-			
+			//$model->tempFile->saveAs($model->image);  
+			$model->image=Yii::getPathOfAlias('uploadURL') . '/' . $model->image;
+			$model->save();
 							
 			//Yii::import('application.extensions.images.Image');
 			//$image = new Image($model->getPath());
@@ -213,6 +216,15 @@ class ProductsController extends Controller
 		if($model===null)
 			throw new CHttpException(404,'The requested page does not exist.');
 		return $model;
+	}
+	
+	public function loadPhotoData($id) // Hung - load Photo according to product id
+	{
+		$photoData = ProductPhotos::model()->searchBy($id);
+		
+		if($photoData===null)
+			throw new CHttpException(404,'The requested page does not exist.');
+		return $photoData;
 	}
 
 	/**
