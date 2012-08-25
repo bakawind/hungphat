@@ -65,7 +65,7 @@ class SiteController extends Controller
 		}
 		$this->render('contact',array('model'=>$model));
 	}
-	
+
 	public function actionAbout(){
 		$this->render('about');
 	}
@@ -73,7 +73,7 @@ class SiteController extends Controller
 	public function actionArticle(){
 		$this->render('article');
 	}
-	
+
 	/**
 	 * Displays the login page
 	 */
@@ -109,8 +109,7 @@ class SiteController extends Controller
 		$this->redirect(Yii::app()->homeUrl);
 	}
 
-    public function actionTest()
-    {
-        echo 'hehehehe';
+    public function actionAdmin() {
+        $this->render('admin');
     }
 }
