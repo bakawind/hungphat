@@ -22,3 +22,13 @@
 		});
 	</script>
 </div><!--close banner-->
+<div class='space'></div>
+<div class='inner_content'>	
+	<?php
+	$this->widget('zii.widgets.CListView', array(
+			'dataProvider'=>$model->search(),
+			'itemView'=>'_single_article',
+			'summaryText'=>'',
+		)); ?>
+		<br class='clear' />
+</div> <!-- end inner content-->
