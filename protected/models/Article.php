@@ -7,6 +7,7 @@
  * @property integer $id
  * @property string $title
  * @property string $content
+ * @property string $modified_date
  */
 class Article extends CActiveRecord
 {
@@ -36,12 +37,12 @@ class Article extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('content', 'required'), //Hung - remove requirement for id column
-			array('id', 'numerical', 'integerOnly'=>true),
+			array('content', 'required'), //Hung - remove requirement for id column			
 			array('title', 'length', 'max'=>128),
+			array('modified_date', 'safe'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, title, content','modified_date', 'safe', 'on'=>'search'),
+			array('id, title, content, modified_date', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -65,6 +66,7 @@ class Article extends CActiveRecord
 			'id' => 'ID',
 			'title' => 'Title',
 			'content' => 'Content',
+			'modified_date' => 'Modified Date',
 		);
 	}
 
@@ -82,7 +84,7 @@ class Article extends CActiveRecord
 		$criteria->compare('id',$this->id);
 		$criteria->compare('title',$this->title,true);
 		$criteria->compare('content',$this->content,true);
-
+		$criteria->compare('modified_date',$this->modified_date,true);
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
 		));
