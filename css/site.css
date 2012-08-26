@@ -249,7 +249,9 @@ legend{
 }
 
 .wrapper .content .inner_content .box .product_box img{
-    float: left;
+    float: center;
+	margin-left:auto;
+	margin-right:auto;	
     width: 280px;
     height: 210px;
 }

@@ -55,5 +55,8 @@ ALTER TABLE product_photos MODIFY COLUMN id int AUTO_INCREMENT;
 ALTER TABLE products MODIFY COLUMN id int AUTO_INCREMENT;
 ALTER TABLE order_items MODIFY COLUMN id int AUTO_INCREMENT;
 
--- SHOW COLUMNS FROM article FROM hungphat;
+ALTER TABLE article
+ADD modified_date datetime;
+
+SHOW COLUMNS FROM products FROM hungphat;
 -- INSERT INTO article(title, content) VALUES('example','example_content');

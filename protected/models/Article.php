@@ -41,7 +41,7 @@ class Article extends CActiveRecord
 			array('title', 'length', 'max'=>128),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, title, content', 'safe', 'on'=>'search'),
+			array('id, title, content','modified_date', 'safe', 'on'=>'search'),
 		);
 	}
 
