@@ -62,7 +62,6 @@ class ProductPhotosController extends Controller
 	public function actionCreate()
 	{
 		$model=new ProductPhotos;
-
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 
@@ -75,10 +74,15 @@ class ProductPhotosController extends Controller
 			if($model->save()){
 				$model->url=''; //Hung - code tam - xoa blank url
 				$this->updatePhoto($model, $myfile); // Hung - upload image code
-				$this->redirect(array('view','id'=>$model->id));
+				//$this->redirect(array('view','id'=>$model->id));
+				$this->redirect(array('products/view','id'=>$model->product_id)); // Hung - render to product view page
 			}
 		}
 
+		if(isset($_GET['p_id'])){
+			$model->product_id = $_GET['p_id'];			
+		}
+		
 		$this->render('create',array(
 			'model'=>$model,
 		));

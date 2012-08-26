@@ -61,5 +61,5 @@ $this->widget('zii.widgets.grid.CGridView', array(
 )); 
 ?>
 
-
+<?=CHtml::link('Create new Photo', '/productPhotos/create?p_id=' . $model->id )?>
 

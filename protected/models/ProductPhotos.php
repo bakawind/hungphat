@@ -38,7 +38,7 @@ class ProductPhotos extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('id', 'required'), //Hung - remove riquire for url
+			//array('id', 'required'), //Hung - remove riquire for url
 			array('id, product_id', 'numerical', 'integerOnly'=>true),
 			array('url', 'length', 'max'=>256),
 			// The following rule is used by search().
