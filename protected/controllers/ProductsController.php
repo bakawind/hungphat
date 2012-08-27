@@ -27,7 +27,7 @@ class ProductsController extends Controller
 	{
 		return array(
 			array('allow',  // allow all users to perform 'index' and 'view' actions
-				'actions'=>array('index','view', 'list'),
+				'actions'=>array('index','view', 'list', 'display'),
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
@@ -79,6 +79,26 @@ class ProductsController extends Controller
             echo 'shit';
         }
     }
+	
+	public function actionDisplay($id){
+		
+		$model = $this->loadModel($id);
+		
+		$category = Categories::model()->find('id=:id', array(':id'=>$model->category_id));		
+		$criteria=new CDbCriteria;
+		$criteria->compare('category_id',$category->id);
+		$dataProvider = new CActiveDataProvider('Products', array(
+			'criteria'=>$criteria,
+			'pagination'=>array(
+				'pageSize'=>6,
+			),
+		));
+		
+		$this->render('display',array(
+			'model'=>$model,
+			'dataProvider'=>$dataProvider,
+		));
+	}
 
 	/**
 	 * Creates a new model.

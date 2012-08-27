@@ -6,6 +6,9 @@
 
 	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/reset.css" />
 	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/site.css" />
+	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/slider_thumbnial.css" />
+	<script type="text/javascript" src="<?php echo Yii::app()->request->baseUrl; ?>/js/jquery.min.js" ></script>
+	<script type="text/javascript" src="<?php echo Yii::app()->request->baseUrl; ?>/js/jquery.carouFredSel-5.6.1.js" ></script>
 
 <script type="text/javascript" src="<?php echo Yii::app()->request->baseUrl; ?>/js/sliderman.1.3.7.js"></script>
 	<title><?php echo CHtml::encode($this->pageTitle); ?></title>
@@ -38,7 +41,7 @@
                 <?=CHtml::link('Liên hệ', '/site/contact')?>
             </li>
 			<li>
-                <?=CHtml::link('Tin tức', '/site/article')?>
+                <?=CHtml::link('Tin tức', '/article/list')?>
             </li>
         </ul>
     </div>
