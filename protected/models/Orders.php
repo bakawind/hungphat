@@ -40,7 +40,7 @@ class Orders extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('id, name, address, phone, total', 'required'),
+			array('name, address, phone, total', 'required'),
 			array('id, status', 'numerical', 'integerOnly'=>true),
 			array('total', 'numerical'),
 			array('name, email', 'length', 'max'=>128),

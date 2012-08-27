@@ -70,7 +70,12 @@ class OrderItemsController extends Controller
 		{
 			$model->attributes=$_POST['OrderItems'];
 			if($model->save())
-				$this->redirect(array('view','id'=>$model->id));
+				//$this->redirect(array('view','id'=>$model->id));
+				$this->redirect(array('orders/view','id'=>$model->order_id));
+		}
+		
+		if(isset($_GET['o_id'])){
+			$model->order_id = $_GET['o_id'];			
 		}
 
 		$this->render('create',array(
@@ -94,7 +99,8 @@ class OrderItemsController extends Controller
 		{
 			$model->attributes=$_POST['OrderItems'];
 			if($model->save())
-				$this->redirect(array('view','id'=>$model->id));
+				//$this->redirect(array('view','id'=>$model->id));
+				$this->redirect(array('orders/view','id'=>$model->order_id));
 		}
 
 		$this->render('update',array(
