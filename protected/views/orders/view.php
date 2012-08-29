@@ -27,3 +27,27 @@ $this->menu=array(
 		'total',
 	),
 )); ?>
+
+<?php 
+$this->widget('zii.widgets.grid.CGridView', array(
+	'id'=>'order-detail-grid',
+	'dataProvider'=>$orderDetails,	
+	'columns'=>array(
+		'id',
+		'quantity',	
+		'product_id',
+		array(
+            'class'=>'CButtonColumn',
+            'template'=>'{view}{update}{delete}',
+            'viewButtonUrl' => 'array("orderItems/view",
+            "id"=>$data->id)',
+            'updateButtonUrl' => 'array("orderItems/update",
+            "id"=>$data->id)',
+            'deleteButtonUrl' => 'array("orderItems/delete",
+            "id"=>$data->id)',
+        ),
+	),
+)); 
+?>
+
+<?=CHtml::link('Choose more Items', '/orderItems/create?o_id=' . $model->id )?>

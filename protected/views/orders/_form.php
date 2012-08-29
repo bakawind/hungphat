@@ -9,11 +9,11 @@
 
 	<?php echo $form->errorSummary($model); ?>
 
-	<div class="row">
-		<?php echo $form->labelEx($model,'id'); ?>
+	<!-- div class="row">
+		<?/*php echo $form->labelEx($model,'id'); ?>
 		<?php echo $form->textField($model,'id'); ?>
-		<?php echo $form->error($model,'id'); ?>
-	</div>
+		<?php echo $form->error($model,'id'); */?>
+	</div Hung - remove id textInput -->
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'name'); ?>

@@ -66,20 +66,11 @@ class Products extends CActiveRecord
         }
 		
 		
-	public function getPath($all=true){ //Hung - get path for photo
-            if (is_null($this->_PhotoPath)) {
-                 // I hold the image path and system directory separator in the config/main.php
-                 // this is because I develop on a windows server and normally deploy on Linux
-                 //$this->_PhotoPath=Yii::app()->params['imagePATH'];
-				 $this->_PhotoPath=Yii::getPathOfAlias('uploadPath');
-				 //$this->_PhotoPath=Yii::app()->PathOfAlias['uploadPath'];
-                 //$this->_PathSep=Yii::app()->params['pathSep'];
-            }            
-			$path=$this->_PhotoPath . '/';
-            if ($all) 
-				$path.=$this->image;
-            return $path;
-        }
+	public function getPath(){ //Hung - get path for photo
+        $path=Yii::getPathOfAlias('uploadPath') . '/';            
+		return $path;
+           
+    }
 
 
 	/**

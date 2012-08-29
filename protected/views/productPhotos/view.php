@@ -19,7 +19,11 @@ $this->menu=array(
 	'data'=>$model,
 	'attributes'=>array(
 		'id',
-		'url',
+		array(// Hung - view image
+            'label'=>'Show Image',
+            'type'=>'raw',
+            'value'=>$model->getThumbnail(),
+        ),
 		'product_id',
 	),
 )); ?>

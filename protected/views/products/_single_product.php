@@ -4,7 +4,7 @@
         <?=CHtml::image($data->image)?>
         </a>
         <div class='info'><p><?=$data->price?>VND <?=$data->name?></p></div>
-        <?=CHtml::link('Chi tiết', '/product/display/'.$data->id, array('class'=>'detail'))?>
+        <?=CHtml::link('Chi tiết', '/products/display/'.$data->id, array('class'=>'detail'))?>
         <?=CHtml::link('Thêm vào giỏ', '/cart/add/'.$data->id, array('class'=>'add_to_card'))?>
     </div>
 </div>

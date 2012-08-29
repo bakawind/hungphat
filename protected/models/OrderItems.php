@@ -37,7 +37,7 @@ class OrderItems extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('id, quantity, product_id, order_id', 'required'),
+			array('quantity, product_id, order_id', 'required'),
 			array('id, quantity, product_id, order_id', 'numerical', 'integerOnly'=>true),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
@@ -84,6 +84,23 @@ class OrderItems extends CActiveRecord
 		$criteria->compare('quantity',$this->quantity);
 		$criteria->compare('product_id',$this->product_id);
 		$criteria->compare('order_id',$this->order_id);
+
+		return new CActiveDataProvider($this, array(
+			'criteria'=>$criteria,
+		));
+	}
+	
+	public function searchBy($search_value) //Hung - create data depend on foreign key products_id
+	{
+		// Warning: Please modify the following code to remove attributes that
+		// should not be searched.
+
+		$criteria=new CDbCriteria;
+
+		$criteria->compare('id',$this->id);
+		$criteria->compare('quantity',$this->quantity);
+		$criteria->compare('product_id',$this->product_id);
+		$criteria->compare('order_id',$search_value);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

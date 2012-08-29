@@ -27,7 +27,7 @@ class ArticleController extends Controller
 	{
 		return array(
 			array('allow',  // allow all users to perform 'index' and 'view' actions
-				'actions'=>array('index','view'),
+				'actions'=>array('index','view', 'list'),
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
@@ -54,6 +54,8 @@ class ArticleController extends Controller
 			'model'=>$this->loadModel($id),
 		));
 	}
+	
+	
 
 	/**
 	 * Creates a new model.
@@ -65,10 +67,12 @@ class ArticleController extends Controller
 
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
-
+		
+		
 		if(isset($_POST['Article']))
 		{
 			$model->attributes=$_POST['Article'];
+			$model->modified_date= "" . date("Y/m/d H:i:s");
 			if($model->save())
 				$this->redirect(array('admin')); //Hung - redirect to article management page instead of view detials
 				/*$this->redirect(array('view','id'=>$model->id));*/
@@ -94,6 +98,7 @@ class ArticleController extends Controller
 		if(isset($_POST['Article']))
 		{
 			$model->attributes=$_POST['Article'];
+			$model->modified_date= "" . date("Y/m/d H:i:s");
 			if($model->save())
 				$this->redirect(array('view','id'=>$model->id));
 		}
@@ -148,6 +153,25 @@ class ArticleController extends Controller
 			'model'=>$model,
 		));
 	}
+	
+	public function  actionList(){
+	
+		$model=new Article('search');
+		$this->render('list',array(
+			'model'=>$model,			
+		));
+	
+	
+		/*$model=new Article('search');
+		$model->unsetAttributes();  // clear any default values
+		if(isset($_GET['Article']))
+			$model->attributes=$_GET['Article'];
+
+		$this->render('list',array(
+			'model'=>$model,
+		));*/
+	}
+	
 
 	/**
 	 * Returns the data model based on the primary key given in the GET variable.

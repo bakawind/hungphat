@@ -52,6 +52,7 @@ class OrdersController extends Controller
 	{
 		$this->render('view',array(
 			'model'=>$this->loadModel($id),
+			'orderDetails'=>$this->loadOrderDetails($id),
 		));
 	}
 
@@ -159,6 +160,15 @@ class OrdersController extends Controller
 		if($model===null)
 			throw new CHttpException(404,'The requested page does not exist.');
 		return $model;
+	}
+	
+	public function loadOrderDetails($id) // Hung - load Photo according to product id
+	{
+		$orderDetails = OrderItems::model()->searchBy($id);
+
+		if($orderDetails===null)
+			throw new CHttpException(404,'The requested page does not exist.');
+		return $orderDetails;
 	}
 
 	/**
