@@ -305,7 +305,7 @@ legend{
 	height: 600px;
 }
 .wrapper .content .inner_content .product_detail .detail, .pictures{
-
+	
 	float:left;
 	width: 450px;
 	height: 600px;
@@ -341,7 +341,7 @@ legend{
 }
 
 .wrapper .content .inner_content .product_detail .pictures{
-	background-color:#fff;
+	background-color:#000;
 }
 
 /* thumbnail*/
