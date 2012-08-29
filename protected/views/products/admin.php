@@ -46,8 +46,12 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 		'code',
 		'name',
 		'price',
-		'description',
-		'image',
+		'available',
+		array(			
+			'type'=>'raw',
+			'header'=>'Picture',                                
+			'value'=> 'CHtml::image($data->image,$data->image, array("width"=>100))',			
+			),	
 		/*
 		'modified_date',
 		'category_id',

@@ -74,6 +74,13 @@
 					<td class='spec'> Giá </td>
 					<td class='price'> <?= $model->price ?> </td>
 				</tr>
+				<tr >
+					<td class='spec'> Tình Trạng </td>
+					<td class='price'> <?php
+						if($model->available) echo 'Còn Hàng';
+						else echo 'Hết Hàng';
+					?> </td>
+				</tr>
 				
 				<tr class='break'>					
 				</tr>

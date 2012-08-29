@@ -31,6 +31,7 @@ $this->menu=array(
         ),
 		'modified_date',
 		'category_id',
+		'available',
 	),
 )); ?>
 

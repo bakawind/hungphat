@@ -73,6 +73,12 @@
 		<?php echo $form->error($model,'category_id'); ?>
 	</div>
 
+	<div class="row">
+		<?php echo $form->labelEx($model,'available'); ?>
+		<?php echo $form->checkBox($model,'available'); ?>
+		<?php echo $form->error($model,'available'); ?>
+	</div>
+	
 	<div class="row buttons">
 		<?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save'); ?>
 	</div>
