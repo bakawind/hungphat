@@ -25,6 +25,7 @@ $this->menu=array(
 		'phone',
 		'status',
 		'total',
+		'created_date',
 	),
 )); ?>
 

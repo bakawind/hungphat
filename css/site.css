@@ -265,7 +265,7 @@ legend{
     text-align: center;
     background: url(../images/detail.jpg);
 }
-.wrapper .content .inner_content .box .product_box .add_to_card {
+.add_to_card { 
     float: left;
     display: block;
     width: 190px;

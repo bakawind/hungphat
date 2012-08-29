@@ -20,6 +20,7 @@
 					items: {
 						visible: 1,
 						width: 448,
+						height: '75%'
 						
 					},
 					scroll: {
@@ -37,8 +38,8 @@
 							min: 2,
 							max: 6
 						},
-						width: 150,
-						height: '66%'
+						width: 200,
+						height: '75%'
 					}
 				});
 
@@ -83,6 +84,7 @@
 				<tr>
 					<td colspan=2> <?= $model->description ?> </td>
 				</tr>
+				<tr><td colspan=2><?=CHtml::link('Thêm vào giỏ', '/cart/add/'.$model->id, array('class'=>'add_to_card'))?></td></tr>
 			</table>
 			<br class='clear' />
 		</div> <!--end detail-->
@@ -98,11 +100,7 @@
 					<?php foreach ($photoData->getData() as $value){ ?>
 						<span id="<?= $value->id ?>" class="selected"><img src="<?= $value->url ?>" /></span>
 					<? } ?>
-				</div>
-				<!--div id="carousel">
-					<span id="1"><img src="../../images/products/bb1.jpg" /></span>
-					<span id="2"><img src="../../images/products/bb2.jpg" /></span>
-				</div-->
+				</div>				
 			</div>
 			
 			<div id="thumbs-wrapper">

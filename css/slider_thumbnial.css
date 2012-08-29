@@ -1,13 +1,13 @@
 			
-			#wrapper { float:left; width: 450px; }
+			#wrapper { float:left; width: 440px; }
 			#carousel-wrapper {				
 				padding-bottom: 10px;
 				position: relative;
 				
-				border: 1px solid #899; border-radius: 5px; /*Hung*/
-				height:410px;/*Hung*/
-				
-				background-color: blue;/*Hung*/
+				/*border: 1px solid #899; border-radius: 5px; Hung*/
+				/*height:410px;Hung*/
+				margin-top:50px;
+				/*background-color: blue;Hung*/
 			}
 			#carousel, #thumbs {
 				overflow: hidden;
@@ -25,6 +25,7 @@
 			#carousel-wrapper .caroufredsel_wrapper {
 				border-radius: 5px;
 				box-shadow: 0 0 5px #899;				
+				
 			}
 
 			#carousel span, #carousel img,
@@ -72,13 +73,11 @@
 				/*
 				width:auto;
 				height:180px;				
-				position: relative;
-				border: 1px solid #899;
-				border-radius: 5px;
-				box-shadow: 0 0 5px #899; Hung */
+				position: relative; Hung */
+				border: 1px solid #899; border-radius: 5px; box-shadow: 0 0 5px #899;
 				padding: 20px 40px;
 				position: relative;
-				background-color: green;
+				/*background-color: green;*/
 			}
 			#thumbs a {			
 				border: 2px solid #899;

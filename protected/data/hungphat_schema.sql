@@ -57,6 +57,7 @@ ALTER TABLE order_items MODIFY COLUMN id int AUTO_INCREMENT;
 
 -- ALTER TABLE order_items ADD quantity int;
 -- ALTER TABLE order_items drop quntity; 
+-- ALTER TABLE orders ADD created_date datetime;
 
 SHOW COLUMNS FROM order_items FROM hungphat;
 -- INSERT INTO article(title, content) VALUES('example','example_content');

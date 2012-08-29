@@ -46,6 +46,7 @@ class Orders extends CActiveRecord
 			array('name, email', 'length', 'max'=>128),
 			array('address', 'length', 'max'=>256),
 			array('phone', 'length', 'max'=>16),
+			array('created_date', 'safe'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
 			array('id, name, email, address, phone, status, total', 'safe', 'on'=>'search'),
@@ -97,7 +98,7 @@ class Orders extends CActiveRecord
 		$criteria->compare('phone',$this->phone,true);
 		$criteria->compare('status',$this->status);
 		$criteria->compare('total',$this->total);
-
+		$criteria->compare('created_date',$this->created_date,true);
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
 		));
