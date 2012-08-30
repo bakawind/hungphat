@@ -16,8 +16,8 @@
 class Products extends CActiveRecord
 {
 	//Hung - add new property
-	var $_PhotoPath;
-	var $_PathSep;	
+	/*var $_PhotoPath;*/
+	/*var $_PathSep;*/	
 	var $tempFile;
 
 	/**
@@ -47,7 +47,7 @@ class Products extends CActiveRecord
 		// will receive user inputs.
 		return array(
 			array('code, name', 'required'), //Hung - remove id column from requirement
-			array('id, category_id', 'numerical', 'integerOnly'=>true),
+			array('id, category_id, available', 'numerical', 'integerOnly'=>true),
 			array('price', 'numerical'),
 			array('code', 'length', 'max'=>64),
 			array('name', 'length', 'max'=>128),
@@ -55,7 +55,7 @@ class Products extends CActiveRecord
 			array('description, modified_date', 'safe'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, code, name, price, description, image, modified_date, category_id', 'safe', 'on'=>'search'),
+			array('id, code, name, price, description, image, modified_date, category_id, available', 'safe', 'on'=>'search'),
 		);
 	}
 	
@@ -98,6 +98,7 @@ class Products extends CActiveRecord
 			'image' => 'Image',
 			'modified_date' => 'Modified Date',
 			'category_id' => 'Category',
+			'available' => 'Available',
 		);
 	}
 
@@ -120,7 +121,8 @@ class Products extends CActiveRecord
 		$criteria->compare('image',$this->image,true);
 		$criteria->compare('modified_date',$this->modified_date,true);
 		$criteria->compare('category_id',$this->category_id);
-
+		$criteria->compare('available',$this->available,true);
+		
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
 		));
