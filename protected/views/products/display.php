@@ -31,6 +31,7 @@
 				$('#thumbs').carouFredSel({
 					responsive: true,
 					auto: false,
+					circular: false,
 					prev: '#prev',
 					next: '#next',
 					items: {
@@ -102,20 +103,20 @@
 			<div id="carousel-wrapper">				
 				<img id="shadow" src="../../img/gui/carousel_shadow.png" />
 				<div id="carousel">
-					<span id="<?= $model->image?>"><img src="<?= $model->image?>" /></span>
+					<span id="<?= $model->code?>"><img src="<?= $model->image?>" /></span>
 										
 					<?php foreach ($photoData->getData() as $value){ ?>
-						<span id="<?= $value->url ?>" class="selected"><img src="<?= $value->url ?>" /></span>
+						<span id="<?= $value->id ?>" class="selected"><img src="<?= $value->url ?>" /></span>
 					<? } ?>
 				</div>				
 			</div>
 			
 			<div id="thumbs-wrapper">
 				<div id="thumbs">
-					<a class="selected" href="#<?= $model->image?>" ><img src="<?= $model->image?>"/></a>
+					<a class="selected" href="#<?= $model->code?>" ><img src="<?= $model->image?>"/></a>
 					
 					<?php foreach ($photoData->getData() as $value){ ?>
-						<a href="#<?= $value->url ?>"><img src="<?= $value->url ?>" /></a>						
+						<a href="#<?= $value->id ?>"><img src="<?= $value->url ?>" /></a>						
 					<? } ?>
 				</div>
 				<a id="prev" href="#"></a>
