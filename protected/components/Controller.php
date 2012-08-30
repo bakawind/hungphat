@@ -14,7 +14,7 @@ class Controller extends CController
         $this->_cart = Yii::app()->user->getState('cart');
         $cart = new Cart();
         // if the cart is not existed, create new one
-        if (null != $this->_cart) {
+        if ($this->_cart != null) {
             $this->_cart = $cart->loadJson($this->_cart);
         } else {
             $this->_cart = $cart;
