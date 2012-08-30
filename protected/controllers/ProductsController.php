@@ -72,19 +72,14 @@ class ProductsController extends Controller
 		        ));
                 $this->render('list', array('dataProvider'=>$dataProvider));
             }
-            else{
-                echo 'hehehehehee';
-            }
-        }else{
-            echo 'shit';
         }
     }
-	
+
 	public function actionDisplay($id){
-		
+
 		$model = $this->loadModel($id);
-		
-		$category = Categories::model()->find('id=:id', array(':id'=>$model->category_id));		
+
+		$category = Categories::model()->find('id=:id', array(':id'=>$model->category_id));
 		$criteria=new CDbCriteria;
 		$criteria->compare('category_id',$category->id);
 		$dataProvider = new CActiveDataProvider('Products', array(
@@ -93,9 +88,9 @@ class ProductsController extends Controller
 				'pageSize'=>6,
 			),
 		));
-		
-		
-		
+
+
+
 		$this->render('display',array(
 			'model'=>$model,
 			'dataProvider'=>$dataProvider,
@@ -110,7 +105,7 @@ class ProductsController extends Controller
 	public function actionCreate()
 	{
 		$model=new Products;
-		
+
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 
@@ -144,10 +139,10 @@ class ProductsController extends Controller
 	public function updatePhoto($model, $myfile ) {
 	   if (is_object($myfile) && get_class($myfile)==='CUploadedFile') {
 			$ext = $model->tempFile->getExtensionName();
-			$nameOfFile = $model->tempFile->getName();			
-			$model->image= $model->id . '_' . $nameOfFile;	
+			$nameOfFile = $model->tempFile->getName();
+			$model->image= $model->id . '_' . $nameOfFile;
 
-			$model->tempFile->saveAs($model->getPath(). '/' . $model->image);			
+			$model->tempFile->saveAs($model->getPath(). '/' . $model->image);
 			$model->image=Yii::getPathOfAlias('uploadURL') . '/' . $model->image;
 			$model->save();
 
@@ -191,7 +186,7 @@ class ProductsController extends Controller
 				$this->updatePhoto($model, $myfile); // Hung - upload image code
 				$this->redirect(array('view','id'=>$model->id));
 			}
-			
+
 		}
 
 		$this->render('update',array(

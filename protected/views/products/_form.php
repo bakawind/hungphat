@@ -40,8 +40,8 @@
 		<?php echo $form->error($model,'description'); ?>
 	</div>
 
-	<div class="row"> <!-- Hung - add upload image input -->  
-		
+	<div class="row"> <!-- Hung - add upload image input -->
+
 		<?php echo $model->getThumbnail(); ?>
         <br>
 		<?php echo $form->labelEx($model,'image'); ?>
@@ -54,20 +54,20 @@
 		<? /*php echo $form->labelEx($model,'modified_date'); ?>
 		<?php echo $form->textField($model,'modified_date'); ?>
 		<?php echo $form->error($model,'modified_date'); //Hung - pick current day on view or in model? */ ?>
-	</div --> 
+	</div -->
 
 	<!--div class="row" Hung - remove category_id Textfield>
 		<?/*php echo $form->labelEx($model,'category_id'); ?>
 		<?php echo $form->textField($model,'category_id'); ?>
 		<?php echo $form->error($model,'category_id'); */?>
-	</div-->	
-	
+	</div-->
+
 	<!-- Hung - add dropdownlist-->
 	<div class="row">
 		<?= $form->labelEx($model,'category_id'); ?>
-		<?php 
-			$models = categories::model()->findAll(); 
-			$list = CHtml::listData($models, 'id', 'name'); 			
+		<?php
+			$models = Categories::model()->findAll();
+			$list = CHtml::listData($models, 'id', 'name');
 		?>
 		<?=	$form->dropDownList($model,'category_id',  $list, array('empty' => 'Select a Category')); ?>
 		<?php echo $form->error($model,'category_id'); ?>
@@ -78,7 +78,7 @@
 		<?php echo $form->checkBox($model,'available'); ?>
 		<?php echo $form->error($model,'available'); ?>
 	</div>
-	
+
 	<div class="row buttons">
 		<?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save'); ?>
 	</div>
