@@ -47,7 +47,7 @@ create table order_items (
     foreign key (order_id) references orders(id)
 );
 
--- alter tables, update id comlumns to auto_increment 
+-- alter tables, update id comlumns to auto_increment
 ALTER TABLE article MODIFY COLUMN id int AUTO_INCREMENT;
 ALTER TABLE categories MODIFY COLUMN id int AUTO_INCREMENT;
 ALTER TABLE orders MODIFY COLUMN id int AUTO_INCREMENT;
@@ -55,11 +55,11 @@ ALTER TABLE product_photos MODIFY COLUMN id int AUTO_INCREMENT;
 ALTER TABLE products MODIFY COLUMN id int AUTO_INCREMENT;
 ALTER TABLE order_items MODIFY COLUMN id int AUTO_INCREMENT;
 
--- ALTER TABLE order_items ADD quantity int;
--- ALTER TABLE order_items drop quntity; 
--- ALTER TABLE orders ADD created_date datetime;
--- ALTER TABLE products ADD available boolean;
--- ALTER TABLE products ALTER available SET DEFAULT 1;
+ALTER TABLE order_items ADD quantity int;
+ALTER TABLE order_items drop quntity;
+ALTER TABLE orders ADD created_date datetime;
+ALTER TABLE products ADD available boolean;
+ALTER TABLE products ALTER available SET DEFAULT 1;
 
 SHOW COLUMNS FROM order_items FROM hungphat;
--- INSERT INTO article(title, content) VALUES('example','example_content');
+INSERT INTO article(title, content) VALUES('example','example_content');
