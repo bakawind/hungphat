@@ -162,7 +162,7 @@ class OrdersController extends Controller
 			throw new CHttpException(404,'The requested page does not exist.');
 		return $model;
 	}
-	
+
 	public function loadOrderDetails($id) // Hung - load Photo according to product id
 	{
 		$orderDetails = OrderItems::model()->searchBy($id);

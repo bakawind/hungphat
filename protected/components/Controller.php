@@ -5,6 +5,23 @@
  */
 class Controller extends CController
 {
+    // Shopping Cart
+    protected $_cart;
+
+    public function getCart()
+    {
+        // get the cart from session
+        $this->_cart = Yii::app()->user->getState('cart');
+        $cart = new Cart();
+        // if the cart is not existed, create new one
+        if ($this->_cart != null) {
+            $this->_cart = $cart->loadJson($this->_cart);
+        } else {
+            $this->_cart = $cart;
+        }
+        return $this->_cart;
+    }
+
 	/**
 	 * @var string the default layout for the controller view. Defaults to '//layouts/column1',
 	 * meaning using a single column layout. See 'protected/views/layouts/column1.php'.
