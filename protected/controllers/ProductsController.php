@@ -129,7 +129,7 @@ class ProductsController extends Controller
 	}
 
 	public function getCurrentDate(){ //Hung - get current date for modifying record
-		$currentDate = "" . date("Y/m/d");
+		$currentDate = "" . date("Y/m/d H:i:s");
 		return $currentDate;
 	}
 
