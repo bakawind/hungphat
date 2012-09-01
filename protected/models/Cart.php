@@ -34,20 +34,46 @@ class Cart{
 
     public function addToCart($productId, $quantity=1)
     {
-        if(isset($productId) && !$this->isInCart($productId)){
-            $item = new CartItem($productId, $quantity);
-            //$item->productId = $productId;
-            //$item->quantity = $quantity;
-            array_push($this->_cartItems, $item);
+        if(isset($productId) && $productId!=null){
+            if(!$this->isInCart($productId)){
+                $item = new CartItem($productId, $quantity);
+                //$item->productId = $productId;
+                //$item->quantity = $quantity;
+                array_push($this->_cartItems, $item);
+            } else {
+                foreach($this->_cartItems as $item){
+                    if($item->productId == $productId) $item->quantity += $quantity;
+                }
+            }
             Yii::app()->user->setState('cart', $this->toJson());
+        }
+    }
+
+    public function changeQuantity($productId, $quantity=0)
+    {
+        if(isset($productId) && $productId!=null){
+            // The product existed
+            if($this->isInCart($productId)){
+                if($quantity!=0){
+                    foreach($this->_cartItems as $item){
+                        if($item->productId == $productId){
+                            $item->quantity = $quantity;
+                            $this->_cartItems[array_search($item, $this->_cartItems)]=$item;
+                        }
+                    }
+                    Yii::app()->user->setState('cart', $this->toJson());
+                } else {
+                    $this->removeFromCart($productId);
+                }
+            }
         }
     }
 
     public function removeFromCart($productId)
     {
         if($this->isInCart($productId)){
-            foreach($_cartItems as $item){
-                if($item->id == $productId) unset($this->_cartItems[array_search($item)]);
+            foreach($this->_cartItems as $item){
+                if($item->productId == $productId) unset($this->_cartItems[array_search($item, $this->_cartItems)]);
             }
             Yii::app()->user->setState('cart', $this->toJson());
         }
@@ -55,7 +81,7 @@ class Cart{
 
     public function isInCart($productId)
     {
-        if(isset($productId)){
+        if(isset($productId) && $productId!=null){
             foreach($this->_cartItems as $item){
                 if($item->productId == $productId) return true;
             }
@@ -66,6 +92,22 @@ class Cart{
     public function getItems()
     {
         return $this->_cartItems;
+    }
+
+    public function getTotal()
+    {
+        $total = 0;
+        foreach($this->_cartItems as $item){
+            $total += $item->getTotal();
+        }
+        return $total;
+    }
+
+    public function getNumberOfItems()
+    {
+        $number = 0;
+        foreach($this->_cartItems as $item) ++$number;
+        return $number;
     }
 }
 ?>

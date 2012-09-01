@@ -6,18 +6,13 @@
 
 	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/reset.css" />
 	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/site.css" />
-	
-	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/slider_thumbnial.css" />
-	
-	
-	<script type="text/javascript" src="<?php echo Yii::app()->request->baseUrl; ?>/js/sliderman.1.3.7.js"></script>
-	
-	
 
-	
-	
+	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/slider_thumbnial.css" />
+
+	<script type="text/javascript" src="<?php echo Yii::app()->request->baseUrl; ?>/js/sliderman.1.3.7.js"></script>
+
 	<title><?php echo CHtml::encode($this->pageTitle); ?></title>
-	
+
 </head>
 
 <body>
@@ -56,7 +51,8 @@
         <div class='container'>
             <div class='cart'>
                 <?=CHtml::image("/images/cart.png")?>
-                <p id='cart_detail'>2 (click để xem giỏ hàng)</p>
+                <?php $cart = $this->getCart(); ?>
+                <p id='cart_detail'><a href='/cart/index'><?=$cart->getNumberOfItems()?> (click để xem giỏ hàng)</a></p>
             </div>
             <div class='search'>
                 <input type='textfield'/>

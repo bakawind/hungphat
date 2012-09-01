@@ -44,6 +44,16 @@ class CartController extends Controller
         $this->redirect('/cart/index');
     }
 
+    public function actionUpdate()
+    {
+        $quantity = isset($_POST['quantity']) ? $_POST['quantity'] : 0;
+        $id = isset($_POST['id']) ? $_POST['id'] : null;
+        if($id!=null){
+            $this->getCart()->changeQuantity($id, $quantity);
+        }
+        $this->redirect('/cart/index');
+    }
+
 	/**
 	 * This is the action to handle external exceptions.
 	 */

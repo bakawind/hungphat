@@ -25,5 +25,10 @@ class CartItem{
         $item['price'] = $this->price;
         return $item;
     }
+
+    public function getTotal()
+    {
+        return $this->price * $this->quantity;
+    }
 }
 ?>
