@@ -1,6 +1,3 @@
-
-
-
 <div class='banner'>
     <?=CHtml::image("/images/banners/banner3.jpg", '', array('width'=>"900", 'height'=>'350'))?>
 </div>
@@ -97,32 +94,45 @@
 			<br class='clear' />
 		</div> <!--end detail-->
 		
-		<!--- **************************slider**************************** -->	
-		<div id="wrapper">
+		<!--- **************************slider**************************** -->
 		
-			<div id="carousel-wrapper">				
-				<img id="shadow" src="../../img/gui/carousel_shadow.png" />
-				<div id="carousel">
-					<span id="<?= $model->code?>"><img src="<?= $model->image?>" /></span>
-										
-					<?php foreach ($photoData->getData() as $value){ ?>
-						<span id="<?= $value->id ?>" class="selected"><img src="<?= $value->url ?>" /></span>
-					<? } ?>
-				</div>				
+			<div id="wrapper">
+				
+				<?php 
+				if($model->image!=null || $photoData->ItemCount!=0) {?>
+					<div id="carousel-wrapper">				
+						<img id="shadow" src="../../img/gui/carousel_shadow.png" />
+						<div id="carousel">
+							<?php 
+								if($model->image!=null){ ?>
+									<span id="<?= $model->id?>"><img src="<?= $model->image?>" /></span>
+							<?php } ?>
+							<?php 
+								if($photoData->ItemCount != 0){						
+									foreach ($photoData->getData() as $value){ ?>
+										<span id="<?= $model->id . '_' .$value->id ?>" class="selected"><img src="<?= $value->url ?>" /></span>
+							<?php 	}
+								}?>
+						</div>				
+					</div>
+				<?php } ?>
+				
+				<?php if($photoData->ItemCount > 0 && $model->image!=null ){ ?>
+					<div id="thumbs-wrapper">
+						<div id="thumbs">							
+							<a class="selected" href="#<?= $model->id?>" ><img src="<?= $model->image?>"/></a>							
+							<?php 								
+								foreach ($photoData->getData() as $value){ ?>
+								<a href="#<?= $model->id . '_' . $value->id ?>"><img src="<?= $value->url ?>" /></a>						
+							<? } ?>
+						</div>
+						<a id="prev" href="#"></a>
+						<a id="next" href="#"></a>
+					</div>
+				<?php } ?>
+				
 			</div>
-			
-			<div id="thumbs-wrapper">
-				<div id="thumbs">
-					<a class="selected" href="#<?= $model->code?>" ><img src="<?= $model->image?>"/></a>
-					
-					<?php foreach ($photoData->getData() as $value){ ?>
-						<a href="#<?= $value->id ?>"><img src="<?= $value->url ?>" /></a>						
-					<? } ?>
-				</div>
-				<a id="prev" href="#"></a>
-				<a id="next" href="#"></a>
-			</div>
-		</div>
+		
 		<!--- **************************slider**************************** -->			
 	</div> <!-- end droduct details-->
 	<div class='space'></div>
