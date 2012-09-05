@@ -27,9 +27,12 @@
             <li>
                 <?=CHtml::link('Sản phẩm', '')?>
                <ul class="subnav">
-                    <li><?=CHtml::link('Búp bê Sinfa', '/products/list?type=doll')?></li>
-                    <li><?=CHtml::link('Rô bô ráp hình', '/products/list?type=robot')?></li>
-                    <li><?=CHtml::link('Vỉ đồ chơi ráp hình', '/products/list?type=toy')?></li>
+                <?php
+                $categories = Categories::model()->findAll();
+                foreach($categories as $c){
+                ?>
+                    <li><?=CHtml::link($c->caption, '/products/list?type='.$c->name)?></li>
+                <? } ?>
                 </ul>
             </li>
             <li>

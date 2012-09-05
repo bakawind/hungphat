@@ -8,5 +8,13 @@
 	<?php echo CHtml::encode($data->name); ?>
 	<br />
 
+	<b><?php echo CHtml::encode($data->getAttributeLabel('caption')); ?>:</b>
+	<?php echo CHtml::encode($data->caption); ?>
+	<br />
+
+	<b><?php echo CHtml::encode($data->getAttributeLabel('banner')); ?>:</b>
+	<?php echo CHtml::encode($data->banner); ?>
+	<br />
+
 
 </div>
