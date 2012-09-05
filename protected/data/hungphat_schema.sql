@@ -53,6 +53,12 @@ create table order_items (
     foreign key (order_id) references orders(id)
 );
 
+create table price_range(
+	id int primary key auto_increment,
+	from_price double not null default 0,
+	to_price double not null default 0
+);
+
 -- alter tables, update id comlumns to auto_increment
 ALTER TABLE article MODIFY COLUMN id int AUTO_INCREMENT;
 ALTER TABLE categories MODIFY COLUMN id int AUTO_INCREMENT;
