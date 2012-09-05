@@ -11,6 +11,7 @@
  */
 class Article extends CActiveRecord
 {
+	var $tempFile;
 	/**
 	 * Returns the static model of the specified AR class.
 	 * @param string $className active record class name.
@@ -39,10 +40,11 @@ class Article extends CActiveRecord
 		return array(
 			array('content', 'required'), //Hung - remove requirement for id column			
 			array('title', 'length', 'max'=>128),
+			array('image', 'length', 'max'=>256),
 			array('modified_date', 'safe'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, title, content, modified_date', 'safe', 'on'=>'search'),
+			array('id, title, content, modified_date, image', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -67,8 +69,22 @@ class Article extends CActiveRecord
 			'title' => 'Title',
 			'content' => 'Content',
 			'modified_date' => 'Modified Date',
+			'image' => 'Image',
 		);
 	}
+	
+	public function getThumbnail(){ // Hung - get thumbnail for photo
+         // here i return the image
+            if (!empty($this->image) && $this->image!='')
+             return CHtml::image($this->image,'text_' . $this->image,array('width'=>'300px','max-height'=>'200px'));			 
+        }
+		
+		
+	public function getPath(){ //Hung - get path for photo
+        $path=Yii::getPathOfAlias('uploadPath') . '/';            
+		return $path;
+           
+    }
 
 	/**
 	 * Retrieves a list of models based on the current search/filter conditions.
@@ -85,6 +101,8 @@ class Article extends CActiveRecord
 		$criteria->compare('title',$this->title,true);
 		$criteria->compare('content',$this->content,true);
 		$criteria->compare('modified_date',$this->modified_date,true);
+		$criteria->compare('image',$this->image,true);
+		
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
 		));

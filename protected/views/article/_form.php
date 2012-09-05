@@ -3,6 +3,7 @@ $this->layout='column2';
 <?php $form=$this->beginWidget('CActiveForm', array(
 	'id'=>'article-form',
 	'enableAjaxValidation'=>false,
+	'htmlOptions'=>array('enctype'=>'multipart/form-data',),
 )); ?>
 
 	<p class="note">Fields with <span class="required">*</span> are required.</p>
@@ -26,6 +27,15 @@ $this->layout='column2';
 		<?php echo $form->labelEx($model,'content'); ?>
         <?php echo $form->textArea($model,'content')?>
         <?php echo $form->error($model,'content'); ?>
+	</div>
+	
+	<div class="row"> <!-- Hung - add upload image input -->
+
+		<?php echo $model->getThumbnail(); ?>
+        <br>
+		<?php echo $form->labelEx($model,'image'); ?>
+		<?php echo CHtml::activeFileField($model, 'tempFile'); // see comments below ?>		
+		<?php echo $form->error($model,'image');  ?>
 	</div>
 
 	<div class="row buttons">

@@ -193,8 +193,8 @@ class ProductPhotosController extends Controller
 			$nameOfFile = $model->tempFile->getName();			
 			$model->url= $model->id . '_' . $nameOfFile;
 			
-			$myfile->saveAs($model->getPath() . '/' . $model->url); //upload picture to server
-			$model->url=Yii::getPathOfAlias('uploadURL') . '/' . $model->url;
+			$myfile->saveAs($model->getPath() . '/slider_photos/' . $model->url); //upload picture to server
+			$model->url=Yii::getPathOfAlias('uploadURL') . '/slider_photos/' . $model->url;
 			$model->save();
 			
 			return true;
