@@ -1,6 +1,6 @@
 <div class='box'>
     <div class="product_box">
-        <a href="productdetail.html">
+    <a href="/products/display/<?=$data->id?>">
         <?=CHtml::image($data->image)?>
         </a>
         <div class='info'><p><?=$data->price?>VND <?=$data->name?></p></div>
