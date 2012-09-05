@@ -60,6 +60,7 @@ ALTER TABLE order_items drop quntity;
 ALTER TABLE orders ADD created_date datetime;
 ALTER TABLE products ADD available boolean;
 ALTER TABLE products ALTER available SET DEFAULT 1;
+ALTER TABLE article ADD image varchar(256);
 
 SHOW COLUMNS FROM order_items FROM hungphat;
 INSERT INTO article(title, content) VALUES('example','example_content');
