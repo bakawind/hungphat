@@ -6,6 +6,8 @@
  * The followings are the available columns in table 'categories':
  * @property integer $id
  * @property string $name
+ * @property string $caption
+ * @property string $banner
  */
 class Categories extends CActiveRecord
 {
@@ -35,12 +37,12 @@ class Categories extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('name', 'required'), //Hung - remove id from requirement
-			array('id', 'numerical', 'integerOnly'=>true),
-			array('name', 'length', 'max'=>128),
+			array('caption', 'required'),
+			array('name, caption', 'length', 'max'=>128),
+			array('banner', 'length', 'max'=>256),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, name', 'safe', 'on'=>'search'),
+			array('id, name, caption, banner', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -63,6 +65,8 @@ class Categories extends CActiveRecord
 		return array(
 			'id' => 'ID',
 			'name' => 'Name',
+			'caption' => 'Caption',
+			'banner' => 'Banner',
 		);
 	}
 
@@ -79,6 +83,8 @@ class Categories extends CActiveRecord
 
 		$criteria->compare('id',$this->id);
 		$criteria->compare('name',$this->name,true);
+		$criteria->compare('caption',$this->caption,true);
+		$criteria->compare('banner',$this->banner,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

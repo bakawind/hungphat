@@ -9,17 +9,22 @@
 
 	<?php echo $form->errorSummary($model); ?>
 
-	
-	<!-- div class="row">
-		<? /*php echo $form->labelEx($model,'id'); ?>
-		<?php echo $form->textField($model,'id'); ?>
-		<?php echo $form->error($model,'id'); */?>
-	</div Hung - remove id input -->
-
 	<div class="row">
 		<?php echo $form->labelEx($model,'name'); ?>
 		<?php echo $form->textField($model,'name',array('size'=>60,'maxlength'=>128)); ?>
 		<?php echo $form->error($model,'name'); ?>
+	</div>
+
+	<div class="row">
+		<?php echo $form->labelEx($model,'caption'); ?>
+		<?php echo $form->textField($model,'caption',array('size'=>60,'maxlength'=>128)); ?>
+		<?php echo $form->error($model,'caption'); ?>
+	</div>
+
+	<div class="row">
+		<?php echo $form->labelEx($model,'banner'); ?>
+		<?php echo $form->textField($model,'banner',array('size'=>60,'maxlength'=>256)); ?>
+		<?php echo $form->error($model,'banner'); ?>
 	</div>
 
 	<div class="row buttons">

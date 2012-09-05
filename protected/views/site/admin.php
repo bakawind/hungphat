@@ -3,6 +3,7 @@ $controllers = array(
     'article'=>'News',
     'products'=>'Products',
     'orders'=>'Orders',
+    'categories'=>'Categories',
 );
 
 ?>
