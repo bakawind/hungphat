@@ -11,6 +11,7 @@
  */
 class Categories extends CActiveRecord
 {
+	var $tempBanner;
 	/**
 	 * Returns the static model of the specified AR class.
 	 * @param string $className active record class name.
@@ -90,4 +91,9 @@ class Categories extends CActiveRecord
 			'criteria'=>$criteria,
 		));
 	}
+
+	public function getBannerThumbnail(){
+        if (!empty($this->banner) && $this->banner!='')
+            return CHtml::image($this->banner, $this->caption, array('max-width'=>'300px','max-height'=>'200px'));
+    }
 }

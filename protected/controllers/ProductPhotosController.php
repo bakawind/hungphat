@@ -80,9 +80,9 @@ class ProductPhotosController extends Controller
 		}
 
 		if(isset($_GET['p_id'])){
-			$model->product_id = $_GET['p_id'];			
+			$model->product_id = $_GET['p_id'];
 		}
-		
+
 		$this->render('create',array(
 			'model'=>$model,
 		));
@@ -187,16 +187,16 @@ class ProductPhotosController extends Controller
 			Yii::app()->end();
 		}
 	}
-	
+
 	public function updatePhoto($model, $myfile) {
-	   if (is_object($myfile) && get_class($myfile)==='CUploadedFile') {			
-			$nameOfFile = $model->tempFile->getName();			
+	   if (is_object($myfile) && get_class($myfile)==='CUploadedFile') {
+			$nameOfFile = $model->tempFile->getName();
 			$model->url= $model->id . '_' . $nameOfFile;
-			
+
 			$myfile->saveAs($model->getPath() . '/' . $model->url); //upload picture to server
 			$model->url=Yii::getPathOfAlias('uploadURL') . '/' . $model->url;
 			$model->save();
-			
+
 			return true;
 		 } else return false;
 	}
