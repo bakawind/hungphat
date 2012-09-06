@@ -24,19 +24,19 @@
 </div><!--close banner-->
 <div class='categories'>
     <div class='category' style='margin-left: 10px;'>
-        <a href='/ products/dolls'>
+        <a href='/products/list?type=doll'>
             <div id='doll'></div>
             BÚP BÊ SINFA
         </a>
     </div>
     <div class='category'>
-        <a href='/ products/dolls'>
+        <a href='/products/list?type=robot'>
             <div id='robot'></div>
             RÔ BÔ RÁP HÌNH
         </a>
     </div>
     <div class='category'>
-        <a href='/ products/dolls'>
+        <a href='/products/list?type=toy'>
             <div id='toys'></div>
             VỈ ĐỒ CHƠI GIA ĐÌNH
         </a>
