@@ -21,5 +21,10 @@ $this->menu=array(
 		'id',
 		'title',
 		'content',
+		array(// Hung - view image
+            'label'=>'Show Image',
+            'type'=>'raw',
+            'value'=>$model->getThumbnail(),
+        ),
 	),
 )); ?>

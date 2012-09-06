@@ -28,7 +28,6 @@
         <br>
 		<?php echo $form->labelEx($model,'url'); ?>
 		<?php echo CHtml::activeFileField($model, 'tempFile'); // see comments below ?>
-		<?php //echo $form->textField($model,'image',array('size'=>60,'maxlength'=>256)); ?>
 		<?php echo $form->error($model,'url');  ?>
 	</div>
 

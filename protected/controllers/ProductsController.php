@@ -142,8 +142,8 @@ class ProductsController extends Controller
 			$nameOfFile = $model->tempFile->getName();
 			$model->image= $model->id . '_' . $nameOfFile;
 
-			$model->tempFile->saveAs($model->getPath(). '/' . $model->image);
-			$model->image=Yii::getPathOfAlias('uploadURL') . '/' . $model->image;
+			$model->tempFile->saveAs($model->getPath(). '/products/' . $model->image);
+			$model->image=Yii::getPathOfAlias('uploadURL') . '/products/' . $model->image;
 			$model->save();
 
 			//Yii::import('application.extensions.images.Image');
