@@ -6,7 +6,7 @@ class ArticleController extends Controller
 	 * @var string the default layout for the views. Defaults to '//layouts/column2', meaning
 	 * using two-column layout. See 'protected/views/layouts/column2.php'.
 	 */
-	public $layout='//layouts/column2';
+	public $layout='//layouts/column1';
 
 	/**
 	 * @return array action filters
@@ -50,12 +50,13 @@ class ArticleController extends Controller
 	 */
 	public function actionView($id)
 	{
+        $this->layout='//layouts/column2';
 		$this->render('view',array(
 			'model'=>$this->loadModel($id),
 		));
 	}
-	
-	
+
+
 
 	/**
 	 * Creates a new model.
@@ -63,20 +64,21 @@ class ArticleController extends Controller
 	 */
 	public function actionCreate()
 	{
+        $this->layout='//layouts/column2';
 		$model=new Article;
 
 		// Uncomment the following line if AJAX validation is needed
-		// $this->performAjaxValidation($model);		
-		
+		// $this->performAjaxValidation($model);
+
 		if(isset($_POST['Article']))
 		{
 			$model->attributes=$_POST['Article'];
 			$myfile = CUploadedFile::getInstance($model,'tempFile'); // Hung - upload image code
 			$model->tempFile=$myfile; // Hung - upload image code
 			$model->modified_date= "" . date("Y/m/d H:i:s");
-			
+
 			if($model->save()){
-				$this->updatePhoto($model, $myfile); // Hung - upload image code				
+				$this->updatePhoto($model, $myfile); // Hung - upload image code
 				$this->redirect(array('admin')); //Hung - redirect to article management page instead of view detials
 				/*$this->redirect(array('view','id'=>$model->id));*/
 			}
@@ -94,19 +96,20 @@ class ArticleController extends Controller
 	 */
 	public function actionUpdate($id)
 	{
+        $this->layout='//layouts/column2';
 		$model=$this->loadModel($id);
 
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
-		
+
 		if(isset($_POST['Article']))
 		{
 			$model->attributes=$_POST['Article'];
-			$model->modified_date= "" . date("Y/m/d H:i:s");			
-			$myfile = CUploadedFile::getInstance($model,'tempFile'); // Hung - upload image code			
+			$model->modified_date= "" . date("Y/m/d H:i:s");
+			$myfile = CUploadedFile::getInstance($model,'tempFile'); // Hung - upload image code
 			$model->tempFile=$myfile; // Hung - upload image code
-			
-			if($model->save()){				
+
+			if($model->save()){
 				$this->updatePhoto($model, $myfile); // Hung - upload image code
 				$this->redirect(array('view','id'=>$model->id));
 			}
@@ -153,6 +156,7 @@ class ArticleController extends Controller
 	 */
 	public function actionAdmin()
 	{
+        $this->layout='//layouts/column2';
 		$model=new Article('search');
 		$model->unsetAttributes();  // clear any default values
 		if(isset($_GET['Article']))
@@ -162,15 +166,15 @@ class ArticleController extends Controller
 			'model'=>$model,
 		));
 	}
-	
+
 	public function  actionList(){
-	
+
 		$model=new Article('search');
 		$this->render('list',array(
-			'model'=>$model,			
+			'model'=>$model,
 		));
-	
-	
+
+
 		/*$model=new Article('search');
 		$model->unsetAttributes();  // clear any default values
 		if(isset($_GET['Article']))
@@ -180,7 +184,7 @@ class ArticleController extends Controller
 			'model'=>$model,
 		));*/
 	}
-	
+
 
 	/**
 	 * Returns the data model based on the primary key given in the GET variable.
@@ -194,20 +198,20 @@ class ArticleController extends Controller
 			throw new CHttpException(404,'The requested page does not exist.');
 		return $model;
 	}
-	
+
 	public function updatePhoto($model, $myfile ) {
-		
-		
+
+
 	   if (is_object($myfile) && get_class($myfile)==='CUploadedFile') {
-			
+
 			$ext = $model->tempFile->getExtensionName();
 			$nameOfFile = $model->tempFile->getName();
 			$model->image= $model->id . '_' . $nameOfFile;
-						
+
 			$model->tempFile->saveAs($model->getPath(). '/article/' . $model->image);
 			$model->image=Yii::getPathOfAlias('uploadURL') . '/article/' . $model->image;
 			$model->save();
-			
+
 			return true;
 		 } else return false;
 	}

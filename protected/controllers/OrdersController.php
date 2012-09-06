@@ -6,7 +6,7 @@ class OrdersController extends Controller
 	 * @var string the default layout for the views. Defaults to '//layouts/column2', meaning
 	 * using two-column layout. See 'protected/views/layouts/column2.php'.
 	 */
-	public $layout='//layouts/column2';
+	public $layout='//layouts/column1';
 
 	/**
 	 * @return array action filters
@@ -50,6 +50,7 @@ class OrdersController extends Controller
 	 */
 	public function actionView($id)
 	{
+        $this->layout='//layouts/column2';
 		$this->render('view',array(
 			'model'=>$this->loadModel($id),
 			'orderDetails'=>$this->loadOrderDetails($id),
@@ -62,6 +63,7 @@ class OrdersController extends Controller
 	 */
 	public function actionCreate()
 	{
+        $this->layout='//layouts/column2';
 		$model=new Orders;
 
 		// Uncomment the following line if AJAX validation is needed
@@ -87,6 +89,7 @@ class OrdersController extends Controller
 	 */
 	public function actionUpdate($id)
 	{
+        $this->layout='//layouts/column2';
 		$model=$this->loadModel($id);
 
 		// Uncomment the following line if AJAX validation is needed
@@ -129,6 +132,7 @@ class OrdersController extends Controller
 	 */
 	public function actionIndex()
 	{
+        $this->layout='//layouts/column2';
 		$dataProvider=new CActiveDataProvider('Orders');
 		$this->render('index',array(
 			'dataProvider'=>$dataProvider,
@@ -140,6 +144,7 @@ class OrdersController extends Controller
 	 */
 	public function actionAdmin()
 	{
+        $this->layout='//layouts/column2';
 		$model=new Orders('search');
 		$model->unsetAttributes();  // clear any default values
 		if(isset($_GET['Orders']))
