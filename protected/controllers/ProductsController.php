@@ -72,7 +72,10 @@ class ProductsController extends Controller
                     ),
 		        ));
                 $this->render('list', array('dataProvider'=>$dataProvider));
-            }
+            }else{
+				$error='Category không tồn tại';
+				$this->render('../site/error',array('code'=>$error));
+			}
         }
     }
 	
@@ -95,7 +98,10 @@ class ProductsController extends Controller
                     ),
 		        ));
                 $this->render('list', array('dataProvider'=>$dataProvider));
-            }
+            }else{
+				$error='Price Range không tồn tại';
+				$this->render('../site/error',array('code'=>$error));
+			}
         }
 	}
 
