@@ -66,6 +66,10 @@ class SiteController extends Controller
 		}
 		$this->render('contact',array('model'=>$model));
 	}
+	
+	public function actionSearch(){
+		echo $_GET['text'];
+	}
 
 	public function actionAbout(){
 		$this->render('about');

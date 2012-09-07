@@ -623,3 +623,10 @@ legend{
 .news p{
 	color:#0d1953; font-size:14px; height:100px;
 }
+
+input #search-button{
+    background: #ccc url('/images/search.png') no-repeat top left;
+    /*
+	padding-left: 16px;
+    height: 16px; */
+}
