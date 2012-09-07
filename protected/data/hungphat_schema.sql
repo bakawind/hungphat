@@ -68,6 +68,8 @@ ALTER TABLE product_photos MODIFY COLUMN id int AUTO_INCREMENT;
 ALTER TABLE products MODIFY COLUMN id int AUTO_INCREMENT;
 ALTER TABLE order_items MODIFY COLUMN id int AUTO_INCREMENT;
 ALTER TABLE categories ADD COLUMN image varchar(256);
+ALTER TABLE categories ADD COLUMN caption varchar(128);
+ALTER TABLE categories ADD COLUMN banner varchar(256);
 
 
 SHOW COLUMNS FROM article FROM hungphat;
