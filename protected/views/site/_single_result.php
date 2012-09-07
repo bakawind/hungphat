@@ -1,6 +1,7 @@
 <?php 
 	if(get_class($data) === 'Article'){ ?>
 		<div class='news'>			
+		a
 			<h3><?= $data->title ?></h3>
 			<p><?= $data->content ?></p>
 			<hr />
