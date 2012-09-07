@@ -27,7 +27,7 @@ class ProductsController extends Controller
 	{
 		return array(
 			array('allow',  // allow all users to perform 'index' and 'view' actions
-				'actions'=>array('index','view', 'list', 'display'),
+				'actions'=>array('index','view', 'list', 'display', 'SearchPrice'),
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
@@ -74,6 +74,29 @@ class ProductsController extends Controller
             }
         }
     }
+	
+	public function actionSearchPrice(){
+		
+		if (isset($_GET['type'])){
+            $type = $_GET['type']; 		
+			$rangeID = $_GET['range'];
+			$category = Categories::model()->find('name=:name', array(':name'=>$type));		
+			$priceRange = PriceRange::model()->findByPk($rangeID);
+
+            if (isset($category) && isset($priceRange)){
+		        $criteria=new CDbCriteria;
+				$criteria->condition='price >=' . $priceRange->from_price . ' AND price <=' . $priceRange->to_price;
+		        $criteria->compare('category_id',$category->id);
+		        $dataProvider = new CActiveDataProvider('Products', array(
+			        'criteria'=>$criteria,
+                    'pagination'=>array(
+                        'pageSize'=>6,
+                    ),
+		        ));
+                $this->render('list', array('dataProvider'=>$dataProvider));
+            }
+        }
+	}
 
 	public function actionDisplay($id){
 
