@@ -68,7 +68,32 @@ class SiteController extends Controller
 	}
 	
 	public function actionSearch(){
-		echo $_GET['text'];
+		if(isset($_GET['text'])){
+			$searchValue = $_GET['text'];
+			
+			$criteria1=new CDbCriteria;
+			$criteria1->condition="title LIKE '%" . $searchValue
+						. "%' OR content LIKE '%" . $searchValue . "%'";
+			$articleResult = new CActiveDataProvider('Article', array(
+			        'criteria'=>$criteria1,
+                    'pagination'=>array(
+                        'pageSize'=>10,
+                    ),
+		    ));
+			
+			$criteria2=new CDbCriteria;
+			$criteria2->condition="code LIKE '%" . $searchValue
+						. "%' OR name LIKE '%" . $searchValue
+						. "%' OR description LIKE '%" . $searchValue . "%'";						
+			$productResult = new CActiveDataProvider('Products', array(
+			        'criteria'=>$criteria2,
+                    'pagination'=>array(
+                        'pageSize'=>10,
+                    ),
+		    ));
+			
+			$this->render('searchResult', array('articleResult'=>$articleResult, 'productResult'=>$productResult));
+		}
 	}
 
 	public function actionAbout(){

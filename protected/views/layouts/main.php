@@ -57,17 +57,11 @@
                 <?php $cart = $this->getCart(); ?>
                 <p id='cart_detail'><a href='/cart/index'><?=$cart->getNumberOfItems()?> (click để xem giỏ hàng)</a></p>
             </div>
-            <div class='search' action="search" type="GET" >
-                <input type='textfield' name="searchText" />				
-				
-				<?php
-					$searchValue="";
-					if(isset($_GET['searchText'])){
-						$searchValue=$_GET['searchText'];
-					}
-				?>
-				
-                <a href="/site/search?text=<?= $searchValue?>"> <?=CHtml::image("/images/search.png")?> </a>
+            <div class='search'>
+				<form  action="search" type="GET"  >
+					<input type='textfield' name="text" />				
+					<INPUT TYPE="image" SRC="/images/search.png" width="26" height="26" ALT="Submit Form">
+				</form>
             </div>
         </div>
         <br class='clear'/>
