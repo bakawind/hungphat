@@ -2,6 +2,7 @@
 
 class SiteController extends Controller
 {
+	public $layout='//layouts/column1';
 	/**
 	 * Declares class-based actions.
 	 */
@@ -17,20 +18,6 @@ class SiteController extends Controller
 			// They can be accessed via: index.php?r=site/page&view=FileName
 			'page'=>array(
 				'class'=>'CViewAction',
-			),
-		);
-	}
-
-	public function accessRules()
-	{
-		return array(
-			array('allow', // allow admin user to perform 'admin' and 'delete' actions
-				'actions'=>array('admin'),
-				'users'=>array('admin'),
-			),
-			array('deny',  // deny all users
-				'actions'=>array('admin'),
-				'users'=>array('*'),
 			),
 		);
 	}
@@ -124,6 +111,6 @@ class SiteController extends Controller
 	}
 
     public function actionAdmin() {
-        $this->render('admin');
+        $this->redirect('/orders/admin');
     }
 }

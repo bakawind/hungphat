@@ -1,7 +1,11 @@
-
-
+<?php
+$type = isset($_GET['type']) ? $_GET['type'] : '';
+$category = Categories::model()->find('name = :name', array(':name'=>$type));
+?>
 <div class='banner'>
-    <?=CHtml::image("/images/banners/banner3.jpg", '', array('width'=>"900", 'height'=>'350'))?>
+    <?php if($category != null) { ?>
+        <?=CHtml::image($category->banner, $category->caption, array('width'=>"900", 'height'=>'350'))?>
+    <?php } ?>
 </div>
 
 <div class='space'></div>

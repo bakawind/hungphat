@@ -6,7 +6,7 @@ class ProductPhotosController extends Controller
 	 * @var string the default layout for the views. Defaults to '//layouts/column2', meaning
 	 * using two-column layout. See 'protected/views/layouts/column2.php'.
 	 */
-	public $layout='//layouts/column2';
+	public $layout='//layouts/column1';
 
 	/**
 	 * @return array action filters
@@ -50,6 +50,7 @@ class ProductPhotosController extends Controller
 	 */
 	public function actionView($id)
 	{
+        $this->layout='//layouts/column2';
 		$this->render('view',array(
 			'model'=>$this->loadModel($id),
 		));
@@ -61,6 +62,7 @@ class ProductPhotosController extends Controller
 	 */
 	public function actionCreate()
 	{
+        $this->layout='//layouts/column2';
 		$model=new ProductPhotos;
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
@@ -80,9 +82,9 @@ class ProductPhotosController extends Controller
 		}
 
 		if(isset($_GET['p_id'])){
-			$model->product_id = $_GET['p_id'];			
+			$model->product_id = $_GET['p_id'];
 		}
-		
+
 		$this->render('create',array(
 			'model'=>$model,
 		));
@@ -95,6 +97,7 @@ class ProductPhotosController extends Controller
 	 */
 	public function actionUpdate($id)
 	{
+        $this->layout='//layouts/column2';
 		$model=$this->loadModel($id);
 
 		// Uncomment the following line if AJAX validation is needed
@@ -141,6 +144,7 @@ class ProductPhotosController extends Controller
 	 */
 	public function actionIndex()
 	{
+        $this->layout='//layouts/column2';
 		$dataProvider=new CActiveDataProvider('ProductPhotos');
 		$this->render('index',array(
 			'dataProvider'=>$dataProvider,
@@ -152,6 +156,7 @@ class ProductPhotosController extends Controller
 	 */
 	public function actionAdmin()
 	{
+        $this->layout='//layouts/column2';
 		$model=new ProductPhotos('search');
 		$model->unsetAttributes();  // clear any default values
 		if(isset($_GET['ProductPhotos']))
@@ -187,16 +192,15 @@ class ProductPhotosController extends Controller
 			Yii::app()->end();
 		}
 	}
-	
+
 	public function updatePhoto($model, $myfile) {
-	   if (is_object($myfile) && get_class($myfile)==='CUploadedFile') {			
-			$nameOfFile = $model->tempFile->getName();			
+	   if (is_object($myfile) && get_class($myfile)==='CUploadedFile') {
+			$nameOfFile = $model->tempFile->getName();
 			$model->url= $model->id . '_' . $nameOfFile;
-			
 			$myfile->saveAs($model->getPath() . '/slider_photos/' . $model->url); //upload picture to server
 			$model->url=Yii::getPathOfAlias('uploadURL') . '/slider_photos/' . $model->url;
 			$model->save();
-			
+
 			return true;
 		 } else return false;
 	}

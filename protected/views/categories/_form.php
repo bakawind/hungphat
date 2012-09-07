@@ -3,6 +3,7 @@
 <?php $form=$this->beginWidget('CActiveForm', array(
 	'id'=>'categories-form',
 	'enableAjaxValidation'=>false,
+	'htmlOptions'=>array('enctype'=>'multipart/form-data',),
 )); ?>
 
 	<p class="note">Fields with <span class="required">*</span> are required.</p>
@@ -22,10 +23,13 @@
 	</div>
 
 	<div class="row">
+		<?php echo $model->getBannerThumbnail(); ?>
+        <br>
 		<?php echo $form->labelEx($model,'banner'); ?>
-		<?php echo $form->textField($model,'banner',array('size'=>60,'maxlength'=>256)); ?>
-		<?php echo $form->error($model,'banner'); ?>
+		<?php echo CHtml::activeFileField($model, 'banner');?>
+		<?php echo $form->error($model,'banner');?>
 	</div>
+
 
 	<div class="row buttons">
 		<?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save'); ?>

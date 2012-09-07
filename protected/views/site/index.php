@@ -1,9 +1,14 @@
+<?php
+$categories = Categories::model()->findAll();
+?>
 <div class='banner'>
 	<div id="SliderName_2" class="SliderName_2">
-		<!--<div class="SliderName_2Description">Fist banner</div>-->
-        <?=CHtml::image("/images/banners/banner1.jpg", '', array('width'=>"900", 'height'=>"350", 'title'=>"Demo2 first", 'usemap'=>"#img1map"))?>
-        <?=CHtml::image("/images/banners/banner2.jpg", '', array('width'=>"900", 'height'=>"350", 'title'=>"Demo2 first", 'usemap'=>"#img1map"))?>
-        <?=CHtml::image("/images/banners/banner3.jpg", '', array('width'=>"900", 'height'=>"350", 'title'=>"Demo2 first", 'usemap'=>"#img1map"))?>
+        <?php
+            foreach($categories as $c) {
+        ?>
+		    <!--<div class="SliderName_2Description">Fist banner</div>-->
+            <?=CHtml::image($c->banner, $c->caption, array('width'=>"900", 'height'=>"350", 'title'=>$c->caption, 'usemap'=>"#img1map"))?>
+        <?php } ?>
 	</div>
 	<div class="c"></div>
 	<div id="SliderNameNavigation_2"></div>
@@ -24,19 +29,19 @@
 </div><!--close banner-->
 <div class='categories'>
     <div class='category' style='margin-left: 10px;'>
-        <a href='/ products/dolls'>
+        <a href='/products/list?type=doll'>
             <div id='doll'></div>
             BÚP BÊ SINFA
         </a>
     </div>
     <div class='category'>
-        <a href='/ products/dolls'>
+        <a href='/products/list?type=robot'>
             <div id='robot'></div>
             RÔ BÔ RÁP HÌNH
         </a>
     </div>
     <div class='category'>
-        <a href='/ products/dolls'>
+        <a href='/products/list?type=toy'>
             <div id='toys'></div>
             VỈ ĐỒ CHƠI GIA ĐÌNH
         </a>
