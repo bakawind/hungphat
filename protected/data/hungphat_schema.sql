@@ -2,7 +2,8 @@ create table categories(
     id int primary key AUTO_INCREMENT,
     name varchar(128),
     caption varchar(128),
-    image varchar(256)
+    image varchar(256),
+    banner varchar(256)
 );
 
 create table products (
@@ -20,7 +21,7 @@ create table products (
 
 create table product_photos (
     id int primary key AUTO_INCREMENT,
-    url varchar(256) not null,
+    url varchar(256) ,
     product_id int,
     foreign key (product_id) references products(id)
 );
