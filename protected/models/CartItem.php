@@ -30,5 +30,16 @@ class CartItem{
     {
         return $this->price * $this->quantity;
     }
+
+    public function toOrderItem($orderId)
+    {
+        if(isset($orderId) && $orderId != '') {
+            $orderItem = new OrderItems;
+            $orderItem->order_id = $orderId;
+            $orderItem->product_id = $this->productId;
+            $orderItem->quantity = $this->quantity;
+            $orderItem->save();
+        }
+    }
 }
 ?>

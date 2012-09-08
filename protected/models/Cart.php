@@ -105,9 +105,20 @@ class Cart{
 
     public function getNumberOfItems()
     {
-        $number = 0;
-        foreach($this->_cartItems as $item) ++$number;
-        return $number;
+        return sizeof($this->_cartItems);
+    }
+
+    public function emptyCart()
+    {
+        $this->_cartItems = array();
+        Yii::app()->user->setState('cart', $this->toJson());
+    }
+
+    public function toOrder($order)
+    {
+        foreach($this->_cartItems as $i){
+            $i->toOrderItem($order->id);
+        }
     }
 }
 ?>

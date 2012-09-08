@@ -1,4 +1,4 @@
-<tr>
+<tr class='<?= $color ? 'color' : ''?>' >
     <form method='POST' action='/cart/update'>
         <input type='hidden' name='id' value='<?=$item->productId?>'/>
         <td width='50px'><?=$item->code?></td>

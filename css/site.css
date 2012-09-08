@@ -39,6 +39,10 @@ legend{
     text-align: center;
 }
 
+.error{
+    color: red;
+}
+
 .wrapper {
     margin-left: auto;
     margin-right: auto;
@@ -251,7 +255,7 @@ legend{
 .wrapper .content .inner_content .box .product_box img{
     float: center;
 	margin-left:auto;
-	margin-right:auto;	
+	margin-right:auto;
     width: 280px;
     height: 210px;
 }
@@ -265,7 +269,7 @@ legend{
     text-align: center;
     background: url(../images/detail.jpg);
 }
-.add_to_card { 
+.add_to_card {
     float: left;
     display: block;
     width: 190px;
@@ -305,7 +309,7 @@ legend{
 	height: 600px;
 }
 .wrapper .content .inner_content .product_detail .detail, .pictures{
-	
+
 	float:left;
 	width: 450px;
 	height: 600px;
@@ -402,6 +406,12 @@ legend{
 	box-shadow: 0 0 8px rgba(0, 0, 0, 0.5);
 }
 
+.solid_background{
+    background: none repeat scroll 0 0 #FFFFFF;
+    border-radius: 8px 8px 8px 8px;
+    padding: 20px;
+}
+
 .container {
     margin: 0 20px 0 20px;
 }
@@ -413,23 +423,27 @@ legend{
     width: auto;
     height: 30px;
 }
-.container .cart {
+
+.container .small_cart {
     float: left;
     width: 65%;
 }
-.container .cart img{
+
+.container .small_cart img{
     width: auto;
     height: 55px;
     float: left;
 }
-.container .cart p{
+.container .small_cart p{
     margin: 5px 0 0 78px;
 }
-.container .cart p#view_count{
+
+.container .small_cart p#view_count{
     color: red;
     font-weight: bolder;
 }
-.container .cart p#cart_detail{
+
+.container .small_cart p.small_cart_detail{
     color: blue;
     font-weight: bolder;
 }
@@ -584,7 +598,10 @@ legend{
 .news {
 	float: left;
 	margin: 15px 0px 15px 0px;
-	width: 100%; height: 130px;   
+
+	width: 100%; height: 130px;
+   /* border-radius: 3px; border-width: 1px; box-shadow: 0 0 3px rgba(0, 0, 0, 0.5);	*/
+
 }
 .news h3{
 	color:#65acc4; font-size:20px; font-family: 'verdana'; font-weight: bold;
