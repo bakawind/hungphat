@@ -49,33 +49,22 @@ $categories = Categories::model()->findAll();
 </div> <!--close category-->
 <div class='space'></div>
 <div class='container'>
-    <div class='price_search'>
-        <h1>TÌM THEO GIÁ</h1>
-        <table>
-            <tr>
-                <td> Từ: </td>
-                <td>
-                    <select>
-                        <option>0</option>
-                        <option>50.000</option>
-                        <option>100.000</option>
-                        <option>200.000</option>
-                    </select>
-                </td>
-            </tr>
-            <tr>
-                <td> Đến:</td>
-                <td>
-                    <select>
-                        <option>0</option>
-                        <option>50.000</option>
-                        <option>100.000</option>
-                        <option>200.000</option>
-                    </select>
-                </td>
-            </tr>
-        </table>
-        <input type='button' value='Tìm Kiếm'/>
+    <div class='news_box'>
+        <fieldset>
+            <legend><h1>Tin mới:</h1></legend>
+            <div class='small_news'>
+            <?php
+                if(isset($news)){
+                    foreach($news as $n) {
+            ?>
+                <div><a href='/article/view/<?=$n->id?>'><?=$n->title?></a></div>
+                <hr/>
+            <?php
+                    }
+                }
+            ?>
+            </div>
+      </fieldset>
     </div><!--close price_search-->
     <div class='about_us_box'>
         <fieldset>

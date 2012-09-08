@@ -530,18 +530,20 @@ legend{
 	Color: #fff;
 }
 
-.price_search{
-    margin: 20px 0 0 0;
-    border-radius: 8px 8px 8px 8px;
-    border-style: solid;
-    border-width: 2px;
-    height: auto;
-    width: 250px;
-    background-color: #9bcedf;
-    border-color: #65acc4;
-    text-align: center;
-    padding: 10px 0 10px 0;
+.news_box{
     float: left;
+    width: 250px;
+}
+.small_news{
+    height: 110px;
+    width: 250px;
+    overflow: auto;
+}
+.small_news hr{
+    color: #65ACC4;
+    background-color: #65ACC4;
+    height:1px;
+    border:none;
 }
 
 .price_search table{

@@ -30,7 +30,11 @@ class SiteController extends Controller
 	{
 		// renders the view file 'protected/views/site/index.php'
 		// using the default layout 'protected/views/layouts/main.php'
-		$this->render('index');
+        $criteria=new CDbCriteria();
+        $criteria->order = 'modified_date DESC';
+        $criteria->limit = 3;
+		$news = Article::model()->findAll($criteria);
+		$this->render('index', array('news'=>$news));
 	}
 
 	/**
@@ -66,11 +70,11 @@ class SiteController extends Controller
 		}
 		$this->render('contact',array('model'=>$model));
 	}
-	
+
 	public function actionSearch(){
 		if(isset($_GET['text'])){
 			$searchValue = $_GET['text'];
-			
+
 			$criteria1=new CDbCriteria;
 			$criteria1->condition="title LIKE '%" . $searchValue
 						. "%' OR content LIKE '%" . $searchValue . "%'";
@@ -80,18 +84,18 @@ class SiteController extends Controller
                         'pageSize'=>10,
                     ),
 		    ));
-			
+
 			$criteria2=new CDbCriteria;
 			$criteria2->condition="code LIKE '%" . $searchValue
 						. "%' OR name LIKE '%" . $searchValue
-						. "%' OR description LIKE '%" . $searchValue . "%'";						
+						. "%' OR description LIKE '%" . $searchValue . "%'";
 			$productResult = new CActiveDataProvider('Products', array(
 			        'criteria'=>$criteria2,
                     'pagination'=>array(
                         'pageSize'=>10,
                     ),
 		    ));
-			
+
 			$this->render('searchResult', array('articleResult'=>$articleResult, 'productResult'=>$productResult));
 		}
 	}
