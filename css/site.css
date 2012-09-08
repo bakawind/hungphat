@@ -362,7 +362,6 @@ legend{
 	height:150px;
 }
 
-
 .wrapper .content .categories{
     height: 250px;
     background-color: #ffe469;
@@ -372,14 +371,12 @@ legend{
     border-color: #db2e2a;
     margin: 30px 20px 0 20px;
 }
-
 .wrapper .content .categories .category{
     float: left;
     width: 280px;
     height: 20px;
     text-align: center;
 }
-
 .wrapper .content .categories .category #doll{
     height: 220px;
     background: url(../images/categories.png) no-repeat scroll 35px -325px;
@@ -388,7 +385,6 @@ legend{
     height: 220px;
     background: url(../images/categories.png) no-repeat scroll 23px -71px;
 }
-
 .wrapper .content .categories .category #toys{
     height: 220px;
     background: url(../images/categories.png) no-repeat scroll -438px -288px;
@@ -397,7 +393,6 @@ legend{
     height: 220px;
     background: url(../images/categories.png) no-repeat scroll -438px -89px;
 }
-
 .wrapper .content .categories .category #robot{
     height: 220px;
     background: url(../images/categories.png) no-repeat scroll -214px -305px;
@@ -406,7 +401,6 @@ legend{
     height: 220px;
     background: url(../images/categories.png) no-repeat scroll -214px -81px;
 }
-
 .wrapper .content .banner{
     margin: 0 20px 0 20px;
 	box-shadow: 0 0 8px rgba(0, 0, 0, 0.5);
@@ -421,12 +415,10 @@ legend{
 .container {
     margin: 0 20px 0 20px;
 }
-
 .container .search{
     margin: 22px 0 0 0;
     float: right;
 }
-
 .container .search img{
     width: auto;
     height: 30px;
@@ -472,13 +464,11 @@ legend{
 	height:220px;
 
 }
-
 .footer .footer_content .online_service{
 	float: left;
 	width: 470px;
 	height: 160px;
 }
-
 .footer .footer_content .online_service .unavailable{
 	width:200px;
 	height: 160px;
@@ -488,7 +478,6 @@ legend{
 	margin: 0 10px 0 30px;
 
 }
-
 .footer .footer_content .online_service .available{
 	width:200px;
 	height: 160px;
@@ -496,7 +485,6 @@ legend{
 	background:url(../images/service_image.png) 200px 0px;
 	float: left;	margin: 0 30px 0 0s;
 }
-
 .footer .footer_content .contact{
 	float: left;
 	width: 470px;
@@ -507,7 +495,6 @@ legend{
 	width: 470px;
 	height: 80px;
 }
-
 .footer .footer_content .contact .info{
 	float: left;
 	width: 350px;
@@ -518,7 +505,6 @@ legend{
 	color: #ffffff;
 	font-family: "verdana";
 }
-
 .footer .footer_content .contact .deskPhone{
 	float: left;
 	width: 58px;
@@ -526,7 +512,6 @@ legend{
 	margin: 0 0 0 30px;
 	background-image: url(../images/contact_image.png); background-repeat: no-repeat; background-position: -34px 0 ;
 }
-
 .footer .footer_content .contact .mobile{
 	float: left;
 	width: 33px;
@@ -534,7 +519,6 @@ legend{
 	margin: 0 15px 0 40px;
 	background-image: url(../images/contact_image.png); background-repeat: no-repeat; background-position: 0 0 ;
 }
-
 .footer .footer_content .slogan{
 	float: left;
 	width: 940px;
@@ -563,7 +547,6 @@ legend{
 .price_search table{
     margin: 5px 5px 5px 10px;
 }
-
 .price_search table td{
     min-width: 45px;
 }
@@ -574,13 +557,11 @@ legend{
     margin-left: 50px;
     color: blue;
 }
-
 .about_us_box #more_btn{
     height: auto;
     width:175px;
     margin: -28px 0 0 374px;
 }
-
 .about_us {
     background: #ffffff;
     min-height: 600px;
@@ -591,30 +572,24 @@ legend{
     min-height: 450px;
     padding: 10px 10px 10px 10px;
 }
-
 .contact_us img{
     float: left;
     margin: 20px 0 0 90px;
 }
-
 .contact_us .contact_form{
     float: left;
     margin: 20px 0 0 50px;
 }
-
 .contact_us .contact_form form{
     margin: 20px 0 0 0;
 }
-
 .contact_us .contact_form #contact_us table tr{
     height: 30px;
 }
-
 .contact_us .contact_form #contact_us table tr td{
     min-width: 100px;
     vertical-align: top;
 }
-
 .contact_us .contact_form input[type=submit]{
     float: right;
     width: 100px;
@@ -623,13 +598,16 @@ legend{
 .news {
 	float: left;
 	margin: 15px 0px 15px 0px;
+
 	width: 100%; height: 130px;
    /* border-radius: 3px; border-width: 1px; box-shadow: 0 0 3px rgba(0, 0, 0, 0.5);	*/
+
 }
 .news h3{
 	color:#65acc4; font-size:20px; font-family: 'verdana'; font-weight: bold;
 }
-
 .news p{
 	color:#0d1953; font-size:14px; height:100px;
 }
+
+

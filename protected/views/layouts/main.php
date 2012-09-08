@@ -58,8 +58,10 @@
                 <p id='cart_detail'><a href='/cart/index'><?=$cart->getNumberOfItems()?> (click để xem giỏ hàng)</a></p>
             </div>
             <div class='search'>
-                <input type='textfield'/>
-                <?=CHtml::image("/images/search.png")?>
+				<form  action="search" type="GET"  >
+					<input type='textfield' name="text" />				
+					<INPUT TYPE="image" SRC="/images/search.png" width="26" height="26" ALT="Submit Form">
+				</form>
             </div>
         </div>
         <br class='clear'/>
