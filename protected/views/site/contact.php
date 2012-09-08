@@ -1,9 +1,14 @@
+<?php
+$categories = Categories::model()->findAll();
+?>
 <div class='banner'>
 	<div id="SliderName_2" class="SliderName_2">
-                
-		<?=CHtml::image("/images/banners/banner1.jpg",'',array('width'=>"900", 'height'=>"350", 'title'=>"Demo2 first", 'usemap'=>"#img1map")) ?>
-		<?=CHtml::image("/images/banners/banner2.jpg",'',array('width'=>"900", 'height'=>"350", 'title'=>"Demo2 second", 'usemap'=>"#img1map")) ?>
-		<?=CHtml::image("/images/banners/banner3.jpg",'',array('width'=>"900", 'height'=>"350", 'title'=>"Demo2 third", 'usemap'=>"#img1map")) ?>
+        <?php
+            foreach($categories as $c) {
+        ?>
+		    <!--<div class="SliderName_2Description">Fist banner</div>-->
+            <?=CHtml::image($c->banner, $c->caption, array('width'=>"900", 'height'=>"350", 'title'=>$c->caption, 'usemap'=>"#img1map"))?>
+        <?php } ?>
 	</div>
 	<div class="c"></div>
 	<div id="SliderNameNavigation_2"></div>
@@ -24,7 +29,7 @@
 </div><!--close banner-->
 <div class='space'></div>
 <div class='container contact_us'>
-    <img src='images/contact.png'/>
+    <?=CHtml::image('/images/contact.png')?>
     <div class='contact_form'>
         <h1>Hãy liên hệ với chúng tôi</h1>
         <form id='contact_us' method='POST' action=''>
