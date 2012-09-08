@@ -109,5 +109,11 @@ class Cart{
         foreach($this->_cartItems as $item) ++$number;
         return $number;
     }
+
+    public function emptyCart()
+    {
+        $this->_cartItems = array();
+        Yii::app()->user->setState('cart', $this->toJson());
+    }
 }
 ?>

@@ -7,6 +7,8 @@ class Controller extends CController
 {
     // Shopping Cart
     protected $_cart;
+    public $emailRegex = '/^[^\W][a-zA-Z0-9_]+(\.[a-zA-Z0-9_]+)*\@[a-zA-Z0-9_]+(\.[a-zA-Z0-9_]+)*\.[a-zA-Z]{2,4}$/';
+    public $phoneRegex = '/\d{8,11}/';
 
     public function getCart()
     {

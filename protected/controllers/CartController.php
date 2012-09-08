@@ -69,4 +69,43 @@ class CartController extends Controller
 	    }
 	}
 
+    public function actionCreateOrder()
+    {
+        $attributes = array();
+        $errors = array();
+
+        $attributes['name'] = isset($_POST['name']) ? trim($_POST['name']) : null;
+        $attributes['email'] = isset($_POST['email']) ? trim($_POST['email']) : null;
+        $attributes['address'] = isset($_POST['address']) ? trim($_POST['address']) : null;
+        $attributes['phone'] = isset($_POST['phone']) ? trim($_POST['phone']) : null;
+
+        foreach($attributes as $key=>$value){
+            if($value === null || $value==='') {
+                $errors[$key] = 'Vui lòng nhập '.$key;
+            } else {
+                if($key == 'email' && !preg_match($this->emailRegex, $value)) $errors['email'] = 'Địa chỉ email không hợp lệ';
+                if($key == 'phone' && !preg_match($this->phoneRegex, $value)) $errors['phone'] = 'Số điện thoại không hợp lệ';
+            }
+        }
+
+        if(sizeof($errors) != 0) {
+		    return $this->render('index', array('cart'=>$this->getCart(), 'errors'=>$errors, 'attributes'=>$attributes));
+        }
+
+        $order = new Orders;
+        $order->attributes = $attributes;
+        $order->created_date= "" . date("Y/m/d H:i:s");
+        $order->total= $this->getCart()->getTotal();
+        if($order->save()){
+            $this->getCart()->emptyCart();
+		    $this->redirect('/orders/view/'.$order->id);
+        } else {
+            foreach($order->errors as $e){
+                foreach($e as $key=>$value){
+                    $error[$key] = $value;
+                }
+            }
+		    return $this->render('index', array('cart'=>$this->getCart(), 'errors'=>$errors));
+        }
+    }
 }

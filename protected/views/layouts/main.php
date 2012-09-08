@@ -52,7 +52,7 @@
     <div class='wrapper'>
         <div class='space'></div>
         <div class='container'>
-            <div class='cart'>
+            <div class='small_cart'>
                 <?=CHtml::image("/images/cart.png")?>
                 <?php $cart = $this->getCart(); ?>
                 <p id='cart_detail'><a href='/cart/index'><?=$cart->getNumberOfItems()?> (click để xem giỏ hàng)</a></p>
