@@ -97,6 +97,7 @@ class CartController extends Controller
         $order->created_date= "" . date("Y/m/d H:i:s");
         $order->total= $this->getCart()->getTotal();
         if($order->save()){
+            $this->getCart()->toOrder($order);
             $this->getCart()->emptyCart();
 		    $this->redirect('/orders/view/'.$order->id);
         } else {
