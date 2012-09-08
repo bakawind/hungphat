@@ -21,6 +21,10 @@ $this->menu=array(
 		'id',
 		'name',
 		'caption',
-		'banner',
+		array(// Hung - view image
+            'label'=>'Show Banner',
+            'type'=>'raw',
+            'value'=>CHtml::image($model->banner, $model->caption, array('width'=>"500"))
+        ),
 	),
 )); ?>
