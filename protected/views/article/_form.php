@@ -1,6 +1,7 @@
 <div class="form">
+<?php
 $this->layout='column2';
-<?php $form=$this->beginWidget('CActiveForm', array(
+$form=$this->beginWidget('CActiveForm', array(
 	'id'=>'article-form',
 	'enableAjaxValidation'=>false,
 	'htmlOptions'=>array('enctype'=>'multipart/form-data',),

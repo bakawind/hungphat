@@ -11,7 +11,7 @@ Yii::setPathOfAlias('uploadURL', '/images/uploads');
 
 return CMap::mergeArray(array(
 	'basePath'=>dirname(__FILE__).DIRECTORY_SEPARATOR.'..',
-	'name'=>'My Web Application',
+	'name'=>'Đồ Chơi Hưng Phát',
 
 	// preloading 'log' component
 	'preload'=>array('log'),
