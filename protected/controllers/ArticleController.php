@@ -27,7 +27,7 @@ class ArticleController extends Controller
 	{
 		return array(
 			array('allow',  // allow all users to perform 'index' and 'view' actions
-				'actions'=>array('index','view', 'list'),
+				'actions'=>array('index','view'),
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
@@ -50,7 +50,7 @@ class ArticleController extends Controller
 	 */
 	public function actionView($id)
 	{
-        $this->layout='//layouts/column2';
+        //$this->layout='//layouts/column2';
 		$this->render('view',array(
 			'model'=>$this->loadModel($id),
 		));
@@ -166,25 +166,6 @@ class ArticleController extends Controller
 			'model'=>$model,
 		));
 	}
-
-	public function  actionList(){
-
-		$model=new Article('search');
-		$this->render('list',array(
-			'model'=>$model,
-		));
-
-
-		/*$model=new Article('search');
-		$model->unsetAttributes();  // clear any default values
-		if(isset($_GET['Article']))
-			$model->attributes=$_GET['Article'];
-
-		$this->render('list',array(
-			'model'=>$model,
-		));*/
-	}
-
 
 	/**
 	 * Returns the data model based on the primary key given in the GET variable.

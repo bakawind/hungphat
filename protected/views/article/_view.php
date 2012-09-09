@@ -1,16 +1,12 @@
-<div class="view">
-
-	<b><?php echo CHtml::encode($data->getAttributeLabel('id')); ?>:</b>
-	<?php echo CHtml::link(CHtml::encode($data->id), array('view', 'id'=>$data->id)); ?>
-	<br />
-
-	<b><?php echo CHtml::encode($data->getAttributeLabel('title')); ?>:</b>
-	<?php echo CHtml::encode($data->title); ?>
-	<br />
-
-	<b><?php echo CHtml::encode($data->getAttributeLabel('content')); ?>:</b>
-	<?php echo CHtml::encode($data->content); ?>
-	<br />
-
-
+<div class='news'>
+    <?= CHtml::link(CHtml::image($data->image), array('/article/view', 'id'=>$data->id), array('class'=>'thumb')) ?>
+    <div class='news_content'>
+	    <h3><?php echo CHtml::link($data->title, array('/article/view', 'id'=>$data->id)); ?></h3>
+        <br/>
+	    <p>
+            <?= Util::limitWord($data->content, 100) ?>
+            <?= CHtml::link('chi tiết...', array('/article/view', 'id'=>$data->id), array('class'=>'more')) ?>
+        </p>
+    </div>
+    <br/> <br/> <hr />
 </div>

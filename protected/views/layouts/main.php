@@ -45,7 +45,7 @@
                 <?=CHtml::link('Liên hệ', '/site/contact')?>
             </li>
 			<li>
-                <?=CHtml::link('Tin tức', '/article/list')?>
+                <?=CHtml::link('Tin tức', '/article/index')?>
             </li>
         </ul>
     </div>
@@ -59,7 +59,7 @@
             </div>
             <div class='search'>
 				<form  action="search" type="GET"  >
-					<input type='textfield' name="text" />				
+					<input type='textfield' name="text" />
 					<INPUT TYPE="image" SRC="/images/search.png" width="26" height="26" ALT="Submit Form">
 				</form>
             </div>
