@@ -29,7 +29,7 @@
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'order_id'); ?>
-		<?php echo $form->textField($model,'order_id'); ?>
+		<?php echo $form->textField($model,'order_id', array('readonly'=>'readonly')); ?>
 		<?php echo $form->error($model,'order_id'); ?>
 	</div>
 

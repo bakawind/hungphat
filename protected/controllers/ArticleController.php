@@ -168,21 +168,10 @@ class ArticleController extends Controller
 	}
 
 	public function  actionList(){
-
 		$model=new Article('search');
 		$this->render('list',array(
 			'model'=>$model,
 		));
-
-
-		/*$model=new Article('search');
-		$model->unsetAttributes();  // clear any default values
-		if(isset($_GET['Article']))
-			$model->attributes=$_GET['Article'];
-
-		$this->render('list',array(
-			'model'=>$model,
-		));*/
 	}
 
 

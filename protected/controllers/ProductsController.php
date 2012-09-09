@@ -65,6 +65,7 @@ class ProductsController extends Controller
             if (isset($category)){
 		        $criteria=new CDbCriteria;
 		        $criteria->compare('category_id',$category->id);
+				$criteria->order='modified_date desc';
 		        $dataProvider = new CActiveDataProvider('Products', array(
 			        'criteria'=>$criteria,
                     'pagination'=>array(
@@ -91,6 +92,7 @@ class ProductsController extends Controller
 		        $criteria=new CDbCriteria;
 				$criteria->condition='price >=' . $priceRange->from_price . ' AND price <=' . $priceRange->to_price;
 		        $criteria->compare('category_id',$category->id);
+				$criteria->order='price desc';
 		        $dataProvider = new CActiveDataProvider('Products', array(
 			        'criteria'=>$criteria,
                     'pagination'=>array(
@@ -177,18 +179,6 @@ class ProductsController extends Controller
 			$model->image=Yii::getPathOfAlias('uploadURL') . '/products/' . $model->image;
 			$model->save();
 
-			//Yii::import('application.extensions.images.Image');
-			//$image = new Image($model->getPath());
-			//$image = Yii::app()->image->load($model->getPath());
-	//Crunch the photo to a size set in my System Options Table
-	//I hold the max size as 800 meaning to fit in an 800px x 800px square
-			//$size=$this->getOption('PhotoLarge');
-			//$image->resize($size[0], $size[0])->quality(75)->sharpen(20);
-			//$image->save();
-	// Now create a thumb - again the thumb size is held in System Options Table
-			//$size=$this->getOption('PhotoThumb');
-			//$image->resize($size[0], $size[0])->quality(75)->sharpen(20);
-			//$image->save($model->getThumb()); // or $image->save('images/small.jpg');
 			return true;
 		 } else return false;
 	}

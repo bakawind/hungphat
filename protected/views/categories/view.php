@@ -28,3 +28,35 @@ $this->menu=array(
         ),
 	),
 )); ?>
+<br />
+
+List of Products belong to <?= $model->caption?>
+<?php 
+$this->widget('zii.widgets.grid.CGridView', array(
+	'id'=>'product-photos-grid',
+	'dataProvider'=>$listOfProducts,	
+	'columns'=>array(
+		'id',
+		'code',
+		'name',
+		'image',
+		'price',
+		array(			
+			'type'=>'raw',
+			'header'=>'Picture',                                
+			'value'=> 'CHtml::image($data->image,$data->image, array("width"=>100))',			
+			),	
+		/*
+		array(
+            'class'=>'CButtonColumn',
+            'template'=>'{view}{update}{delete}',
+            'viewButtonUrl' => 'array("productPhotos/view",
+            "id"=>$data->id)',
+            'updateButtonUrl' => 'array("productPhotos/update",
+            "id"=>$data->id)',
+            'deleteButtonUrl' => 'array("productPhotos/delete",
+            "id"=>$data->id)',
+        ),*/
+	),
+)); 
+?>

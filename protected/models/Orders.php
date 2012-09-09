@@ -84,7 +84,7 @@ class Orders extends CActiveRecord
 	 * Retrieves a list of models based on the current search/filter conditions.
 	 * @return CActiveDataProvider the data provider that can return the models based on the search/filter conditions.
 	 */
-	public function search()
+	public function search($sortByTime = true)
 	{
 		// Warning: Please modify the following code to remove attributes that
 		// should not be searched.
@@ -99,6 +99,10 @@ class Orders extends CActiveRecord
 		$criteria->compare('status',$this->status);
 		$criteria->compare('total',$this->total);
 		$criteria->compare('created_date',$this->created_date,true);
+		
+		if($sortByTime == true){
+			$criteria->order='created_date desc';
+		}
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
 		));
