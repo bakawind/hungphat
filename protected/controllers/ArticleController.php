@@ -27,7 +27,7 @@ class ArticleController extends Controller
 	{
 		return array(
 			array('allow',  // allow all users to perform 'index' and 'view' actions
-				'actions'=>array('index','view'),
+				'actions'=>array('index','view','display'),
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
@@ -50,12 +50,19 @@ class ArticleController extends Controller
 	 */
 	public function actionView($id)
 	{
-        //$this->layout='//layouts/column2';
+        $this->layout='//layouts/column2';
 		$this->render('view',array(
 			'model'=>$this->loadModel($id),
 		));
 	}
 
+	public function actionDisplay($id)
+	{
+        //$this->layout='//layouts/column2';
+		$this->render('display',array(
+			'model'=>$this->loadModel($id),
+		));
+	}
 
 
 	/**
@@ -131,12 +138,9 @@ class ArticleController extends Controller
 		{
 			// we only allow deletion via POST request
 			$model = $this->loadModel($id);
-			$filename = $model->image;			
+						
+			$this->deleteImage($model->image);
 			
-			$fileIndex = strrpos ($filename, "/", -1);
-			$realFilename = substr($filename, $fileIndex);
-			
-			unlink(Yii::getPathOfAlias('uploadPath') . "\\article\\" . $realFilename);
 			$this->loadModel($id)->delete();
 
 			// if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
@@ -145,6 +149,12 @@ class ArticleController extends Controller
 		}
 		else
 			throw new CHttpException(400,'Invalid request. Please do not repeat this request again.');
+	}
+	
+	public function deleteImage($imageURL){
+		$fileIndex = strrpos($imageURL, "/", -1);
+		$realFilename = substr($imageURL, $fileIndex);			
+		unlink(Yii::getPathOfAlias('uploadPath') . "\\article\\" . $realFilename);
 	}
 
 	/**

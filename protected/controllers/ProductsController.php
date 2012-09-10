@@ -121,8 +121,6 @@ class ProductsController extends Controller
 			),
 		));
 
-
-
 		$this->render('display',array(
 			'model'=>$model,
 			'dataProvider'=>$dataProvider,
