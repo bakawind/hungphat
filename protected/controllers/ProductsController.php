@@ -169,6 +169,11 @@ class ProductsController extends Controller
 	----------------*/
 	public function updatePhoto($model, $myfile ) {
 	   if (is_object($myfile) && get_class($myfile)==='CUploadedFile') {
+			
+			if($model->image!='' || $model->image!=null){
+				$this->deleteImage($model->image);
+			}
+	   
 			$ext = $model->tempFile->getExtensionName();
 			$nameOfFile = $model->tempFile->getName();
 			$model->image= $model->id . '_' . $nameOfFile;
@@ -224,7 +229,11 @@ class ProductsController extends Controller
 		if(Yii::app()->request->isPostRequest)
 		{
 			// we only allow deletion via POST request
-			$this->loadModel($id)->delete();
+			$model = $this->loadModel($id);
+						
+			$this->deleteImage($model->image);
+			
+			$model->delete();
 
 			// if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
 			if(!isset($_GET['ajax']))
