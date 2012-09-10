@@ -130,6 +130,13 @@ class ArticleController extends Controller
 		if(Yii::app()->request->isPostRequest)
 		{
 			// we only allow deletion via POST request
+			$model = $this->loadModel($id);
+			$filename = $model->image;			
+			
+			$fileIndex = strrpos ($filename, "/", -1);
+			$realFilename = substr($filename, $fileIndex);
+			
+			unlink(Yii::getPathOfAlias('uploadPath') . "\\article\\" . $realFilename);
 			$this->loadModel($id)->delete();
 
 			// if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
@@ -191,8 +198,6 @@ class ArticleController extends Controller
 	}
 
 	public function updatePhoto($model, $myfile ) {
-
-
 	   if (is_object($myfile) && get_class($myfile)==='CUploadedFile') {
 
 			$ext = $model->tempFile->getExtensionName();
