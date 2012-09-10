@@ -116,7 +116,7 @@ class ArticleController extends Controller
 			$myfile = CUploadedFile::getInstance($model,'tempFile'); // Hung - upload image code
 			$model->tempFile=$myfile; // Hung - upload image code
 
-			if($model->save()){
+			if($model->save()){				
 				$this->updatePhoto($model, $myfile); // Hung - upload image code
 				$this->redirect(array('view','id'=>$model->id));
 			}
@@ -141,7 +141,7 @@ class ArticleController extends Controller
 						
 			$this->deleteImage($model->image);
 			
-			$this->loadModel($id)->delete();
+			$model->delete();
 
 			// if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
 			if(!isset($_GET['ajax']))
@@ -210,6 +210,10 @@ class ArticleController extends Controller
 	public function updatePhoto($model, $myfile ) {
 	   if (is_object($myfile) && get_class($myfile)==='CUploadedFile') {
 
+			if($model->image!='' || $model->image!=null){
+				$this->deleteImage($model->image);
+			}
+			
 			$ext = $model->tempFile->getExtensionName();
 			$nameOfFile = $model->tempFile->getName();
 			$model->image= $model->id . '_' . $nameOfFile;

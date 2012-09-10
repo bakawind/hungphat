@@ -233,6 +233,12 @@ class ProductsController extends Controller
 		else
 			throw new CHttpException(400,'Invalid request. Please do not repeat this request again.');
 	}
+	
+	public function deleteImage($imageURL){
+		$fileIndex = strrpos($imageURL, "/", -1);
+		$realFilename = substr($imageURL, $fileIndex);			
+		unlink(Yii::getPathOfAlias('uploadPath') . "\\products\\" . $realFilename);
+	}
 
 	/**
 	 * Lists all models.
