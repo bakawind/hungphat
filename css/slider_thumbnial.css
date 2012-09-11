@@ -28,11 +28,13 @@
 				
 			}
 
-			#carousel span, #carousel img,
-			#thumbs a, #thumbs img  {
+			#carousel span, 
+			#thumbs a{
 				display: block;
 				float: left;				
 			}
+			#carousel img, #thumbs img{display: block;}
+			
 			#carousel span, #carousel a,
 			#thumbs span, #thumbs a {
 				position: relative;				
@@ -42,8 +44,7 @@
 			#thumbs img{
 				/*
 				width: 100%;				
-				margin-left:auto;
-				margin-right:auto;
+				
 				float: left;				
 				position: absolute; Hung*/
 				/*
@@ -51,9 +52,11 @@
 				left: 20;
 				*/
 				border: none;
-				width: 100%;
+				margin-left:auto;
+				margin-right: auto;
 				height: 100%;
-				position: absolute;
+				position: relative;
+				
 				top: 0;
 				left: 0;
 			}
@@ -97,7 +100,7 @@
 				height: 100px;
 				margin: 0 10px;
 				overflow: hidden;
-				border-radius: 10px;
+				border-radius: 7px;
 					
 				/*width: 100px;
 				height: 150px;
