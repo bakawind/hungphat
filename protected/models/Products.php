@@ -16,8 +16,7 @@
 class Products extends CActiveRecord
 {
 	//Hung - add new property
-	/*var $_PhotoPath;*/
-	/*var $_PathSep;*/	
+	
 	var $tempFile;
 
 	/**

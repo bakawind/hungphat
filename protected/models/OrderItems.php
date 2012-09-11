@@ -11,6 +11,7 @@
  */
 class OrderItems extends CActiveRecord
 {
+	var $product_code;
 	/**
 	 * Returns the static model of the specified AR class.
 	 * @param string $className active record class name.
@@ -37,8 +38,9 @@ class OrderItems extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('quantity, product_id, order_id', 'required'),
+			array('quantity, order_id', 'required'),
 			array('id, quantity, product_id, order_id', 'numerical', 'integerOnly'=>true),
+			array('product_code', 'safe'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
 			array('id, quantity, product_id, order_id', 'safe', 'on'=>'search'),
