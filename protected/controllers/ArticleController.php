@@ -27,7 +27,7 @@ class ArticleController extends Controller
 	{
 		return array(
 			array('allow',  // allow all users to perform 'index' and 'view' actions
-				'actions'=>array('index','view'),
+				'actions'=>array('index','view','display'),
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
@@ -50,12 +50,19 @@ class ArticleController extends Controller
 	 */
 	public function actionView($id)
 	{
-        //$this->layout='//layouts/column2';
+        $this->layout='//layouts/column2';
 		$this->render('view',array(
 			'model'=>$this->loadModel($id),
 		));
 	}
 
+	public function actionDisplay($id)
+	{
+        //$this->layout='//layouts/column2';
+		$this->render('display',array(
+			'model'=>$this->loadModel($id),
+		));
+	}
 
 
 	/**
@@ -109,7 +116,7 @@ class ArticleController extends Controller
 			$myfile = CUploadedFile::getInstance($model,'tempFile'); // Hung - upload image code
 			$model->tempFile=$myfile; // Hung - upload image code
 
-			if($model->save()){
+			if($model->save()){				
 				$this->updatePhoto($model, $myfile); // Hung - upload image code
 				$this->redirect(array('view','id'=>$model->id));
 			}
@@ -130,7 +137,11 @@ class ArticleController extends Controller
 		if(Yii::app()->request->isPostRequest)
 		{
 			// we only allow deletion via POST request
-			$this->loadModel($id)->delete();
+			$model = $this->loadModel($id);
+						
+			$this->deleteImage($model->image);
+			
+			$model->delete();
 
 			// if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
 			if(!isset($_GET['ajax']))
@@ -138,6 +149,12 @@ class ArticleController extends Controller
 		}
 		else
 			throw new CHttpException(400,'Invalid request. Please do not repeat this request again.');
+	}
+	
+	public function deleteImage($imageURL){
+		$fileIndex = strrpos($imageURL, "/", -1);
+		$realFilename = substr($imageURL, $fileIndex);			
+		unlink(Yii::getPathOfAlias('uploadPath') . "\\article\\" . $realFilename);
 	}
 
 	/**
@@ -167,6 +184,16 @@ class ArticleController extends Controller
 		));
 	}
 
+
+	public function  actionList(){
+		$model=new Article('search');
+		$this->render('list',array(
+			'model'=>$model,
+		));
+	}
+
+
+
 	/**
 	 * Returns the data model based on the primary key given in the GET variable.
 	 * If the data model is not found, an HTTP exception will be raised.
@@ -181,10 +208,12 @@ class ArticleController extends Controller
 	}
 
 	public function updatePhoto($model, $myfile ) {
-
-
 	   if (is_object($myfile) && get_class($myfile)==='CUploadedFile') {
 
+			if($model->image!='' || $model->image!=null){
+				$this->deleteImage($model->image);
+			}
+			
 			$ext = $model->tempFile->getExtensionName();
 			$nameOfFile = $model->tempFile->getName();
 			$model->image= $model->id . '_' . $nameOfFile;

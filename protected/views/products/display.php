@@ -1,3 +1,12 @@
+<?php
+$category = Categories::model()->findByPk($model->category_id);
+?>
+<div class='banner'>
+    <?php if($category != null) { ?>
+        <?=CHtml::image($category->banner, $category->caption, array('width'=>"900", 'height'=>'350'))?>
+    <?php } ?>
+</div>
+
 <div class='banner'>
     <?=CHtml::image("/images/banners/banner3.jpg", '', array('width'=>"900", 'height'=>'350'))?>
 </div>
@@ -7,7 +16,7 @@
 <script type="text/javascript">
 			$(function() {
 				
-				$('#carousel span').append('<img src="../../images/gui/carousel_glare.png" class="glare" />');
+				/*$('#carousel span').append('<img src="../../images/gui/carousel_glare.png" class="glare" />');*/
 				$('#thumbs a').append('<img src="../../images/gui/carousel_glare_small.png" class="glare" />');
 
 				$('#carousel').carouFredSel({

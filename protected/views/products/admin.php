@@ -51,11 +51,10 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 			'type'=>'raw',
 			'header'=>'Picture',                                
 			'value'=> 'CHtml::image($data->image,$data->image, array("width"=>100))',			
-			),	
-		/*
-		'modified_date',
+			),		
+		//'modified_date',
 		'category_id',
-		*/
+		
 		array(
 			'class'=>'CButtonColumn',
 		),

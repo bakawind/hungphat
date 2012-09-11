@@ -11,18 +11,25 @@ $category = Categories::model()->find('name = :name', array(':name'=>$type));
 <div class='space'></div>
 <div class='inner_content'>
 	<div class='price_search2'>	
-		Tìm theo giá		
-		<form action="SearchPrice" method="GET">
-			<select name="range" >
-			<?php
-				$priceRangeModel = PriceRange::model()->findAll();
-				foreach($priceRangeModel as $d){ ?>				
-					<option value="<?=$d->id?>"><?= $d->from_price . 'đ - ' . $d->to_price . 'đ'?> </option>	
-			<? } ?>
-			<input type="hidden" value="<?= $_GET['type'] ?>" name="type" />			
-			<input type="submit" value="Tìm" />						
-			</select>
-		</form>
+	<table>
+		<tr>
+			<td>Tìm theo giá</td>
+			<td>
+				<form action="SearchPrice" method="GET">
+					<select name="range" >
+					<?php
+						$priceRangeModel = PriceRange::model()->findAll();
+						foreach($priceRangeModel as $d){ ?>				
+							<option value="<?=$d->id?>"><?= $d->from_price . 'đ - ' . $d->to_price . 'đ'?> </option>	
+					<? } ?>
+					<input type="hidden" value="<?= $_GET['type'] ?>" name="type" />			
+					<input type="submit" value="Tìm" />						
+					</select>
+				</form>
+			</td>
+		</tr>
+	</table>
+		
 		
 		
 	</div>
