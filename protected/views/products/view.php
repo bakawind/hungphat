@@ -34,7 +34,8 @@ $this->menu=array(
 		'available',
 	),
 )); ?>
-
+<br/>
+List of slider Photo
 <?php 
 $this->widget('zii.widgets.grid.CGridView', array(
 	'id'=>'product-photos-grid',

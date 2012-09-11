@@ -65,6 +65,7 @@ class ProductsController extends Controller
             if (isset($category)){
 		        $criteria=new CDbCriteria;
 		        $criteria->compare('category_id',$category->id);
+				$criteria->order='modified_date desc';
 		        $dataProvider = new CActiveDataProvider('Products', array(
 			        'criteria'=>$criteria,
                     'pagination'=>array(
@@ -91,6 +92,7 @@ class ProductsController extends Controller
 		        $criteria=new CDbCriteria;
 				$criteria->condition='price >=' . $priceRange->from_price . ' AND price <=' . $priceRange->to_price;
 		        $criteria->compare('category_id',$category->id);
+				$criteria->order='price desc';
 		        $dataProvider = new CActiveDataProvider('Products', array(
 			        'criteria'=>$criteria,
                     'pagination'=>array(
@@ -118,8 +120,6 @@ class ProductsController extends Controller
 				'pageSize'=>6,
 			),
 		));
-
-
 
 		$this->render('display',array(
 			'model'=>$model,
@@ -169,6 +169,11 @@ class ProductsController extends Controller
 	----------------*/
 	public function updatePhoto($model, $myfile ) {
 	   if (is_object($myfile) && get_class($myfile)==='CUploadedFile') {
+			
+			if($model->image!='' || $model->image!=null){
+				$this->deleteImage($model->image);
+			}
+	   
 			$ext = $model->tempFile->getExtensionName();
 			$nameOfFile = $model->tempFile->getName();
 			$model->image= $model->id . '_' . $nameOfFile;
@@ -177,18 +182,6 @@ class ProductsController extends Controller
 			$model->image=Yii::getPathOfAlias('uploadURL') . '/products/' . $model->image;
 			$model->save();
 
-			//Yii::import('application.extensions.images.Image');
-			//$image = new Image($model->getPath());
-			//$image = Yii::app()->image->load($model->getPath());
-	//Crunch the photo to a size set in my System Options Table
-	//I hold the max size as 800 meaning to fit in an 800px x 800px square
-			//$size=$this->getOption('PhotoLarge');
-			//$image->resize($size[0], $size[0])->quality(75)->sharpen(20);
-			//$image->save();
-	// Now create a thumb - again the thumb size is held in System Options Table
-			//$size=$this->getOption('PhotoThumb');
-			//$image->resize($size[0], $size[0])->quality(75)->sharpen(20);
-			//$image->save($model->getThumb()); // or $image->save('images/small.jpg');
 			return true;
 		 } else return false;
 	}
@@ -236,7 +229,11 @@ class ProductsController extends Controller
 		if(Yii::app()->request->isPostRequest)
 		{
 			// we only allow deletion via POST request
-			$this->loadModel($id)->delete();
+			$model = $this->loadModel($id);
+						
+			$this->deleteImage($model->image);
+			
+			$model->delete();
 
 			// if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
 			if(!isset($_GET['ajax']))
@@ -244,6 +241,12 @@ class ProductsController extends Controller
 		}
 		else
 			throw new CHttpException(400,'Invalid request. Please do not repeat this request again.');
+	}
+	
+	public function deleteImage($imageURL){
+		$fileIndex = strrpos($imageURL, "/", -1);
+		$realFilename = substr($imageURL, $fileIndex);			
+		unlink(Yii::getPathOfAlias('uploadPath') . "\\products\\" . $realFilename);
 	}
 
 	/**

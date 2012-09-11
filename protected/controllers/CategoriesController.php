@@ -50,9 +50,23 @@ class CategoriesController extends Controller
 	 */
 	public function actionView($id)
 	{
+		
+		//$category = Categories::model()->findByPk();
+		$criteria=new CDbCriteria;
+		$criteria->compare('category_id',$id);
+		
+		$criteria->order='modified_date desc';
+		$dataProvider = new CActiveDataProvider('Products', array(
+			'criteria'=>$criteria,
+            'pagination'=>array(
+            'pageSize'=>10,
+            ),
+		));		
+	
         $this->layout='//layouts/column2';
 		$this->render('view',array(
 			'model'=>$this->loadModel($id),
+			'listOfProducts'=>$dataProvider,
 		));
 	}
 

@@ -72,5 +72,5 @@ ALTER TABLE categories ADD COLUMN caption varchar(128);
 ALTER TABLE categories ADD COLUMN banner varchar(256);
 
 
-SHOW COLUMNS FROM article FROM hungphat;
+SHOW COLUMNS FROM orders FROM hungphat;
 INSERT INTO article(title, content) VALUES('example','example_content');

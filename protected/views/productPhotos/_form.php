@@ -33,8 +33,10 @@
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'product_id'); ?>
-		<?php echo $form->textField($model,'product_id');?>
+		<?php //echo $model->product_id ?>
+		<?php echo $form->textField($model,'product_id', array('readonly' => 'readonly'));?>
 		<?php echo $form->error($model,'product_id'); ?>
+		
 	</div>
 
 	<div class="row buttons">

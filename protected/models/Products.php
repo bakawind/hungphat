@@ -16,8 +16,7 @@
 class Products extends CActiveRecord
 {
 	//Hung - add new property
-	/*var $_PhotoPath;*/
-	/*var $_PathSep;*/	
+	
 	var $tempFile;
 
 	/**
@@ -106,7 +105,7 @@ class Products extends CActiveRecord
 	 * Retrieves a list of models based on the current search/filter conditions.
 	 * @return CActiveDataProvider the data provider that can return the models based on the search/filter conditions.
 	 */
-	public function search()
+	public function search($sortByTime = true)
 	{
 		// Warning: Please modify the following code to remove attributes that
 		// should not be searched.
@@ -122,6 +121,10 @@ class Products extends CActiveRecord
 		$criteria->compare('modified_date',$this->modified_date,true);
 		$criteria->compare('category_id',$this->category_id);
 		$criteria->compare('available',$this->available,true);
+		
+		if($sortByTime == true){
+			$criteria->order='modified_date desc';
+		}
 		
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

@@ -129,7 +129,11 @@ class ProductPhotosController extends Controller
 		if(Yii::app()->request->isPostRequest)
 		{
 			// we only allow deletion via POST request
-			$this->loadModel($id)->delete();
+			$model = $this->loadModel($id);
+						
+			$this->deleteImage($model->url);
+			
+			$model->delete();
 
 			// if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
 			if(!isset($_GET['ajax']))
@@ -137,6 +141,12 @@ class ProductPhotosController extends Controller
 		}
 		else
 			throw new CHttpException(400,'Invalid request. Please do not repeat this request again.');
+	}
+	
+	public function deleteImage($imageURL){
+		$fileIndex = strrpos($imageURL, "/", -1);
+		$realFilename = substr($imageURL, $fileIndex);			
+		unlink(Yii::getPathOfAlias('uploadPath') . "\\slider_photos\\" . $realFilename);
 	}
 
 	/**
@@ -195,8 +205,14 @@ class ProductPhotosController extends Controller
 
 	public function updatePhoto($model, $myfile) {
 	   if (is_object($myfile) && get_class($myfile)==='CUploadedFile') {
+	   
+			if($model->url!='' || $model->url!=null){
+				$this->deleteImage($model->url);
+			}
+	   
 			$nameOfFile = $model->tempFile->getName();
 			$model->url= $model->id . '_' . $nameOfFile;
+			
 			$myfile->saveAs($model->getPath() . '/slider_photos/' . $model->url); //upload picture to server
 			$model->url=Yii::getPathOfAlias('uploadURL') . '/slider_photos/' . $model->url;
 			$model->save();
