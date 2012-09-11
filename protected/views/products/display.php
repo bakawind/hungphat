@@ -141,6 +141,7 @@ $category = Categories::model()->findByPk($model->category_id);
 				<?php } ?>
 				
 			</div>
+			<br class='clear' />
 		
 		<!--- **************************slider**************************** -->			
 	</div> <!-- end droduct details-->

@@ -1,15 +1,20 @@
+﻿
+<div class='searchResult'>	
 <?php 
 	if(get_class($data) === 'Article'){ ?>
-		<div class='news'>			
-		
+				
+			<?=CHtml::image($data->image)?>
 			<h3><?= $data->title ?></h3>
 			<p><?= $data->content ?></p>
 			<hr />
-		</div>
-<?php }else if(get_class($data) === 'Products'){ ?>
-		<div class='news'>
+		
+		
+<?}else if(get_class($data) === 'Products'){ ?>
+		
+			<?=CHtml::image($data->image)?>
 			<h3><?= $data->code ?> --- <?= $data->name ?></h3>
 			<p><?= $data->description ?></p>
 			<hr />
-		</div>
+		
 	<? } ?>
+</div>

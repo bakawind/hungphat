@@ -38,9 +38,9 @@ class OrderItems extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('quantity, order_id', 'required'),
+			array('quantity, order_id, product_code', 'required'),
 			array('id, quantity, product_id, order_id', 'numerical', 'integerOnly'=>true),
-			array('product_code', 'safe'),
+			//array('product_code', 'safe'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
 			array('id, quantity, product_id, order_id', 'safe', 'on'=>'search'),
@@ -62,6 +62,17 @@ class OrderItems extends CActiveRecord
 	 * @return array customized attribute labels (name=>label)
 	 */
 	public function attributeLabels()
+	{
+		return array(
+			'id' => 'ID',
+			'quantity' => 'Quantity',
+			'product_id' => 'Product',
+			'order_id' => 'Order',
+		);
+	}
+	
+	
+	public funtion getProductCode()
 	{
 		return array(
 			'id' => 'ID',

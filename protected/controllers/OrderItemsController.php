@@ -76,6 +76,7 @@ class OrderItemsController extends Controller
 			
 			if($productModel != null){
 				$model->product_id = $productModel->id;
+				
 				$model->save();
 			}else{
 				echo "<script type='text/javascript'>alert('abc')</script> ";
