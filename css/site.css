@@ -245,12 +245,23 @@ legend{
 	font-family:'vani'
 }
 
+.wrapper .content .inner_content .box .product_box .info .price{
+	margin-top: 5px;
+    font-size: 18px;
+	font-family:'vani';
+	
+}
+
 .wrapper .content .inner_content .box .product_box img{
     float: center;
 	margin-left:auto;
 	margin-right:auto;
-    width: 280px;
-    height: 210px;
+    max-width: 280px; max-height: 210px;
+	width: auto; height: 210px;
+}
+
+.wrapper .content .inner_content .box .product_box .product_img{
+	height: 210px;
 }
 
 .wrapper .content .inner_content .box .product_box .detail {
@@ -299,13 +310,12 @@ legend{
 	box-shadow: 0 0 8px rgba(0, 0, 0, 0.3);
 	/*background: rgba(255, 255, 255, 0.4);*/
 	width: 900px;
-	height: 600px;
+	height: auto;
 }
 .wrapper .content .inner_content .product_detail .detail, .pictures{
-
 	float:left;
 	width: 450px;
-	height: 600px;
+	height:auto;
 }
 .wrapper .content .inner_content .product_detail .detail table{
 	margin: 30px 20px 20px 50px;
@@ -590,6 +600,8 @@ legend{
     width: 100px;
 }
 
+
+	
 .news {
 	margin: 0px 0px 15px 0px;
 	width: 100%;

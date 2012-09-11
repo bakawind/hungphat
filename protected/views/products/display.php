@@ -91,7 +91,6 @@
 		</div> <!--end detail-->
 
 		<!--- **************************slider**************************** -->
-
 			<div id="wrapper">
 
 				<?php
@@ -128,12 +127,10 @@
 				<?php } ?>
 
 			</div>
-
+			<br class='clear' />
 		<!--- **************************slider**************************** -->
 	</div> <!-- end droduct details-->
 	<div class='space'></div>
-
-
 
 <?php
 $this->widget('zii.widgets.CListView', array(
