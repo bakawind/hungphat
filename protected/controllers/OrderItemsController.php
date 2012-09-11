@@ -71,9 +71,18 @@ class OrderItemsController extends Controller
 		if(isset($_POST['OrderItems']))
 		{
 			$model->attributes=$_POST['OrderItems'];
-			if($model->save())
-				//$this->redirect(array('view','id'=>$model->id));
-				$this->redirect(array('orders/view','id'=>$model->order_id));
+			
+			$productModel = Products::model()->find('code = :_code', array(':_code'=>$model->product_code));
+			
+			if($productModel != null){
+				$model->product_id = $productModel->id;
+				$model->save();
+			}else{
+				echo "<script type='text/javascript'>alert('abc')</script> ";
+			}
+						
+			//if($model->save())				
+			$this->redirect(array('orders/view','id'=>$model->order_id)); // Hung - code
 		}
 
 		if(isset($_GET['o_id'])){
@@ -101,6 +110,8 @@ class OrderItemsController extends Controller
 		if(isset($_POST['OrderItems']))
 		{
 			$model->attributes=$_POST['OrderItems'];
+			
+			
 			if($model->save())
 				//$this->redirect(array('view','id'=>$model->id));
 				$this->redirect(array('orders/view','id'=>$model->order_id));

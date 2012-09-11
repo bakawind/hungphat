@@ -23,7 +23,7 @@
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'product_id'); ?>
-		<?php echo $form->textField($model,'product_id'); ?>
+		<?php echo $form->textField($model,'product_code'); ?>
 		<?php echo $form->error($model,'product_id'); ?>
 	</div>
 
