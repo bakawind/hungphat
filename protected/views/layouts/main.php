@@ -67,6 +67,45 @@
         <br class='clear'/>
         <div class='content'>
             <div class='space'></div>
+            <div class='banner'>
+            <?php
+            $categories = Categories::model()->findAll();
+            if(isset($_GET['type']) && $_GET['type']!=null) {
+                $categories = array();
+                array_push($categories, Categories::model()->find('name=:name', array(':name'=>$_GET['type'])));
+            }
+            if(isset($_GET['id']) && $_GET['id']!=null) {
+                $product = Products::model()->findByPk($_GET['id']);
+                $categories = array();
+                array_push($categories, Categories::model()->find('id=:id', array(':id'=>$product->category_id)));
+            }
+            ?>
+            	<div id="SliderName_2" class="SliderName_2">
+                    <?php
+                        foreach($categories as $c) {
+                    ?>
+            		    <!--<div class="SliderName_2Description">Fist banner</div>-->
+                        <?=CHtml::image($c->banner, $c->caption, array('width'=>"900", 'height'=>"350", 'title'=>$c->caption, 'usemap'=>"#img1map"))?>
+                    <?php } ?>
+            	</div>
+            	<div class="c"></div>
+            	<div id="SliderNameNavigation_2"></div>
+            	<div class="c"></div>
+
+            	<script type="text/javascript">
+            		effectsDemo2 = 'rain,stairs,fade';
+            		var demoSlider_2 = Sliderman.slider({container: 'SliderName_2', width: 900, height: 350, effects: effectsDemo2,
+            			display: {
+            				autoplay: 3000,
+            				loading: {background: '#000000', opacity: 0.5, image: 'images/loading.gif'},
+            				buttons: {hide: true, opacity: 1, prev: {className: 'SliderNamePrev_2', label: ''}, next: {className: 'SliderNameNext_2', label: ''}},
+            				description: {hide: true, background: '#000000', opacity: 0.4, height: 50, position: 'bottom'},
+            				//navigation: {container: 'SliderNameNavigation_2', label: '<img src="img/clear.gif" />'}
+            			}
+            		});
+            	</script>
+            </div><!--close banner-->
+            <div class='space'></div>
 	            <?php echo $content; ?>
             <div class='space'></div>
         </div><!--close content -->
