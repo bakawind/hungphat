@@ -37,6 +37,11 @@ $this->widget('zii.widgets.grid.CGridView', array(
 		'id',
 		'quantity',	
 		'product_id',
+		array(			
+			'type'=>'raw',
+			'header'=>'Product Code',                                
+			'value'=>'Products::model()->getProductCode($data->product_id)',			
+			),	
 		array(
             'class'=>'CButtonColumn',
             'template'=>'{view}{update}{delete}',

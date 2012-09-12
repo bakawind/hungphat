@@ -9,6 +9,7 @@
 
 	<?php echo $form->errorSummary($model); ?>
 
+
 	<!-- div class="row">
 		<?/*php echo $form->labelEx($model,'id'); ?>
 		<?php echo $form->textField($model,'id'); ?>
@@ -22,9 +23,9 @@
 	</div>
 
 	<div class="row">
-		<?php echo $form->labelEx($model,'product_id'); ?>
-		<?php echo $form->textField($model,'product_code'); ?>
-		<?php echo $form->error($model,'product_id'); ?>
+		<?php echo $form->labelEx($model,'product_code'); ?>
+		<?php echo $form->textField($model,'product_code', array('readonly'=>$model->isNewRecord ? '' : 'readonly')); ?>
+		<?php echo $form->error($model,'product_code'); ?>
 	</div>
 
 	<div class="row">

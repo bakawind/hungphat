@@ -48,7 +48,7 @@
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'total'); ?>
-		<?php echo $form->textField($model,'total'); ?>
+		<?php echo $form->textField($model,'total', array('readonly'=>'readonly')); ?>
 		<?php echo $form->error($model,'total'); ?>
 	</div>
 
