@@ -65,7 +65,7 @@ class OrdersController extends Controller
 	{
         $this->layout='//layouts/column2';
 		$model=new Orders;
-
+		$model->total = 0;
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 

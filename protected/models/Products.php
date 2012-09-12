@@ -130,4 +130,10 @@ class Products extends CActiveRecord
 			'criteria'=>$criteria,
 		));
 	}
+	
+	public function getProductCode($id)
+	{
+		$productModel = Products::model()->findByPk($id);
+		return $productModel->code;
+	}
 }

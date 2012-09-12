@@ -72,15 +72,7 @@ class OrderItems extends CActiveRecord
 	}
 	
 	
-	public funtion getProductCode()
-	{
-		return array(
-			'id' => 'ID',
-			'quantity' => 'Quantity',
-			'product_id' => 'Product',
-			'order_id' => 'Order',
-		);
-	}
+
 
 	/**
 	 * Retrieves a list of models based on the current search/filter conditions.

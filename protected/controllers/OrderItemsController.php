@@ -64,6 +64,7 @@ class OrderItemsController extends Controller
 	{
         $this->layout='//layouts/column2';
 		$model=new OrderItems;
+		$errors = array();
 
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
@@ -73,17 +74,38 @@ class OrderItemsController extends Controller
 			$model->attributes=$_POST['OrderItems'];
 			
 			$productModel = Products::model()->find('code = :_code', array(':_code'=>$model->product_code));
+			$orderModel = Orders::model()->findByPk($model->order_id);
 			
-			if($productModel != null){
+			if($productModel != null && $orderModel != null){
+			
+						
+				
+				$existingItemModel = OrderItems::model()->find('product_id=:product_id, order_id=:order_id',
+																	array(':product_id'=>$productModel->id,
+																			':order_id'=>$model->order_id,
+																	)); 
+				if($existingItemModel != null){
+					echo 'co roi';
+				}else{
+					echo 'chua co';
+				}
+				die();
+				
 				$model->product_id = $productModel->id;
 				
+				$tempTotal = $orderModel->total;
+				$orderModel->total = $tempTotal + ($productModel->price * $model->quantity);
+				
+				$orderModel->save();
 				$model->save();
+				$this->redirect(array('orders/view','id'=>$model->order_id)); // Hung - code
 			}else{
-				echo "<script type='text/javascript'>alert('abc')</script> ";
-			}
-						
-			//if($model->save())				
-			$this->redirect(array('orders/view','id'=>$model->order_id)); // Hung - code
+				$errors['product_code'] = 'There is no Products for that code';
+				return $this->render('create', array(
+				//	'errors'=>$errors,
+					'model'=>$model,
+				));			
+			}			
 		}
 
 		if(isset($_GET['o_id'])){
@@ -92,6 +114,7 @@ class OrderItemsController extends Controller
 
 		$this->render('create',array(
 			'model'=>$model,
+			//'errors'=>$errors,
 		));
 	}
 
@@ -104,18 +127,28 @@ class OrderItemsController extends Controller
 	{
         $this->layout='//layouts/column2';
 		$model=$this->loadModel($id);
-
+		
+		$productModel = Products::model()->findByPk($model->product_id);
+		$model->product_code = $productModel->code;
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 
 		if(isset($_POST['OrderItems']))
 		{
 			$model->attributes=$_POST['OrderItems'];
+			$oldModel = $this->loadModel($id);
+			$orderModel = Orders::model()->findByPk($model->order_id);
 			
-			
-			if($model->save())
-				//$this->redirect(array('view','id'=>$model->id));
+			$newQuantity = $model->quantity;
+			$oldQuantity = $oldModel->quantity;
+			$tempTotal = $orderModel->total;			
+						
+			$orderModel->total = $tempTotal + ($productModel->price * ($newQuantity - $oldQuantity));
+						
+			if($model->save() && $orderModel->save())
 				$this->redirect(array('orders/view','id'=>$model->order_id));
+				//$this->redirect(array('view','id'=>$model->id));
+				
 		}
 
 		$this->render('update',array(
@@ -132,12 +165,20 @@ class OrderItemsController extends Controller
 	{
 		if(Yii::app()->request->isPostRequest)
 		{
+			$model = $this->loadModel($id);
 			// we only allow deletion via POST request
-			$this->loadModel($id)->delete();
-
+			$productModel = Products::model()->findByPk($model->product_id);
+			$orderModel = Orders::model()->findByPk($model->order_id);
+			
+			$tempTotal = $orderModel->total;
+			$orderModel->total = $tempTotal - ($productModel->price * $model->quantity);
+			
+			$orderModel->save();			
+			$model->delete();
 			// if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
 			if(!isset($_GET['ajax']))
 				$this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('admin'));
+				//$this->render(array('orders/view','id'=>$model->order_id));			
 		}
 		else
 			throw new CHttpException(400,'Invalid request. Please do not repeat this request again.');
