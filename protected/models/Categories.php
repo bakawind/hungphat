@@ -9,9 +9,8 @@
  * @property string $caption
  * @property string $banner
  */
-class Categories extends CActiveRecord
+class Categories extends Model
 {
-	var $tempBanner;
 	/**
 	 * Returns the static model of the specified AR class.
 	 * @param string $className active record class name.

@@ -21,13 +21,13 @@
 		<?php echo $form->textField($model,'url',array('size'=>60,'maxlength'=>256)); ?>
 		<?php echo $form->error($model,'url'); */ ?>
 	</div Hung -close url text input-->
-	
-	<div class="row"> <!-- Hung - add upload image input -->  
-		
+
+	<div class="row"> <!-- Hung - add upload image input -->
+
 		<?php echo $model->getThumbnail(); ?>
         <br>
 		<?php echo $form->labelEx($model,'url'); ?>
-		<?php echo CHtml::activeFileField($model, 'tempFile'); // see comments below ?>
+		<?php echo CHtml::activeFileField($model, 'url'); // see comments below ?>
 		<?php echo $form->error($model,'url');  ?>
 	</div>
 
@@ -36,7 +36,7 @@
 		<?php //echo $model->product_id ?>
 		<?php echo $form->textField($model,'product_id', array('readonly' => 'readonly'));?>
 		<?php echo $form->error($model,'product_id'); ?>
-		
+
 	</div>
 
 	<div class="row buttons">

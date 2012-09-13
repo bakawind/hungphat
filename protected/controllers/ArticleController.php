@@ -79,13 +79,12 @@ class ArticleController extends Controller
 
 		if(isset($_POST['Article']))
 		{
+            $model->tmp = $model->image;
 			$model->attributes=$_POST['Article'];
-			$myfile = CUploadedFile::getInstance($model,'tempFile'); // Hung - upload image code
-			$model->tempFile=$myfile; // Hung - upload image code
 			$model->modified_date= "" . date("Y/m/d H:i:s");
 
 			if($model->save()){
-				$this->updatePhoto($model, $myfile); // Hung - upload image code
+				Util::uploadPhoto($model, 'image', 'article');
 				$this->redirect(array('admin')); //Hung - redirect to article management page instead of view detials
 				/*$this->redirect(array('view','id'=>$model->id));*/
 			}
@@ -111,13 +110,12 @@ class ArticleController extends Controller
 
 		if(isset($_POST['Article']))
 		{
+            $model->tmp = $model->image;
 			$model->attributes=$_POST['Article'];
 			$model->modified_date= "" . date("Y/m/d H:i:s");
-			$myfile = CUploadedFile::getInstance($model,'tempFile'); // Hung - upload image code
-			$model->tempFile=$myfile; // Hung - upload image code
 
 			if($model->save()){
-				$this->updatePhoto($model, $myfile); // Hung - upload image code
+				Util::uploadPhoto($model, 'image', 'article');
 				$this->redirect(array('view','id'=>$model->id));
 			}
 		}
@@ -149,12 +147,6 @@ class ArticleController extends Controller
 		}
 		else
 			throw new CHttpException(400,'Invalid request. Please do not repeat this request again.');
-	}
-
-	public function deleteImage($imageURL){
-		$fileIndex = strrpos($imageURL, "/", -1);
-		$realFilename = substr($imageURL, $fileIndex);
-		unlink(Yii::getPathOfAlias('uploadPath') . "\\article\\" . $realFilename);
 	}
 
 	/**
@@ -205,25 +197,6 @@ class ArticleController extends Controller
 		if($model===null)
 			throw new CHttpException(404,'The requested page does not exist.');
 		return $model;
-	}
-
-	public function updatePhoto($model, $myfile ) {
-	   if (is_object($myfile) && get_class($myfile)==='CUploadedFile') {
-
-			if($model->image!='' || $model->image!=null){
-				$this->deleteImage($model->image);
-			}
-
-			$ext = $model->tempFile->getExtensionName();
-			$nameOfFile = $model->tempFile->getName();
-			$model->image= $model->id . '_' . $nameOfFile;
-
-			$model->tempFile->saveAs($model->getPath(). '/article/' . $model->image);
-			$model->image=Yii::getPathOfAlias('uploadURL') . '/article/' . $model->image;
-			$model->save();
-
-			return true;
-		 } else return false;
 	}
 
 	/**

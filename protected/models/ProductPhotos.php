@@ -8,7 +8,7 @@
  * @property string $url
  * @property integer $product_id
  */
-class ProductPhotos extends CActiveRecord
+class ProductPhotos extends Model
 {
 	var $tempFile;
 
@@ -89,7 +89,7 @@ class ProductPhotos extends CActiveRecord
 			'criteria'=>$criteria,
 		));
 	}
-	
+
 	public function searchBy($search_value) //Hung - create data depend on foreign key products_id
 	{
 		// Warning: Please modify the following code to remove attributes that
@@ -105,14 +105,14 @@ class ProductPhotos extends CActiveRecord
 			'criteria'=>$criteria,
 		));
 	}
-	
+
 	public function getThumbnail(){ // Hung - get thumbnail for photo
 		if (!empty($this->url) && $this->url!='')
-		return CHtml::image($this->url,'text_' . $this->url,array('width'=>'300px','max-height'=>'200px'));			 
+		return CHtml::image($this->url,'text_' . $this->url,array('width'=>'300px','max-height'=>'200px'));
 	}
-	
-	public function getPath(){ //Hung - get path for photo                     
-		$path=Yii::getPathOfAlias('uploadPath') . '/';            
+
+	public function getPath(){ //Hung - get path for photo
+		$path=Yii::getPathOfAlias('uploadPath') . '/';
 		return $path;
     }
 }

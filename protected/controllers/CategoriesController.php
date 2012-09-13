@@ -85,11 +85,8 @@ class CategoriesController extends Controller
 		if(isset($_POST['Categories']))
 		{
 			$model->attributes=$_POST['Categories'];
-			$myfile = CUploadedFile::getInstance($model,'banner'); // Hung - upload image code
-			$model->tempBanner=$myfile; // Hung - upload image code
-
 			if($model->save()){
-				$this->updatePhoto($model, $myfile); // Hung - upload image code
+				Util::uploadPhoto($model, 'banner', 'banner');
                 $this->redirect(array('admin')); //Hung - redirect to Categories admin page
                 //$this->redirect(array('view','id'=>$model->id));
             }
@@ -115,12 +112,10 @@ class CategoriesController extends Controller
 
 		if(isset($_POST['Categories']))
 		{
+            $model->tmp = $model->banner;
 			$model->attributes=$_POST['Categories'];
-			$myfile = CUploadedFile::getInstance($model, 'banner');
-			$model->tempBanner=$myfile;
-
 			if($model->save()){
-				$this->updatePhoto($model, $myfile);
+				Util::uploadPhoto($model, 'banner', 'banner');
 				$this->redirect(array('view','id'=>$model->id));
             }
 		}
@@ -202,30 +197,5 @@ class CategoriesController extends Controller
 			echo CActiveForm::validate($model);
 			Yii::app()->end();
 		}
-	}
-
-	public function updatePhoto($model, $myfile ) {
-	   if (is_object($myfile) && get_class($myfile)==='CUploadedFile') {
-			$ext = $model->tempBanner->getExtensionName();
-			$nameOfFile = $model->tempBanner->getName();
-
-			$model->tempBanner->saveAs(Yii::getPathOfAlias('uploadPath') . '/banners/' . $nameOfFile);
-			$model->banner=Yii::getPathOfAlias('uploadURL') . '/banners/' . $nameOfFile;
-			$model->save();
-
-			//Yii::import('application.extensions.images.Image');
-			//$image = new Image($model->getPath());
-			//$image = Yii::app()->image->load($model->getPath());
-	//Crunch the photo to a size set in my System Options Table
-	//I hold the max size as 800 meaning to fit in an 800px x 800px square
-			//$size=$this->getOption('PhotoLarge');
-			//$image->resize($size[0], $size[0])->quality(75)->sharpen(20);
-			//$image->save();
-	// Now create a thumb - again the thumb size is held in System Options Table
-			//$size=$this->getOption('PhotoThumb');
-			//$image->resize($size[0], $size[0])->quality(75)->sharpen(20);
-			//$image->save($model->getThumb()); // or $image->save('images/small.jpg');
-			return true;
-		 } else return false;
 	}
 }

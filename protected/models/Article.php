@@ -9,7 +9,7 @@
  * @property string $content
  * @property string $modified_date
  */
-class Article extends CActiveRecord
+class Article extends Model
 {
 	var $tempFile;
 	/**
@@ -38,7 +38,7 @@ class Article extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('content', 'required'), //Hung - remove requirement for id column			
+			array('content', 'required'), //Hung - remove requirement for id column
 			array('title', 'length', 'max'=>128),
 			array('image', 'length', 'max'=>256),
 			array('modified_date', 'safe'),
@@ -72,18 +72,18 @@ class Article extends CActiveRecord
 			'image' => 'Image',
 		);
 	}
-	
+
 	public function getThumbnail(){ // Hung - get thumbnail for photo
          // here i return the image
             if (!empty($this->image) && $this->image!='')
-             return CHtml::image($this->image,'text_' . $this->image,array('width'=>'300px','max-height'=>'200px'));			 
+             return CHtml::image($this->image,'text_' . $this->image,array('width'=>'300px','max-height'=>'200px'));
         }
-		
-		
+
+
 	public function getPath(){ //Hung - get path for photo
-        $path=Yii::getPathOfAlias('uploadPath') . '/';            
+        $path=Yii::getPathOfAlias('uploadPath') . '/';
 		return $path;
-           
+
     }
 
 	/**
@@ -102,15 +102,15 @@ class Article extends CActiveRecord
 		$criteria->compare('content',$this->content,true);
 		$criteria->compare('modified_date',$this->modified_date,true);
 		$criteria->compare('image',$this->image,true);
-		
+
 		if($sortByTime == true){
 			$criteria->order ='modified_date DESC ';
 		}
-		
+
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
 		));
 	}
-	
-	
+
+
 }

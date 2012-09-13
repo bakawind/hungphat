@@ -143,12 +143,10 @@ class ProductsController extends Controller
 		if(isset($_POST['Products']))
 		{
 			$model->attributes=$_POST['Products'];
-			$myfile = CUploadedFile::getInstance($model,'tempFile'); // Hung - upload image code
-			$model->tempFile=$myfile; // Hung - upload image code
 			$model->modified_date= $this->getCurrentDate();
 
 			if($model->save()){
-				$this->updatePhoto($model, $myfile); // Hung - upload image code
+				Util::uploadPhoto($model, 'image', 'product');
 			}
 			$this->redirect(array('admin'));//Hung - redirect to Products admin page
 				//$this->redirect(array('view','id'=>$model->id));
@@ -162,28 +160,6 @@ class ProductsController extends Controller
 	public function getCurrentDate(){ //Hung - get current date for modifying record
 		$currentDate = "" . date("Y/m/d H:i:s");
 		return $currentDate;
-	}
-
-	/*--------------
-	* Upload and crunch an image Hung-code
-	----------------*/
-	public function updatePhoto($model, $myfile ) {
-	   if (is_object($myfile) && get_class($myfile)==='CUploadedFile') {
-
-			if($model->image!='' || $model->image!=null){
-				$this->deleteImage($model->image);
-			}
-
-			$ext = $model->tempFile->getExtensionName();
-			$nameOfFile = $model->tempFile->getName();
-			$model->image= $model->id . '_' . $nameOfFile;
-
-			$model->tempFile->saveAs($model->getPath(). '/products/' . $model->image);
-			$model->image=Yii::getPathOfAlias('uploadURL') . '/products/' . $model->image;
-			$model->save();
-
-			return true;
-		 } else return false;
 	}
 
 	/**
@@ -202,13 +178,12 @@ class ProductsController extends Controller
 
 		if(isset($_POST['Products']))
 		{
+			$model->tmp = $model->image;
 			$model->attributes=$_POST['Products'];
-			$myfile = CUploadedFile::getInstance($model,'tempFile'); // Hung - upload image code
-			$model->tempFile=$myfile; // Hung - upload image code
 			$model->modified_date= $this->getCurrentDate();
 
 			if($model->save()){
-				$this->updatePhoto($model, $myfile); // Hung - upload image code
+				Util::uploadPhoto($model, 'image', 'product');
 				$this->redirect(array('view','id'=>$model->id));
 			}
 
