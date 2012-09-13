@@ -30,6 +30,13 @@
 		<?php echo $form->error($model,'banner');?>
 	</div>
 
+	<div class="row">
+		<?php echo $model->getImageThumbnail(); ?>
+        <br>
+		<?php echo $form->labelEx($model,'image'); ?>
+		<?php echo CHtml::activeFileField($model, 'image');?>
+		<?php echo $form->error($model,'image');?>
+	</div>
 
 	<div class="row buttons">
 		<?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save'); ?>

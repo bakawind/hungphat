@@ -16,5 +16,8 @@
 	<?php echo CHtml::encode($data->banner); ?>
 	<br />
 
+	<b><?php echo CHtml::encode($data->getAttributeLabel('image')); ?>:</b>
+	<?php echo CHtml::encode($data->image); ?>
+	<br />
 
 </div>

@@ -26,26 +26,31 @@ $this->menu=array(
             'type'=>'raw',
             'value'=>CHtml::image($model->banner, $model->caption, array('width'=>"500"))
         ),
+		array(// Hung - view image
+            'label'=>'Show Image',
+            'type'=>'raw',
+            'value'=>CHtml::image($model->image, $model->caption, array())
+        ),
 	),
 )); ?>
 <br />
 
 List of Products belong to <?= $model->caption?>
-<?php 
+<?php
 $this->widget('zii.widgets.grid.CGridView', array(
 	'id'=>'product-photos-grid',
-	'dataProvider'=>$listOfProducts,	
+	'dataProvider'=>$listOfProducts,
 	'columns'=>array(
 		'id',
 		'code',
 		'name',
 		'image',
 		'price',
-		array(			
+		array(
 			'type'=>'raw',
-			'header'=>'Picture',                                
-			'value'=> 'CHtml::image($data->image,$data->image, array("width"=>100))',			
-			),	
+			'header'=>'Picture',
+			'value'=> 'CHtml::image($data->image,$data->image, array("width"=>100))',
+			),
 		/*
 		array(
             'class'=>'CButtonColumn',
@@ -58,5 +63,5 @@ $this->widget('zii.widgets.grid.CGridView', array(
             "id"=>$data->id)',
         ),*/
 	),
-)); 
+));
 ?>

@@ -87,6 +87,7 @@ class CategoriesController extends Controller
 			$model->attributes=$_POST['Categories'];
 			if($model->save()){
 				Util::uploadPhoto($model, 'banner', 'banner');
+				Util::uploadPhoto($model, 'image', 'category');
                 $this->redirect(array('admin')); //Hung - redirect to Categories admin page
                 //$this->redirect(array('view','id'=>$model->id));
             }
@@ -116,6 +117,7 @@ class CategoriesController extends Controller
 			$model->attributes=$_POST['Categories'];
 			if($model->save()){
 				Util::uploadPhoto($model, 'banner', 'banner');
+				Util::uploadPhoto($model, 'image', 'category');
 				$this->redirect(array('view','id'=>$model->id));
             }
 		}

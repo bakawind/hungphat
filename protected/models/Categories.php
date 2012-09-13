@@ -8,6 +8,7 @@
  * @property string $name
  * @property string $caption
  * @property string $banner
+ * @property string $image
  */
 class Categories extends Model
 {
@@ -39,10 +40,10 @@ class Categories extends Model
 		return array(
 			array('caption', 'required'),
 			array('name, caption', 'length', 'max'=>128),
-			array('banner', 'length', 'max'=>256),
+			array('banner, image', 'length', 'max'=>256),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, name, caption, banner', 'safe', 'on'=>'search'),
+			array('id, name, caption, banner, image', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -67,6 +68,7 @@ class Categories extends Model
 			'name' => 'Name',
 			'caption' => 'Caption',
 			'banner' => 'Banner',
+			'image' => 'Image',
 		);
 	}
 
@@ -94,5 +96,10 @@ class Categories extends Model
 	public function getBannerThumbnail(){
         if (!empty($this->banner) && $this->banner!='')
             return CHtml::image($this->banner, $this->caption, array('max-width'=>'300px','max-height'=>'200px'));
+    }
+
+	public function getImageThumbnail(){
+        if (!empty($this->image) && $this->image!='')
+            return CHtml::image($this->image, $this->caption, array('max-width'=>'300px','max-height'=>'200px'));
     }
 }
