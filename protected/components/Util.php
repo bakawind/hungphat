@@ -24,6 +24,14 @@ class Util{
         $title = str_replace(' ','-',$title);
         return $title;
   }
+  
+  public static function getYahooStatus($yahooid){
+	$status = file_get_contents("http://opi.yahoo.com/online?u=$yahooid&m=a&t=1");
+	if ($status === '00')
+		return false;
+    elseif ($status === '01')
+        return true;
+  }
 }
 
 ?>

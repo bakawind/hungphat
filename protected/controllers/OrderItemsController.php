@@ -78,26 +78,24 @@ class OrderItemsController extends Controller
 			
 			if($productModel != null && $orderModel != null){
 			
-						
-				
-				$existingItemModel = OrderItems::model()->find('product_id=:product_id, order_id=:order_id',
+				$model->product_id = $productModel->id;						
+				$existingItemModel = OrderItems::model()->find('product_id=:product_id AND order_id=:order_id',
 																	array(':product_id'=>$productModel->id,
 																			':order_id'=>$model->order_id,
 																	)); 
-				if($existingItemModel != null){
-					echo 'co roi';
-				}else{
-					echo 'chua co';
+				if($existingItemModel != null){ // if existing, inscrease the quantity of existing model and save					
+					//$existingItemModel = $this->loadModel($existingItem->id);
+					$oldQuantity = $existingItemModel->quantity;
+					$newQuantity = $model->quantity;
+					$existingItemModel->quantity = $oldQuantity + $newQuantity;					
+					$existingItemModel->update();					
+				}else{ // else, save the new item with new details					
+					$flag = $model->insert();					
 				}
-				die();
-				
-				$model->product_id = $productModel->id;
-				
+							
 				$tempTotal = $orderModel->total;
-				$orderModel->total = $tempTotal + ($productModel->price * $model->quantity);
-				
-				$orderModel->save();
-				$model->save();
+				$orderModel->total = $tempTotal + ($productModel->price * $model->quantity);	
+				$orderModel->save();				
 				$this->redirect(array('orders/view','id'=>$model->order_id)); // Hung - code
 			}else{
 				$errors['product_code'] = 'There is no Products for that code';
@@ -143,8 +141,7 @@ class OrderItemsController extends Controller
 			$oldQuantity = $oldModel->quantity;
 			$tempTotal = $orderModel->total;			
 						
-			$orderModel->total = $tempTotal + ($productModel->price * ($newQuantity - $oldQuantity));
-						
+			$orderModel->total = $tempTotal + ($productModel->price * ($newQuantity - $oldQuantity));			
 			if($model->save() && $orderModel->save())
 				$this->redirect(array('orders/view','id'=>$model->order_id));
 				//$this->redirect(array('view','id'=>$model->id));
