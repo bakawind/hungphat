@@ -79,13 +79,13 @@ class ProductsController extends Controller
 			}
         }
     }
-	
+
 	public function actionSearchPrice(){
-		
+
 		if (isset($_GET['type'])){
-            $type = $_GET['type']; 		
+            $type = $_GET['type'];
 			$rangeID = $_GET['range'];
-			$category = Categories::model()->find('name=:name', array(':name'=>$type));		
+			$category = Categories::model()->find('name=:name', array(':name'=>$type));
 			$priceRange = PriceRange::model()->findByPk($rangeID);
 
             if (isset($category) && isset($priceRange)){
@@ -169,11 +169,11 @@ class ProductsController extends Controller
 	----------------*/
 	public function updatePhoto($model, $myfile ) {
 	   if (is_object($myfile) && get_class($myfile)==='CUploadedFile') {
-			
+
 			if($model->image!='' || $model->image!=null){
 				$this->deleteImage($model->image);
 			}
-	   
+
 			$ext = $model->tempFile->getExtensionName();
 			$nameOfFile = $model->tempFile->getName();
 			$model->image= $model->id . '_' . $nameOfFile;
@@ -230,9 +230,9 @@ class ProductsController extends Controller
 		{
 			// we only allow deletion via POST request
 			$model = $this->loadModel($id);
-						
+
 			$this->deleteImage($model->image);
-			
+
 			$model->delete();
 
 			// if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
@@ -242,11 +242,13 @@ class ProductsController extends Controller
 		else
 			throw new CHttpException(400,'Invalid request. Please do not repeat this request again.');
 	}
-	
+
 	public function deleteImage($imageURL){
 		$fileIndex = strrpos($imageURL, "/", -1);
-		$realFilename = substr($imageURL, $fileIndex);			
-		unlink(Yii::getPathOfAlias('uploadPath') . "\\products\\" . $realFilename);
+		$realFilename = substr($imageURL, $fileIndex);
+        $filePath = Yii::getPathOfAlias('uploadPath') . "\\products\\" . $realFilename;
+        if(file_exists($filePath))
+		    unlink(Yii::getPathOfAlias('uploadPath') . "\\products\\" . $realFilename);
 	}
 
 	/**

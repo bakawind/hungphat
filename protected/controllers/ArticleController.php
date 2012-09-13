@@ -116,7 +116,7 @@ class ArticleController extends Controller
 			$myfile = CUploadedFile::getInstance($model,'tempFile'); // Hung - upload image code
 			$model->tempFile=$myfile; // Hung - upload image code
 
-			if($model->save()){				
+			if($model->save()){
 				$this->updatePhoto($model, $myfile); // Hung - upload image code
 				$this->redirect(array('view','id'=>$model->id));
 			}
@@ -138,9 +138,9 @@ class ArticleController extends Controller
 		{
 			// we only allow deletion via POST request
 			$model = $this->loadModel($id);
-						
+
 			$this->deleteImage($model->image);
-			
+
 			$model->delete();
 
 			// if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
@@ -150,10 +150,10 @@ class ArticleController extends Controller
 		else
 			throw new CHttpException(400,'Invalid request. Please do not repeat this request again.');
 	}
-	
+
 	public function deleteImage($imageURL){
 		$fileIndex = strrpos($imageURL, "/", -1);
-		$realFilename = substr($imageURL, $fileIndex);			
+		$realFilename = substr($imageURL, $fileIndex);
 		unlink(Yii::getPathOfAlias('uploadPath') . "\\article\\" . $realFilename);
 	}
 
@@ -213,7 +213,7 @@ class ArticleController extends Controller
 			if($model->image!='' || $model->image!=null){
 				$this->deleteImage($model->image);
 			}
-			
+
 			$ext = $model->tempFile->getExtensionName();
 			$nameOfFile = $model->tempFile->getName();
 			$model->image= $model->id . '_' . $nameOfFile;
