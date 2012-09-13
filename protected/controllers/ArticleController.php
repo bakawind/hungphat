@@ -218,7 +218,7 @@ class ArticleController extends Controller
 			$nameOfFile = $model->tempFile->getName();
 			$model->image= $model->id . '_' . $nameOfFile;
 
-			$model->tempFile->saveAs($model->getPath(). '/article/' . $model->image);
+			$model->tempFile->saveAs(Yii::getPathOfAlias('uploadPath') . '/article/' . $model->image);
 			$model->image=Yii::getPathOfAlias('uploadURL') . '/article/' . $model->image;
 			$model->save();
 
