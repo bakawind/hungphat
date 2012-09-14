@@ -31,6 +31,9 @@
             <li>
                 <?=CHtml::link('Home', '/site/index')?>
             </li>
+            <li>
+                <?=CHtml::link('About', '/site/editAbout')?>
+            </li>
             <?php foreach ($controllers as $id=>$value) { ?>
             <li class="<?= $this->getId()==$id ? 'active' : '' ?>">
                 <?= CHtml::link($value, array($id.'/admin')) ?>

@@ -8,6 +8,7 @@ $pre_config = CMap::mergeArray(
 // Location where user images are stored
 Yii::setPathOfAlias('uploadPath', realpath(dirname(__FILE__). '/../../images/uploads'));
 Yii::setPathOfAlias('uploadURL', '/images/uploads');
+Yii::setPathOfAlias('aboutPath', realpath(dirname(__FILE__). '/../views/site/_about_content.php'));
 
 return CMap::mergeArray(array(
 	'basePath'=>dirname(__FILE__).DIRECTORY_SEPARATOR.'..',
