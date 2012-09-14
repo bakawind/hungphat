@@ -18,7 +18,7 @@
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'code'); ?>
-		<?php echo $form->textField($model,'code',array('size'=>60,'maxlength'=>64, 'readonly'=>$model->isNewRecord ? '' : 'readonly')); ?>
+		<?php echo $form->textField($model,'code',array('size'=>60,'maxlength'=>64)); ?>
 		<?php echo $form->error($model,'code'); ?>
 	</div>
 
