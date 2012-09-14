@@ -38,7 +38,7 @@ class Article extends Model
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('content', 'required'), //Hung - remove requirement for id column
+			array('title', 'required'), //Hung - remove requirement for id column
 			array('title', 'length', 'max'=>128),
 			array('image', 'length', 'max'=>256),
 			array('modified_date', 'safe'),

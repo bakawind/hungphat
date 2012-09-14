@@ -71,13 +71,11 @@ class OrderItemsController extends Controller
 
 		if(isset($_POST['OrderItems']))
 		{
-			$model->attributes=$_POST['OrderItems'];
-			
+			$model->attributes=$_POST['OrderItems'];			
 			$productModel = Products::model()->find('code = :_code', array(':_code'=>$model->product_code));
-			$orderModel = Orders::model()->findByPk($model->order_id);
-			
-			if($productModel != null && $orderModel != null){
-			
+			$orderModel = Orders::model()->findByPk($model->order_id);						
+						
+			if($model->validate() && $productModel != null){			
 				$model->product_id = $productModel->id;						
 				$existingItemModel = OrderItems::model()->find('product_id=:product_id AND order_id=:order_id',
 																	array(':product_id'=>$productModel->id,
@@ -91,28 +89,24 @@ class OrderItemsController extends Controller
 					$existingItemModel->update();					
 				}else{ // else, save the new item with new details					
 					$flag = $model->insert();					
-				}
-							
+				}							
 				$tempTotal = $orderModel->total;
 				$orderModel->total = $tempTotal + ($productModel->price * $model->quantity);	
 				$orderModel->save();				
 				$this->redirect(array('orders/view','id'=>$model->order_id)); // Hung - code
-			}else{
-				$errors['product_code'] = 'There is no Products for that code';
-				return $this->render('create', array(
-				//	'errors'=>$errors,
-					'model'=>$model,
-				));			
-			}			
+			}else if($productModel == null && $model->product_code != null){
+				//$errors['product_code'] = 'There is no Products for that code';
+				$model->addError('product_code','There is no Products for that code');
+				return $this->render('create', array('model'=>$model));			
+			}		
 		}
 
-		if(isset($_GET['o_id'])){
-			$model->order_id = $_GET['o_id'];
+		if(isset($_POST['o_id'])){
+			$model->order_id = $_POST['o_id'];
 		}
 
 		$this->render('create',array(
-			'model'=>$model,
-			//'errors'=>$errors,
+			'model'=>$model,			
 		));
 	}
 
