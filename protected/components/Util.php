@@ -48,20 +48,7 @@ class Util{
             $dir = $dir=='' ? '/' : '/'.$dir.'/';
             // Save the file to hard drive
             $uploadedFile->saveAs(Yii::getPathOfAlias('uploadPath') . $dir . $nameOfFile);
-            $model->$column = Yii::getPathOfAlias('uploadURL') . $dir . $nameOfFile;
-
-            //Yii::import('application.extensions.images.Image');
-            //$image = new Image($model->getPath());
-            //$image = Yii::app()->image->load($model->getPath());
-            //Crunch the photo to a size set in my System Options Table
-            //I hold the max size as 800 meaning to fit in an 800px x 800px square
-            //$size=$this->getOption('PhotoLarge');
-            //$image->resize($size[0], $size[0])->quality(75)->sharpen(20);
-            //$image->save();
-            // Now create a thumb - again the thumb size is held in System Options Table
-            //$size=$this->getOption('PhotoThumb');
-            //$image->resize($size[0], $size[0])->quality(75)->sharpen(20);
-            //$image->save($model->getThumb()); // or $image->save('images/small.jpg');
+            $model->$column = Yii::getPathOfAlias('uploadURL') . $dir . $nameOfFile;           
         } else {
             $model->$column = $model->tmp;
         }
