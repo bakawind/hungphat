@@ -200,4 +200,5 @@ class ProductPhotosController extends Controller
 		}
 	}
 
+
 }

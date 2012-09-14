@@ -199,6 +199,7 @@ class ArticleController extends Controller
 		return $model;
 	}
 
+
 	/**
 	 * Performs the AJAX validation.
 	 * @param CModel the model to be validated

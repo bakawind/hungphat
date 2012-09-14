@@ -27,7 +27,7 @@
 		<?php echo $model->getThumbnail(); ?>
         <br>
 		<?php echo $form->labelEx($model,'url'); ?>
-		<?php echo CHtml::activeFileField($model, 'url'); // see comments below ?>
+		<?php echo CHtml::activeFileField($model, 'url'); ?>
 		<?php echo $form->error($model,'url');  ?>
 	</div>
 
