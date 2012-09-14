@@ -89,7 +89,7 @@ class CategoriesController extends Controller
 				Util::uploadPhoto($model, 'banner', 'banner');
 				Util::uploadPhoto($model, 'image', 'category');
                 $this->redirect(array('admin')); //Hung - redirect to Categories admin page
-                //$this->redirect(array('view','id'=>$model->id));
+                //$this->redirect(array('view','id'=>$model->id));sfg
             }
 		}
 
