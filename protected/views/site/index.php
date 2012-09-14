@@ -1,22 +1,41 @@
+<?php
+$categories = Categories::model()->findAll();
+$width = 100/count($categories);
+?>
 <div class='categories'>
-    <div class='category' style='margin-left: 10px;'>
-        <a href='/products/list?type=doll'>
-            <div id='doll'></div>
-            BÚP BÊ SINFA
-        </a>
-    </div>
+<style>
+.wrapper .content .categories .category{
+    float: left;
+    width: <?=$width?>%;
+    height: 200px;
+    text-align: center;
+}
+.category .cate_image{
+    height: 200px;
+    width: 100%;
+}
+.category .cate_image img{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    height: 200px;
+    width: auto;
+}
+.category .cate_image img:hover{
+    height: 170px;
+    padding-top: 10px;
+}
+</style>
+<?php
+foreach($categories as $c) {
+?>
     <div class='category'>
-        <a href='/products/list?type=robot'>
-            <div id='robot'></div>
-            RÔ BÔ RÁP HÌNH
+        <a href='/products/list?type=<?= $c->name ?>'>
+            <div class='cate_image'> <img src='<?= $c->image ?>' alt='<?= $c->caption ?>'/> </div>
+            <div> <?= $c->caption ?> </div>
         </a>
     </div>
-    <div class='category'>
-        <a href='/products/list?type=toy'>
-            <div id='toys'></div>
-            VỈ ĐỒ CHƠI GIA ĐÌNH
-        </a>
-    </div>
+<? } ?>
 </div> <!--close category-->
 <div class='space'></div>
 <div class='container'>

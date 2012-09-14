@@ -249,7 +249,7 @@ legend{
 	margin-top: 5px;
     font-size: 18px;
 	font-family:'vani';
-	
+
 }
 
 .wrapper .content .inner_content .box .product_box img{
@@ -374,12 +374,6 @@ legend{
     border-color: #db2e2a;
     margin: 30px 20px 0 20px;
 }
-.wrapper .content .categories .category{
-    float: left;
-    width: 280px;
-    height: 20px;
-    text-align: center;
-}
 .wrapper .content .categories .category #doll{
     height: 220px;
     background: url(../images/categories.png) no-repeat scroll 35px -325px;
@@ -480,7 +474,7 @@ legend{
 }
 
 .footer .footer_content .online_service .yahoo img{
-	width:200px;	
+	width:200px;
 }
 /*
 .footer .footer_content .online_service .available{
@@ -604,7 +598,7 @@ legend{
 }
 
 
-	
+
 .news {
 	margin: 0px 0px 15px 0px;
 	width: 100%;
