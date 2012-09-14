@@ -13,10 +13,10 @@
  * @property string $modified_date
  * @property integer $category_id
  */
-class Products extends CActiveRecord
+class Products extends Model
 {
 	//Hung - add new property
-	
+
 	var $tempFile;
 
 	/**
@@ -57,18 +57,18 @@ class Products extends CActiveRecord
 			array('id, code, name, price, description, image, modified_date, category_id, available', 'safe', 'on'=>'search'),
 		);
 	}
-	
+
 	public function getThumbnail(){ // Hung - get thumbnail for photo
          // here i return the image
             if (!empty($this->image) && $this->image!='')
-             return CHtml::image($this->image,'text_' . $this->image,array('width'=>'300px','max-height'=>'200px'));			 
+             return CHtml::image($this->image,'text_' . $this->image,array('width'=>'300px','max-height'=>'200px'));
         }
-		
-		
+
+
 	public function getPath(){ //Hung - get path for photo
-        $path=Yii::getPathOfAlias('uploadPath') . '/';            
+        $path=Yii::getPathOfAlias('uploadPath') . '/';
 		return $path;
-           
+
     }
 
 
@@ -121,16 +121,16 @@ class Products extends CActiveRecord
 		$criteria->compare('modified_date',$this->modified_date,true);
 		$criteria->compare('category_id',$this->category_id);
 		$criteria->compare('available',$this->available,true);
-		
+
 		if($sortByTime == true){
 			$criteria->order='modified_date desc';
 		}
-		
+
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
 		));
 	}
-	
+
 	public function getProductCode($id)
 	{
 		$productModel = Products::model()->findByPk($id);

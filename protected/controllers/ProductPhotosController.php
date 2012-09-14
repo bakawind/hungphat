@@ -70,12 +70,10 @@ class ProductPhotosController extends Controller
 		if(isset($_POST['ProductPhotos']))
 		{
 			$model->attributes=$_POST['ProductPhotos'];
-			$myfile = CUploadedFile::getInstance($model,'tempFile'); // Hung - upload image code
-			$model->tempFile=$myfile; // Hung - upload image code
 			$model->url='temp'; //Hung - code tam - can url de luu xuong database
 			if($model->save()){
 				$model->url=''; //Hung - code tam - xoa blank url
-				$this->updatePhoto($model, $myfile); // Hung - upload image code
+				Util::uploadPhoto($model, 'url', 'product_photo');
 				//$this->redirect(array('view','id'=>$model->id));
 				$this->redirect(array('products/view','id'=>$model->product_id)); // Hung - render to product view page
 			}
@@ -105,11 +103,10 @@ class ProductPhotosController extends Controller
 
 		if(isset($_POST['ProductPhotos']))
 		{
+			$model->tmp=$model->url;
 			$model->attributes=$_POST['ProductPhotos'];
-			$myfile = CUploadedFile::getInstance($model,'tempFile'); // Hung - upload image code
-			$model->tempFile=$myfile; // Hung - upload image code
 			if($model->save()){
-				$this->updatePhoto($model, $myfile); // Hung - upload image code
+				Util::uploadPhoto($model, 'url', 'product_photo');
 				$this->redirect(array('products/view','id'=>$model->product_id));
 			}
 		}
@@ -130,9 +127,9 @@ class ProductPhotosController extends Controller
 		{
 			// we only allow deletion via POST request
 			$model = $this->loadModel($id);
-						
+
 			$this->deleteImage($model->url);
-			
+
 			$model->delete();
 
 			// if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
@@ -142,10 +139,10 @@ class ProductPhotosController extends Controller
 		else
 			throw new CHttpException(400,'Invalid request. Please do not repeat this request again.');
 	}
-	
+
 	public function deleteImage($imageURL){
 		$fileIndex = strrpos($imageURL, "/", -1);
-		$realFilename = substr($imageURL, $fileIndex);			
+		$realFilename = substr($imageURL, $fileIndex);
 		unlink(Yii::getPathOfAlias('uploadPath') . "\\slider_photos\\" . $realFilename);
 	}
 
@@ -203,22 +200,5 @@ class ProductPhotosController extends Controller
 		}
 	}
 
-	public function updatePhoto($model, $myfile) {
-	   if (is_object($myfile) && get_class($myfile)==='CUploadedFile') {
-	   
-			if($model->url!='' || $model->url!=null){
-				$this->deleteImage($model->url);
-			}
-	   
-			$nameOfFile = $model->tempFile->getName();
-			$model->url= $model->id . '_' . $nameOfFile;
-			
-			$myfile->saveAs(Yii::getPathOfAlias('uploadPath') . '/slider_photos/' . $model->url); //upload picture to server
-			$model->url=Yii::getPathOfAlias('uploadURL') . '/slider_photos/' . $model->url;
-			$model->save();
-
-			return true;
-		 } else return false;
-	}
 
 }

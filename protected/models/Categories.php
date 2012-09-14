@@ -8,10 +8,10 @@
  * @property string $name
  * @property string $caption
  * @property string $banner
+ * @property string $image
  */
-class Categories extends CActiveRecord
+class Categories extends Model
 {
-	var $tempBanner;
 	/**
 	 * Returns the static model of the specified AR class.
 	 * @param string $className active record class name.
@@ -40,10 +40,10 @@ class Categories extends CActiveRecord
 		return array(
 			array('caption', 'required'),
 			array('name, caption', 'length', 'max'=>128),
-			array('banner', 'length', 'max'=>256),
+			array('banner, image', 'length', 'max'=>256),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, name, caption, banner', 'safe', 'on'=>'search'),
+			array('id, name, caption, banner, image', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -68,6 +68,7 @@ class Categories extends CActiveRecord
 			'name' => 'Name',
 			'caption' => 'Caption',
 			'banner' => 'Banner',
+			'image' => 'Image',
 		);
 	}
 
@@ -95,5 +96,10 @@ class Categories extends CActiveRecord
 	public function getBannerThumbnail(){
         if (!empty($this->banner) && $this->banner!='')
             return CHtml::image($this->banner, $this->caption, array('max-width'=>'300px','max-height'=>'200px'));
+    }
+
+	public function getImageThumbnail(){
+        if (!empty($this->image) && $this->image!='')
+            return CHtml::image($this->image, $this->caption, array('max-width'=>'300px','max-height'=>'200px'));
     }
 }
