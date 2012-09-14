@@ -103,7 +103,7 @@ class ProductPhotosController extends Controller
 
 		if(isset($_POST['ProductPhotos']))
 		{
-			$model->tmp=$model->url;
+			$model->tmp['url']=$model->url;
 			$model->attributes=$_POST['ProductPhotos'];
 			if($model->save()){
 				Util::uploadPhoto($model, 'url', 'product_photo');

@@ -7,10 +7,10 @@
 /protected/scripts/set_env.sh
 /.vagrant
 /logs
-/images/uploads/products/*
+/images/uploads/product/*
 /images/uploads/article/*
-/images/uploads/banners/*
-/images/uploads/categories/*
+/images/uploads/banner/*
+/images/uploads/category/*
 Vagrantfile
 chef/
 protected/scripts/

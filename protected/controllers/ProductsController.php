@@ -179,7 +179,7 @@ class ProductsController extends Controller
 
 		if(isset($_POST['Products']))
 		{
-			$model->tmp = $model->image;
+			$model->tmp['image'] = $model->image;
 			$model->attributes=$_POST['Products'];
 			$model->modified_date= $this->getCurrentDate();
 

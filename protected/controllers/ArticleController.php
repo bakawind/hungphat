@@ -110,7 +110,7 @@ class ArticleController extends Controller
 
 		if(isset($_POST['Article']))
 		{
-            $model->tmp = $model->image;
+            $model->tmp['image'] = $model->image;
 			$model->attributes=$_POST['Article'];
 			$model->modified_date= "" . date("Y/m/d H:i:s");
 

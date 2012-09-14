@@ -40,8 +40,8 @@ class Util{
     public static function uploadPhoto($model, $column='', $dir='') {
         $uploadedFile = CUploadedFile::getInstance($model, $column);
         if ($uploadedFile!=null && $uploadedFile->getSize()!=0 && $column!='') {
-            if($model->tmp!='' || $model->tmp!=null){
-                Util::deleteImage($model->tmp);
+            if(isset($model->tmp[$column]) && $model->tmp[$column]!=''){
+                Util::deleteImage($model->tmp[$column]);
             }
             $ext = $uploadedFile->getExtensionName();
             $nameOfFile = $uploadedFile->getName();
@@ -50,7 +50,7 @@ class Util{
             $uploadedFile->saveAs(Yii::getPathOfAlias('uploadPath') . $dir . $nameOfFile);
             $model->$column = Yii::getPathOfAlias('uploadURL') . $dir . $nameOfFile;
         } else {
-            $model->$column = $model->tmp;
+            $model->$column = $model->tmp[$column];
         }
         $model->save();
     }
