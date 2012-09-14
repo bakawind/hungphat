@@ -23,6 +23,48 @@ class SiteController extends Controller
 	}
 
 	/**
+	 * @return array action filters
+	 */
+	public function filters()
+	{
+		return array(
+			'accessControl', // perform access control for CRUD operations
+		);
+	}
+
+	public function accessRules()
+	{
+		return array(
+			array('deny',
+				'actions'=>array('editAbout'),
+				'users'=>array('?'),
+			),
+			array('allow',
+				'actions'=>array('editAbout'),
+				'users'=>array('admin'),
+			),
+			array('allow',
+				'users'=>array('*'),
+			),
+		);
+	}
+
+    public function actionEditAbout()
+    {
+        $aboutFile = Yii::getPathOfAlias('aboutPath');
+		if(isset($_POST['content'])) {
+            $fn = fopen($aboutFile, 'w');
+            fwrite($fn, $_POST['content']);
+            fclose($fn);
+            $this->redirect('/site/about');
+        }
+        $fn = fopen($aboutFile, 'r');
+        $content = filesize($aboutFile) > 0 ? fread($fn, filesize($aboutFile)) : '';
+        fclose($fn);
+        $this->render('/site/editAbout', array('content'=>$content));
+    }
+
+	/**
 	 * This is the default 'index' action that is invoked
 	 * when an action is not explicitly requested by users.
 	 */

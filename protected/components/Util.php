@@ -48,19 +48,22 @@ class Util{
             $dir = $dir=='' ? '/' : '/'.$dir.'/';
             // Save the file to hard drive
             $uploadedFile->saveAs(Yii::getPathOfAlias('uploadPath') . $dir . $nameOfFile);
-            $model->$column = Yii::getPathOfAlias('uploadURL') . $dir . $nameOfFile;           
+            $model->$column = Yii::getPathOfAlias('uploadURL') . $dir . $nameOfFile;
         } else {
             $model->$column = $model->tmp;
         }
         $model->save();
     }
 
-	public static function deleteImage($imageURL){
-		$fileIndex = strrpos($imageURL, "/", -1);
-		$realFilename = substr($imageURL, $fileIndex);
-        $filePath = Yii::getPathOfAlias('uploadPath') . "\\products\\" . $realFilename;
+	public static function deleteImage($imageURL, $dir=''){
+        if($imageURL!=null){
+		    $fileIndex = strrpos($imageURL, "/", -1);
+		    $realFilename = substr($imageURL, $fileIndex);
+            $dir = $dir=='' ? '/' : '/'.$dir.'/';
+            $filePath = Yii::getPathOfAlias('uploadPath') . $dir . $realFilename;
 
-        if(file_exists($filePath))
-		    unlink($filePath);
+            if(file_exists($filePath))
+		        unlink($filePath);
+        }
 	}
 } ?>
