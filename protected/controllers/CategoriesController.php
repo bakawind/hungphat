@@ -113,7 +113,8 @@ class CategoriesController extends Controller
 
 		if(isset($_POST['Categories']))
 		{
-            $model->tmp = $model->banner;
+            $model->tmp['banner'] = $model->banner;
+            $model->tmp['image'] = $model->image;
 			$model->attributes=$_POST['Categories'];
 			if($model->save()){
 				Util::uploadPhoto($model, 'banner', 'banner');

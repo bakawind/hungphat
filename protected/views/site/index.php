@@ -18,11 +18,12 @@ $width = 100/count($categories);
     display: block;
     margin-left: auto;
     margin-right: auto;
-    height: 200px;
+    height: 160px;
     width: auto;
+    padding-top: 20px;
 }
 .category .cate_image img:hover{
-    height: 170px;
+    height: 180px;
     padding-top: 10px;
 }
 </style>

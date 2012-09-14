@@ -53,7 +53,7 @@ $form=$this->beginWidget('CActiveForm', array(
 		<?php echo $model->getThumbnail(); ?>
         <br>
 		<?php echo $form->labelEx($model,'image'); ?>
-		<?php echo CHtml::activeFileField($model, 'tempFile'); // see comments below ?>
+		<?php echo CHtml::activeFileField($model, 'image');?>
 		<?php echo $form->error($model,'image');  ?>
 	</div>
 
