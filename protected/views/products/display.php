@@ -12,8 +12,8 @@
 					auto: false,
 					items: {
 						visible: 1,
-						width: 448,
-						height: '75%'
+						width: 440,
+						height: '68%'
 
 					},
 					scroll: {

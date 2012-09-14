@@ -143,7 +143,9 @@ class ProductPhotosController extends Controller
 	public function deleteImage($imageURL){
 		$fileIndex = strrpos($imageURL, "/", -1);
 		$realFilename = substr($imageURL, $fileIndex);
-		unlink(Yii::getPathOfAlias('uploadPath') . "\\slider_photos\\" . $realFilename);
+		$filePath = Yii::getPathOfAlias('uploadPath') . "\\slider_photos\\" . $realFilename;
+		if(file_exists($filePath))
+			unlink(filePath);
 	}
 
 	/**

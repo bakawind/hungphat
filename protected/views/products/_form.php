@@ -67,9 +67,9 @@
 		<?= $form->labelEx($model,'category_id'); ?>
 		<?php
 			$models = Categories::model()->findAll();
-			$list = CHtml::listData($models, 'id', 'name');
+			$list = CHtml::listData($models, 'id', 'name');			
 		?>
-		<?=	$form->dropDownList($model,'category_id',  $list, array('empty' => 'Select a Category')); ?>
+		<?=	$form->dropDownList($model,'category_id',  $list, array("empty"=>'Select Category')); ?>
 		<?php echo $form->error($model,'category_id'); ?>
 	</div>
 

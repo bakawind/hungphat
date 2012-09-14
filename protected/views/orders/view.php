@@ -35,8 +35,7 @@ $this->widget('zii.widgets.grid.CGridView', array(
 	'dataProvider'=>$orderDetails,	
 	'columns'=>array(
 		'id',
-		'quantity',	
-		'product_id',
+		'quantity',			
 		array(			
 			'type'=>'raw',
 			'header'=>'Product Code',                                
@@ -55,5 +54,8 @@ $this->widget('zii.widgets.grid.CGridView', array(
 	),
 )); 
 ?>
-
-<?=CHtml::link('Choose more Items', '/orderItems/create?o_id=' . $model->id )?>
+<form action="../orderItems/create" method="post">
+	<input type="hidden" name="o_id" value="<?= $model->id ?>"/>
+	<input type="submit" value="Choose more Items" />
+</form>
+<!--?=CHtml::link('Choose more Items', '/orderItems/create?o_id=' . $model->id )?-->

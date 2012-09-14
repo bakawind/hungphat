@@ -40,7 +40,6 @@ class OrderItems extends CActiveRecord
 		return array(
 			array('quantity, order_id, product_code', 'required'),
 			array('id, quantity, product_id, order_id', 'numerical', 'integerOnly'=>true),
-			//array('product_code', 'safe'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
 			array('id, quantity, product_id, order_id', 'safe', 'on'=>'search'),

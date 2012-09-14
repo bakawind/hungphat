@@ -144,11 +144,13 @@ class ProductsController extends Controller
 		{
 			$model->attributes=$_POST['Products'];
 			$model->modified_date= $this->getCurrentDate();
-
+						
 			if($model->save()){
+				$model->addError('code', 'code invalid');
 				Util::uploadPhoto($model, 'image', 'product');
+				$this->redirect(array('admin'));
 			}
-			$this->redirect(array('admin'));//Hung - redirect to Products admin page
+			//Hung - redirect to Products admin page
 				//$this->redirect(array('view','id'=>$model->id));
 		}
 
@@ -223,7 +225,7 @@ class ProductsController extends Controller
 		$fileIndex = strrpos($imageURL, "/", -1);
 		$realFilename = substr($imageURL, $fileIndex);
         $filePath = Yii::getPathOfAlias('uploadPath') . "\\products\\" . $realFilename;
-        if(file_exists($filePath))
+        if(file_exists($filePath) && $imageURL != null)
 		    unlink(Yii::getPathOfAlias('uploadPath') . "\\products\\" . $realFilename);
 	}
 
