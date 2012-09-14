@@ -45,13 +45,14 @@ class Products extends Model
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('code, name', 'required'), //Hung - remove id column from requirement
+			array('code, name, category_id', 'required'), //Hung - remove id column from requirement
 			array('id, category_id, available', 'numerical', 'integerOnly'=>true),
 			array('price', 'numerical'),
 			array('code', 'length', 'max'=>64),
 			array('name', 'length', 'max'=>128),
 			array('image', 'length', 'max'=>256),
 			array('description, modified_date', 'safe'),
+			array('code', 'unique'),			
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
 			array('id, code, name, price, description, image, modified_date, category_id, available', 'safe', 'on'=>'search'),
