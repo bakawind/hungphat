@@ -56,12 +56,14 @@ class Util{
     }
 
 	public static function deleteImage($imageURL, $dir=''){
-		$fileIndex = strrpos($imageURL, "/", -1);
-		$realFilename = substr($imageURL, $fileIndex);
-        $dir = $dir=='' ? '/' : '/'.$dir.'/';
-        $filePath = Yii::getPathOfAlias('uploadPath') . $dir . $realFilename;
+        if($imageURL!=null){
+		    $fileIndex = strrpos($imageURL, "/", -1);
+		    $realFilename = substr($imageURL, $fileIndex);
+            $dir = $dir=='' ? '/' : '/'.$dir.'/';
+            $filePath = Yii::getPathOfAlias('uploadPath') . $dir . $realFilename;
 
-        if(file_exists($filePath))
-		    unlink($filePath);
+            if(file_exists($filePath))
+		        unlink($filePath);
+        }
 	}
 } ?>
