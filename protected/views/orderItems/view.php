@@ -20,7 +20,11 @@ $this->menu=array(
 	'attributes'=>array(
 		'id',
 		'quantity',
-		'product_id',
+		array(// Hung - view image
+            'label'=>'Product Code',
+            'type'=>'raw',
+            'value'=>Products::model()->getProductCode($model->product_id),
+        ),
 		'order_id',
 	),
 )); ?>

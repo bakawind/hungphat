@@ -80,7 +80,7 @@ class Products extends Model
 	{
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
-		return array(
+		return array(			
 		);
 	}
 
