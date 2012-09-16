@@ -25,6 +25,7 @@
             'products'=>'Products',
             'orders'=>'Orders',
             'categories'=>'Categories',
+			'priceRange'=>'Price Range'
         );
         ?>
         <ul class='menu'>

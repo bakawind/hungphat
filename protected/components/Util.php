@@ -26,10 +26,11 @@ class Util{
     }
 
     public static function getYahooStatus($yahooid){
-        //$status = @file_get_contents("http://opi.yahoo.com/online?u=$yahooid&m=a&t=1");
-        //if ($status === '01')
-        //    return true;
-        return false;
+        $status = @file_get_contents("http://opi.yahoo.com/online?u=$yahooid&m=a&t=1");
+        if ($status === '01')
+            return true;
+		else if ($status === '00')
+			return false;
     }
 
     /**

@@ -145,6 +145,10 @@ class SiteController extends Controller
 	public function actionAbout(){
 		$this->render('about');
 	}
+	
+	public function actionYahoo(){
+		$this->render('yahoo');
+	}
 
 	public function actionArticle(){
 		$this->render('article');

@@ -58,7 +58,7 @@ foreach($categories as $c) {
       </fieldset>
     </div><!--close price_search-->
     <div class='about_us_box'>
-        <fieldset>
+        <fieldset class="aboutUs">
             <legend><h1>NÓI VỀ CHÚNG TÔI:</h1></legend>
             Cơ sở sản xuất và lắp ráp đồ chơi trẻ em Hưng Phát được thành lập vào ngày 15 tháng 10 năm 2001. Tại địa chỉ 118 Lò Siêu, Phường 12, Quận 11, thành phố Hồ Chí Minh, sau 12 năm hoạt động đã mở thêm chi nhánh cơ sở Hưng Phát 2 được thành lập ngày 11 tháng 6 năm 2011, tại ấp 5, xã Nhân Nghĩa, huyện Cảm Mỹ, tỉnh Đồng Nai ...
       </fieldset>
