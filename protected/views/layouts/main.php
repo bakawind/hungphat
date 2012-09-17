@@ -7,7 +7,7 @@
 	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/reset.css" />
 	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/site.css" />
 
-	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/slider_thumbnial.css" />	
+	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/slider_thumbnial.css" />
 	<script type="text/javascript" src="<?php echo Yii::app()->request->baseUrl; ?>/js/sliderman.1.3.7.js"></script>
 
 	<title><?php echo CHtml::encode($this->pageTitle); ?></title>
@@ -28,13 +28,13 @@
 				document.getElementById("online_service_id").innerHTML=xmlhttp.responseText;
 			}
 		};
-		
+
 		xmlhttp.open("GET","../site/yahoo",true);
-		xmlhttp.send(null);		
-		//document.getElementById("test_1").innerHTML=xmlhttp.responseText;		
+		xmlhttp.send(null);
+		//document.getElementById("test_1").innerHTML=xmlhttp.responseText;
 	}
 </script>
-	
+
 </head>
 
 <body onload="loadXMLDoc()">
@@ -134,32 +134,31 @@
             <div class='small_space'></div>
         </div><!--close content -->
     </div><!--close wrapper-->
-	
-	
+
+
 	<div class='footer'>
 		<div class='footer_content'>
 			<div class='online_service' id="online_service_id">
 			<?php
-				$id1 = 'happystorm_12'; 				
-				$id2 = 'nguyenphuckhang'; 		 
+                $emails = $this->getEmail();
 			?>
 				<div class="yahoo">
-					<a href="ymsgr:SendIM?<?php echo $id1?>" title="<?php echo $id1?>">
+					<a href="ymsgr:SendIM?<?php echo $emails['email1']?>" title="<?php echo $emails['email1']?>">
 						<img src="/images/offline.png" >
 					</a>
-				</div>				
+				</div>
 				<div class="yahoo">
-					<a href="ymsgr:SendIM?<?php echo $id2?>" title="<?php echo $id2?>">
+					<a href="ymsgr:SendIM?<?php echo $emails['email2']?>" title="<?php echo $emails['email2']?>">
 						<img src="/images/offline.png" >
 					</a>
-				</div>				
+				</div>
 			</div>
-			
+
 			<div class='contact' >
-				<div class='space'></div>				
-				<div class='phoneIcon'>					
-					<img src="/images/phone.png" />					
-				</div>				
+				<div class='space'></div>
+				<div class='phoneIcon'>
+					<img src="/images/phone.png" />
+				</div>
 				<div class='info'> 0839 623 425 </div>
 				<div class='phoneIcon'>
 					<img src="/images/cellphone.png" />

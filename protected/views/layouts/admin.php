@@ -32,8 +32,16 @@
             <li>
                 <?=CHtml::link('Home', '/site/index')?>
             </li>
-            <li>
-                <?=CHtml::link('About', '/site/editAbout')?>
+            <li class="maniNav">
+                Others
+                <ul class="subnav">
+                    <li>
+                        <?=CHtml::link('About', '/site/editAbout')?>
+                    </li>
+                    <li>
+                        <?=CHtml::link('Admin Email', '/site/editAdminEmail')?>
+                    </li>
+                </ul>
             </li>
             <?php foreach ($controllers as $id=>$value) { ?>
             <li class="<?= $this->getId()==$id ? 'active' : '' ?>">

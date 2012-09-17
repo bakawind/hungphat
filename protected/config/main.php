@@ -9,6 +9,7 @@ $pre_config = CMap::mergeArray(
 Yii::setPathOfAlias('uploadPath', realpath(dirname(__FILE__). '/../../images/uploads'));
 Yii::setPathOfAlias('uploadURL', '/images/uploads');
 Yii::setPathOfAlias('aboutPath', realpath(dirname(__FILE__). '/../views/site/_about_content.php'));
+Yii::setPathOfAlias('emailPath', realpath(dirname(__FILE__). '/email.json'));
 
 return CMap::mergeArray(array(
 	'basePath'=>dirname(__FILE__).DIRECTORY_SEPARATOR.'..',

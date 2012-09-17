@@ -94,37 +94,32 @@ legend{
 }
 
 .menu li:hover ul {
-    left:0px;
-    top:20px;
-    background:#22379d;
-    border:2px solid #0d1953;
-    border-radius: 0px 0px 8px 8px;
-    width:200px;
+    left:-10px;
+    top:18px;
+	background: rgba(13, 25, 83, 0.9);
+    border:3px solid #0d1953;
+    border-radius: 0px 0px 3px 3px;
+    width:auto;
+	text-align:left;
 }
 .menu li:hover ul li {
-    height:18px;
+    height:20px;
     border:none;
-    margin:0;
-    padding:5px;
+    margin:5px 0 5px 0;
 }
 .menu li:hover ul li a {
-    height:18px;
-    padding:0px;
+    height:20px;
     display:block;
     font-size:0.8em;
-    width:158px;
     line-height:18px;
     text-indent:5px;
-    color:#fff;
-    text-decoration:none;
-    border:1px solid transparent;
+    color:white;
+    width: 250px;
 }
 .menu li:hover ul li a:hover {
-    height:18px;
-    background:silver;
-    color:#000;
-    border:solid 1px #444;
+    font-size:1em;
 }
+
 
 .space{
     height: 30px;

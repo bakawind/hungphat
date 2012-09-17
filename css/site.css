@@ -19,7 +19,7 @@ h1 {
 }
 
 fieldset{
-	
+
     border-style: solid;
     border-radius: 8px 8px 8px 8px;
     border-width: 2px;
@@ -38,7 +38,7 @@ legend{
     border-color: #65acc4;
     margin-left: 15px;
     padding: 10px 10px 10px 10px;
-    text-align: center;	
+    text-align: center;
 }
 
 .aboutUs{
@@ -66,8 +66,8 @@ legend{
 }
 */
 
-@font-face { font-family:"UVNBaiSau_Nh"; src: url('../font/UVNBaiSau_Nh.ttf'); } 
-@font-face { font-family:"UVNBaiSau_R"; src: url('../font/UVNBaiSau_R.ttf'); } 
+@font-face { font-family:"UVNBaiSau_Nh"; src: url('../font/UVNBaiSau_Nh.ttf'); }
+@font-face { font-family:"UVNBaiSau_R"; src: url('../font/UVNBaiSau_R.ttf'); }
 .header {
     background-color: #0d1953;
     height: 45px;
@@ -79,8 +79,8 @@ legend{
     margin-right: auto;
     width: 940px;
     color: white;
-    font-family: "UVNBaiSau_Nh";  
-	font-size:24px; 
+    font-family: "UVNBaiSau_Nh";
+	font-size:24px;
 	font-weight:bold;
 }
 
@@ -95,13 +95,15 @@ legend{
 
 .menu li {
     list-style-type: none;
-    float: left;    
+    float: left;
     height: 100%;
 }
-.menu .maniNav{    
+.menu .maniNav{
 	padding-top:5px;
-	width: 16.5%;	
+	/*width: 16.5%;	*/
+	width: auto;
 	height: 45px;
+    margin-left: 40px;
 }
 
 .menu ul {
@@ -121,25 +123,25 @@ legend{
 	background: rgba(13, 25, 83, 0.9);
     border:3px solid #0d1953;
     border-radius: 0px 0px 3px 3px;
-    width:150px;
+    width:auto;
 	text-align:left;
 }
 .menu li:hover ul li {
     height:20px;
     border:none;
-    margin:5px 0 5px 0;    
+    margin:5px 0 5px 0;
 }
 .menu li:hover ul li a {
-    height:20px;    
+    height:20px;
     display:block;
     font-size:18px;
-    width:150px;
     line-height:18px;
     text-indent:5px;
-    color:white;      
+    color:white;
+    width: 250px;
 }
-.menu li:hover ul li a:hover {    
-	font-size:22px;	
+.menu li:hover ul li a:hover {
+	font-size:22px;
 }
 
 
@@ -254,15 +256,15 @@ legend{
 .wrapper .content .inner_content .box .product_box .info{
     float: left;
     width: 280px; height: 32px;
-	color: #0d1953; 
+	color: #0d1953;
 }
 
 .wrapper .content .inner_content .box .product_box .info .name{
 	float: left;
-	margin: 7px 0 0 10px;	
+	margin: 7px 0 0 10px;
 }
 
-.wrapper .content .inner_content .box .product_box .info .price{	
+.wrapper .content .inner_content .box .product_box .info .price{
 	float: right;
 	margin: 7px 10px 0 0;
 }
@@ -399,7 +401,7 @@ legend{
 .wrapper .content .categories a:link{ text-decoration:none; font-weight:bold;  color:#db2e2a; font-size:18px;}
 .wrapper .content .categories a:visited { text-decoration:none; font-weight:bold; color:#db2e2a; font-size:20px;}
 .wrapper .content .categories a:hover { text-decoration:none; font-weight:bold; color:#db2e2a; font-size:22px;}
- 
+
 .wrapper .content .categories .category #doll{
     height: 220px;
     background: url(../images/categories.png) no-repeat scroll 35px -325px;
@@ -438,13 +440,13 @@ legend{
 .container {
     margin: 0 20px 0 20px;
 }
-.container .search{    
+.container .search{
 	float: left;
     width: 35%;
 	text-align:right;
 	vertical-align:middle;
 }
-.container .search .searchTextField{   
+.container .search .searchTextField{
 	margin-bottom: -50px;
 }
 
@@ -519,20 +521,20 @@ legend{
 	font-size: 26px;
 	font-weight: bolder;
 	margin: 10px 0 0 0;
-	color: #ffffff;	
+	color: #ffffff;
 }
-.footer .footer_content .contact .phoneIcon{	
+.footer .footer_content .contact .phoneIcon{
 	float: left; width: 150px; height: 46px;
 	text-align:center;
-	margin: 2px 0 2px 0;	
+	margin: 2px 0 2px 0;
 }
 .footer .footer_content .contact .phoneIcon img{height:50px;}
 
 .footer .footer_content .slogan{
 	float: left;
-	width: 940px; 	
+	width: 940px;
 	text-align: center;
-	font-size: 26px; font-weight: 900; Color: #fff; 
+	font-size: 26px; font-weight: 900; Color: #fff;
 	margin-top:5px;
 }
 
@@ -563,7 +565,7 @@ legend{
     float: left;
     width: 590px;
     margin-left: 50px;
-    color: blue;	
+    color: blue;
 }
 .about_us_box #more_btn{
     height: auto;

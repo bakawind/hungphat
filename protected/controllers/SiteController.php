@@ -36,11 +36,11 @@ class SiteController extends Controller
 	{
 		return array(
 			array('deny',
-				'actions'=>array('editAbout'),
+				'actions'=>array('editAbout', 'editAdminEmail'),
 				'users'=>array('?'),
 			),
 			array('allow',
-				'actions'=>array('editAbout'),
+				'actions'=>array('editAbout', 'editAdminEmail'),
 				'users'=>array('admin'),
 			),
 			array('allow',
@@ -62,6 +62,20 @@ class SiteController extends Controller
         $content = filesize($aboutFile) > 0 ? fread($fn, filesize($aboutFile)) : '';
         fclose($fn);
         $this->render('/site/editAbout', array('content'=>$content));
+    }
+
+    public function actionEditAdminEmail()
+    {
+        $emailFile = Yii::getPathOfAlias('emailPath');
+        $emails = array();
+		if(isset($_POST['email1']) && isset($_POST['email2'])) {
+            $emails['email1'] = $_POST['email1'];
+            $emails['email2'] = $_POST['email2'];
+            $this->setEmail($emails);
+            $this->redirect('/site/index');
+        }
+        $emails = $this->getEmail();
+        $this->render('/site/editAdminEmail', array('emails'=>$emails));
     }
 
 	/**
@@ -145,7 +159,7 @@ class SiteController extends Controller
 	public function actionAbout(){
 		$this->render('about');
 	}
-	
+
 	public function actionYahoo(){
 		$this->render('yahoo');
 	}

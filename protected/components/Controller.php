@@ -39,4 +39,27 @@ class Controller extends CController
 	 * for more details on how to specify this property.
 	 */
 	public $breadcrumbs=array();
+
+    public function getEmail()
+    {
+        $emailFile = Yii::getPathOfAlias('emailPath');
+        $fn = fopen($emailFile, 'r');
+        $email = filesize($emailFile) > 0 ? fread($fn, filesize($emailFile)) : '';
+        fclose($fn);
+        $email = json_decode($email, true);
+        return $email;
+
+    }
+
+    public function setEmail($email)
+    {
+        $emailFile = Yii::getPathOfAlias('emailPath');
+        if(isset($email) && is_array($email) && array_key_exists('email1', $email) && array_key_exists('email2', $email))
+        {
+            $email = json_encode($email);
+            $fn = fopen($emailFile, 'w');
+            fwrite($fn, $email);
+            fclose($fn);
+        }
+    }
 }
