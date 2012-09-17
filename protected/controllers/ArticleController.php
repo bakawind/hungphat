@@ -136,9 +136,8 @@ class ArticleController extends Controller
 		{
 			// we only allow deletion via POST request
 			$model = $this->loadModel($id);
-
-			$this->deleteImage($model->image);
-
+			
+			Util::deleteImage($model->image, 'article');
 			$model->delete();
 
 			// if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser

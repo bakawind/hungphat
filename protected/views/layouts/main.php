@@ -7,24 +7,46 @@
 	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/reset.css" />
 	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/site.css" />
 
-	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/slider_thumbnial.css" />
-
+	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/slider_thumbnial.css" />	
 	<script type="text/javascript" src="<?php echo Yii::app()->request->baseUrl; ?>/js/sliderman.1.3.7.js"></script>
 
 	<title><?php echo CHtml::encode($this->pageTitle); ?></title>
 
+	<script>
+	function loadXMLDoc()
+	{
+		var xmlhttp;
+		if (window.XMLHttpRequest){// code for IE7+, Firefox, Chrome, Opera, Safari
+		  xmlhttp=new XMLHttpRequest();
+		}
+		else{// code for IE6, IE5
+		  xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+		}
+		xmlhttp.onreadystatechange=function(){
+			if (xmlhttp.readyState==4 && xmlhttp.status==200)
+			{
+				document.getElementById("online_service_id").innerHTML=xmlhttp.responseText;
+			}
+		};
+		
+		xmlhttp.open("GET","../site/yahoo",true);
+		xmlhttp.send(null);		
+		//document.getElementById("test_1").innerHTML=xmlhttp.responseText;		
+	}
+</script>
+	
 </head>
 
-<body>
+<body onload="loadXMLDoc()">
 
 <div>
 
     <div class = "header">
         <ul class='menu'>
-            <li>
+            <li class="maniNav">
                 <?=CHtml::link('Trang chủ', '/site/index')?>
             </li>
-            <li>
+            <li class="maniNav">
                 <?=CHtml::link('Sản phẩm', '')?>
                <ul class="subnav">
                 <?php
@@ -35,34 +57,36 @@
                 <? } ?>
                 </ul>
             </li>
-            <li>
+            <li class="maniNav">
                 <?=CHtml::link('Giới thiệu', '/site/about')?>
             </li>
-            <li>
+            <li class="maniNav">
                 <?=CHtml::link('Thanh Toán', '/site/payment')?>
             </li>
-            <li>
+            <li class="maniNav">
                 <?=CHtml::link('Liên hệ', '/site/contact')?>
             </li>
-			<li>
+			<li class="maniNav">
                 <?=CHtml::link('Tin tức', '/article/index')?>
             </li>
         </ul>
     </div>
     <div class='wrapper'>
-        <div class='space'></div>
+        <div class='small_space'></div>
         <div class='container'>
-            <div class='small_cart'>
-                <?=CHtml::image("/images/cart.png")?>
-                <?php $cart = $this->getCart(); ?>
-                <p id='cart_detail'><a href='/cart/index'><?=$cart->getNumberOfItems()?> (click để xem giỏ hàng)</a></p>
-            </div>
-            <div class='search'>
-				<form  action="/site/search" type="GET"  >
-					<input type='textfield' name="text" />
-					<INPUT TYPE="image" SRC="/images/search.png" width="26" height="26" ALT="Submit Form">
-				</form>
-            </div>
+			<div class='upper_part'>
+				<div class='small_cart'>
+					<?=CHtml::image("/images/cart.png")?>
+					<?php $cart = $this->getCart(); ?>
+					<p id='cart_detail'><a href='/cart/index'><?=$cart->getNumberOfItems()?> (click để xem giỏ hàng)</a></p>
+				</div>
+				<div class='search'>
+					<form  action="/site/search" type="GET"  >
+						<input type='textfield' name="text" class="searchTextField"/>
+						<INPUT TYPE="image" SRC="/images/search.png" width="auto" height="50" ALT="Submit Form">
+					</form>
+				</div>
+			</div>
         </div>
         <br class='clear'/>
         <div class='content'>
@@ -107,33 +131,40 @@
             </div><!--close banner-->
             <div class='space'></div>
 	            <?php echo $content; ?>
-            <div class='space'></div>
+            <div class='small_space'></div>
         </div><!--close content -->
     </div><!--close wrapper-->
+	
+	
 	<div class='footer'>
 		<div class='footer_content'>
-			<div class='online_service'>
+			<div class='online_service' id="online_service_id">
 			<?php
 				$id1 = 'happystorm_12'; 				
 				$id2 = 'nguyenphuckhang'; 		 
 			?>
 				<div class="yahoo">
 					<a href="ymsgr:SendIM?<?php echo $id1?>" title="<?php echo $id1?>">
-						<img src="<?php echo Util::getYahooStatus($id1) ? '../images/online.png' : '../images/offline.png' ?>" >
+						<img src="/images/offline.png" >
 					</a>
 				</div>				
 				<div class="yahoo">
 					<a href="ymsgr:SendIM?<?php echo $id2?>" title="<?php echo $id2?>">
-						<img src="<?php echo Util::getYahooStatus($id2) ? '../images/online.png' : '../images/offline.png' ?>">
+						<img src="/images/offline.png" >
 					</a>
 				</div>				
 			</div>
+			
 			<div class='contact' >
-				<div class='space'></div>
-				<div class='deskPhone'></div>
-				<div class='info'> : 0839 623 425 </div>
-				<div class='mobile'></div>
-				<div class='info'> : 0913 925 396 </div>
+				<div class='space'></div>				
+				<div class='phoneIcon'>					
+					<img src="/images/phone.png" />					
+				</div>				
+				<div class='info'> 0839 623 425 </div>
+				<div class='phoneIcon'>
+					<img src="/images/cellphone.png" />
+				</div>
+				<div class='info'> 0913 925 396 </div>
 			</div>
 			<div class='slogan'>
 				<p>Cơ sở Hưng Phát chuyên lắp ráp đồ chơi trẻ em các loại</p>

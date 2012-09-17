@@ -117,7 +117,14 @@ class OrdersController extends Controller
 		if(Yii::app()->request->isPostRequest)
 		{
 			// we only allow deletion via POST request
-			$this->loadModel($id)->delete();
+			$model = $this->loadModel($id);
+			
+			$orderItemsModels = OrderItems::model()->findAll('order_id=:order_id', array(':order_id'=>$model->id));
+			foreach($orderItemsModels as $singleData){				
+				$singleData->delete();
+			}
+			
+			$model->delete();
 
 			// if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
 			if(!isset($_GET['ajax']))

@@ -12,13 +12,14 @@ textarea {
 }
 
 h1 {
-    font-family: 'arial';
+    font-family: "UVNBaiSau_Nh";
     font-size: 20px;
     color: #0D1953;
     font-weight: bolder;
 }
 
 fieldset{
+	
     border-style: solid;
     border-radius: 8px 8px 8px 8px;
     border-width: 2px;
@@ -29,6 +30,7 @@ fieldset{
 }
 
 legend{
+	font-family:"UVNBaiSau_Nh";
     border-style: solid;
     border-radius: 8px 8px 8px 8px;
     border-width: 2px;
@@ -36,8 +38,14 @@ legend{
     border-color: #65acc4;
     margin-left: 15px;
     padding: 10px 10px 10px 10px;
-    text-align: center;
+    text-align: center;	
 }
+
+.aboutUs{
+    height:160px;
+}
+
+
 
 .error{
     color: red;
@@ -47,13 +55,19 @@ legend{
     margin-left: auto;
     margin-right: auto;
     width: 940px;
+	font-family:"verdana";
 }
+
+.wrapper  a{ text-decoration: none;}
 /*
 @font-face {
     font-family: "VNI-Bengus";
     src: url("font/VNI-Bengus.ttf") format("truetype");
 }
 */
+
+@font-face { font-family:"UVNBaiSau_Nh"; src: url('../font/UVNBaiSau_Nh.ttf'); } 
+@font-face { font-family:"UVNBaiSau_R"; src: url('../font/UVNBaiSau_R.ttf'); } 
 .header {
     background-color: #0d1953;
     height: 45px;
@@ -65,9 +79,9 @@ legend{
     margin-right: auto;
     width: 940px;
     color: white;
-    /*font-family: "VNI-Bengus";*/
-    font-size: 1.2em;
-    font-weight: bolder;
+    font-family: "UVNBaiSau_Nh";  
+	font-size:24px; 
+	font-weight:bold;
 }
 
 .menu a{
@@ -81,9 +95,13 @@ legend{
 
 .menu li {
     list-style-type: none;
-    float: left;
-    margin: 12px 30px 0px 30px;
+    float: left;    
     height: 100%;
+}
+.menu .maniNav{    
+	padding-top:5px;
+	width: 16.5%;	
+	height: 45px;
 }
 
 .menu ul {
@@ -99,39 +117,38 @@ legend{
 
 .menu li:hover ul {
     left:0px;
-    top:20px;
-    background:#22379d;
-    border:2px solid #0d1953;
-    border-radius: 0px 0px 8px 8px;
-    width:200px;
+    top:43px;
+	background: rgba(13, 25, 83, 0.9);
+    border:3px solid #0d1953;
+    border-radius: 0px 0px 3px 3px;
+    width:150px;
+	text-align:left;
 }
 .menu li:hover ul li {
-    height:18px;
+    height:20px;
     border:none;
-    margin:0;
-    padding:5px;
+    margin:5px 0 5px 0;    
 }
 .menu li:hover ul li a {
-    height:18px;
-    padding:0px;
+    height:20px;    
     display:block;
-    font-size:0.8em;
-    width:158px;
+    font-size:18px;
+    width:150px;
     line-height:18px;
     text-indent:5px;
-    color:#fff;
-    text-decoration:none;
-    border:1px solid transparent;
+    color:white;      
 }
-.menu li:hover ul li a:hover {
-    height:18px;
-    background:silver;
-    color:#000;
-    border:solid 1px #444;
+.menu li:hover ul li a:hover {    
+	font-size:22px;	
 }
+
+
 
 .space{
     height: 30px;
+}
+.small_space{
+    height: 15px;
 }
 
 .wrapper .content{
@@ -227,29 +244,27 @@ legend{
 .wrapper .content .inner_content .box .product_box{
     float: left;
     width: 280px;
-    height: 280px;
+    height: 270px;
     margin: 10px 10px 10px 10px;
     box-shadow: 0 0 8px rgba(0, 0, 0, 0.5);
 }
 
+.wrapper .content .inner_content .box .product_box a{text-decoration:none;font-size:17.5px;}
+
 .wrapper .content .inner_content .box .product_box .info{
     float: left;
-    width: 280px;
-    height: 42px;
-
+    width: 280px; height: 32px;
+	color: #0d1953; 
 }
 
-.wrapper .content .inner_content .box .product_box .info p{
-	margin-top: 5px;
-    font-size: 18px;
-	font-family:'vani'
+.wrapper .content .inner_content .box .product_box .info .name{
+	float: left;
+	margin: 7px 0 0 10px;	
 }
 
-.wrapper .content .inner_content .box .product_box .info .price{
-	margin-top: 5px;
-    font-size: 18px;
-	font-family:'vani';
-
+.wrapper .content .inner_content .box .product_box .info .price{	
+	float: right;
+	margin: 7px 10px 0 0;
 }
 
 .wrapper .content .inner_content .box .product_box img{
@@ -267,12 +282,13 @@ legend{
 .wrapper .content .inner_content .box .product_box .detail {
     float: left;
     display: block;
-    width: 90px;
-    height: 28px;
+    width: 90px; height: 28px;
     line-height: 28px;
     text-align: center;
+	color: #0d1953;
     background: url(../images/detail.jpg);
 }
+
 .add_to_card {
     float: left;
     display: block;
@@ -283,6 +299,7 @@ legend{
     color: white;
     background: url(../images/add_to_cart.jpg);
 }
+
 .wrapper .content .inner_content .pagination{
 	text-align: center;
 	margin-left: auto;
@@ -317,6 +334,9 @@ legend{
 	width: 450px;
 	height:auto;
 }
+.wrapper .content .inner_content .product_detail .detail a{
+	font-size: 18px;
+}
 .wrapper .content .inner_content .product_detail .detail table{
 	margin: 30px 20px 20px 50px;
 	float: left;
@@ -342,10 +362,11 @@ legend{
 	height:20px;
 }
 .wrapper .content .inner_content .product_detail .detail h3{
-	font-family: 'verdana';
-	font-size: 30px;
-	font-weight: bold;
+	font-family: 'UVNBaiSau_R';
+	font-size: 35px;
+	font-weight: 900;
 }
+
 
 .wrapper .content .inner_content .product_detail .pictures{
 	background-color:#000;
@@ -373,7 +394,12 @@ legend{
     border-width: 2px;
     border-color: #db2e2a;
     margin: 30px 20px 0 20px;
+	font-family:"UVNBaiSau_Nh";
 }
+.wrapper .content .categories a:link{ text-decoration:none; font-weight:bold;  color:#db2e2a; font-size:18px;}
+.wrapper .content .categories a:visited { text-decoration:none; font-weight:bold; color:#db2e2a; font-size:20px;}
+.wrapper .content .categories a:hover { text-decoration:none; font-weight:bold; color:#db2e2a; font-size:22px;}
+ 
 .wrapper .content .categories .category #doll{
     height: 220px;
     background: url(../images/categories.png) no-repeat scroll 35px -325px;
@@ -412,38 +438,37 @@ legend{
 .container {
     margin: 0 20px 0 20px;
 }
-.container .search{
-    margin: 22px 0 0 0;
-    float: right;
+.container .search{    
+	float: left;
+    width: 35%;
+	text-align:right;
+	vertical-align:middle;
 }
-.container .search img{
-    width: auto;
-    height: 30px;
+.container .search .searchTextField{   
+	margin-bottom: -50px;
 }
 
 .container .small_cart {
     float: left;
     width: 65%;
 }
-
 .container .small_cart img{
     width: auto;
     height: 55px;
     float: left;
 }
 .container .small_cart p{
-    margin: 5px 0 0 78px;
+    margin: 18px 0 0 80px;
 }
-
 .container .small_cart p#view_count{
     color: red;
     font-weight: bolder;
 }
-
 .container .small_cart p.small_cart_detail{
     color: blue;
     font-weight: bolder;
 }
+
 
 .clear {
     clear: both;
@@ -453,6 +478,7 @@ legend{
     margin-top:10px;
 	background: url("../images/footer.jpg") repeat scroll 0 0 transparent;
 	height: 220px;
+	font-family: "UVNBaiSau_Nh";
 }
 .footer .footer_content{
 	margin-left: auto;
@@ -461,29 +487,20 @@ legend{
 	height:220px;
 
 }
-.footer .footer_content .online_service{
+.online_service{
 	float: left;
 	width: 470px;
 	height: 160px;
 }
-.footer .footer_content .online_service .yahoo{
-	width:180px;
-	height: 160px;
+.online_service .yahoo{
+	width:235px; height: 160px;
 	float: left;
-	margin: 0 15px 0 15px;
+	text-align: center;
 }
 
-.footer .footer_content .online_service .yahoo img{
+.online_service .yahoo img{
 	width:200px;
 }
-/*
-.footer .footer_content .online_service .available{
-	width:200px;
-	height: 160px;
-	background-repeat: no-repeat;
-	background:url(../images/service_image.png) 200px 0px;
-	float: left;	margin: 0 30px 0 0s;
-}*/
 
 .footer .footer_content .contact{
 	float: left;
@@ -497,37 +514,26 @@ legend{
 }
 .footer .footer_content .contact .info{
 	float: left;
-	width: 350px;
+	width: 200px;
 	height: 40px;
-	font-size: 24px;
+	font-size: 26px;
 	font-weight: bolder;
 	margin: 10px 0 0 0;
-	color: #ffffff;
-	font-family: "verdana";
+	color: #ffffff;	
 }
-.footer .footer_content .contact .deskPhone{
-	float: left;
-	width: 58px;
-	height: 50px;
-	margin: 0 0 0 30px;
-	background-image: url(../images/contact_image.png); background-repeat: no-repeat; background-position: -34px 0 ;
+.footer .footer_content .contact .phoneIcon{	
+	float: left; width: 150px; height: 46px;
+	text-align:center;
+	margin: 2px 0 2px 0;	
 }
-.footer .footer_content .contact .mobile{
-	float: left;
-	width: 33px;
-	height: 50px;
-	margin: 0 15px 0 40px;
-	background-image: url(../images/contact_image.png); background-repeat: no-repeat; background-position: 0 0 ;
-}
+.footer .footer_content .contact .phoneIcon img{height:50px;}
+
 .footer .footer_content .slogan{
 	float: left;
-	width: 940px;
-	height: 40px;
+	width: 940px; 	
 	text-align: center;
-	font-size: 22px;
-	font-family: "verdana";
-	font-weight: bold;
-	Color: #fff;
+	font-size: 26px; font-weight: 900; Color: #fff; 
+	margin-top:5px;
 }
 
 .news_box{
@@ -557,7 +563,7 @@ legend{
     float: left;
     width: 590px;
     margin-left: 50px;
-    color: blue;
+    color: blue;	
 }
 .about_us_box #more_btn{
     height: auto;
@@ -629,4 +635,3 @@ legend{
 	color:#0d1953;
     font-size:14px;
 }
-

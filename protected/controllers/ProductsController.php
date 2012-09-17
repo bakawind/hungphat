@@ -208,9 +208,14 @@ class ProductsController extends Controller
 		{
 			// we only allow deletion via POST request
 			$model = $this->loadModel($id);
-
-			$this->deleteImage($model->image);
-
+			
+			$productPhotoModels = ProductPhotos::model()->findAll('product_id=:product_id', array(':product_id'=>$model->id));
+			foreach($productPhotoModels as $singleData){
+				Util::deleteImage($singleData->url, 'product_photo');
+				$singleData->delete();
+			}
+						
+			Util::deleteImage($model->image, 'product');
 			$model->delete();
 
 			// if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
@@ -221,13 +226,7 @@ class ProductsController extends Controller
 			throw new CHttpException(400,'Invalid request. Please do not repeat this request again.');
 	}
 
-	public function deleteImage($imageURL){
-		$fileIndex = strrpos($imageURL, "/", -1);
-		$realFilename = substr($imageURL, $fileIndex);
-        $filePath = Yii::getPathOfAlias('uploadPath') . "\\products\\" . $realFilename;
-        if(file_exists($filePath) && $imageURL != null)
-		    unlink(Yii::getPathOfAlias('uploadPath') . "\\products\\" . $realFilename);
-	}
+	
 
 	/**
 	 * Lists all models.

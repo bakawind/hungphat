@@ -83,7 +83,7 @@
 					<td colspan=2> <h3>Mô Tả Sản Phẩm</h3> </td>
 				</tr>
 				<tr>
-					<td colspan=2> <p> <?= $model->description ?> </p> </td>
+					<td colspan=2 class="spec"> <p> <?= $model->description ?> </p> </td>
 				</tr>
 				<tr><td colspan=2><?=CHtml::link('Thêm vào giỏ', '/cart/add/'.$model->id, array('class'=>'add_to_card'))?></td></tr>
 			</table>
