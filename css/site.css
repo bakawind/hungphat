@@ -80,7 +80,7 @@ legend{
     width: 940px;
     color: white;
     font-family: "UVNBaiSau_Nh";  
-	font-size:22px; 
+	font-size:24px; 
 	font-weight:bold;
 }
 
@@ -362,7 +362,7 @@ legend{
 	height:20px;
 }
 .wrapper .content .inner_content .product_detail .detail h3{
-	font-family: 'UVNBaiSau_Nh';
+	font-family: 'UVNBaiSau_R';
 	font-size: 35px;
 	font-weight: 900;
 }
@@ -532,7 +532,7 @@ legend{
 	float: left;
 	width: 940px; 	
 	text-align: center;
-	font-size: 24px; font-weight: 900; Color: #fff;
+	font-size: 26px; font-weight: 900; Color: #fff; 
 	margin-top:5px;
 }
 
