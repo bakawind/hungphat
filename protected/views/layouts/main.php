@@ -143,7 +143,7 @@
 				$id1 = 'happystorm_12'; 				
 				$id2 = 'nguyenphuckhang'; 		 
 			?>
-				<div class="yahoo" id="id_yahoo">
+				<div class="yahoo">
 					<a href="ymsgr:SendIM?<?php echo $id1?>" title="<?php echo $id1?>">
 						<img src="/images/offline.png" >
 					</a>
@@ -154,15 +154,15 @@
 					</a>
 				</div>				
 			</div>
+			
 			<div class='contact' >
-				<div class='space'></div>
-				<!--div class='deskPhone'></div-->
-				<div class='phoneIcon'>
-					<img src="../images/phone.png" />
+				<div class='space'></div>				
+				<div class='phoneIcon'>					
+					<img src="/images/phone.png" />					
 				</div>				
 				<div class='info'> 0839 623 425 </div>
 				<div class='phoneIcon'>
-					<img src="../images/cellphone.png" />
+					<img src="/images/cellphone.png" />
 				</div>
 				<div class='info'> 0913 925 396 </div>
 			</div>

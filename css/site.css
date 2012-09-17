@@ -67,6 +67,7 @@ legend{
 */
 
 @font-face { font-family:"UVNBaiSau_Nh"; src: url('../font/UVNBaiSau_Nh.ttf'); } 
+@font-face { font-family:"UVNBaiSau_R"; src: url('../font/UVNBaiSau_R.ttf'); } 
 .header {
     background-color: #0d1953;
     height: 45px;
