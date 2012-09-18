@@ -29,7 +29,7 @@
 			}
 		};
 
-		xmlhttp.open("GET","../site/yahoo",true);
+		xmlhttp.open("GET","/site/yahoo",true);
 		xmlhttp.send(null);
 		//document.getElementById("test_1").innerHTML=xmlhttp.responseText;
 	}

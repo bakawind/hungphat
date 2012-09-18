@@ -1,5 +1,5 @@
-@font-face { font-family:"UVNBaiSau_Nh"; src: url('../font/UVNBaiSau_Nh.ttf'); }
-@font-face { font-family:"UVNBaiSau_R"; src: url('../font/UVNBaiSau_R.ttf'); }
+@font-face { font-family:"UVNBaiSau_Nh"; src: url('/font/UVNBaiSau_Nh.ttf'); }
+@font-face { font-family:"UVNBaiSau_R"; src: url('/font/UVNBaiSau_R.ttf'); }
 
 body {
     background: url("../images/background.jpg") repeat scroll 0 0 transparent;
