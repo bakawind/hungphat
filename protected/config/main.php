@@ -76,7 +76,7 @@ return CMap::mergeArray(array(
 	// using Yii::app()->params['paramName']
 	'params'=>array(
 		// this is used in contact page
-		'adminEmail'=>'webmaster@example.com',
+		'adminEmail'=>'hungphat@hungphatdochoi.com.vn',
 		'imagePATH'=>'images/uploads/',
 		'pathSep'=>'/path/to/css/',
 	),

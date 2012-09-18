@@ -1,3 +1,6 @@
+@font-face { font-family:"UVNBaiSau_Nh"; src: url('../font/UVNBaiSau_Nh.ttf'); }
+@font-face { font-family:"UVNBaiSau_R"; src: url('../font/UVNBaiSau_R.ttf'); }
+
 body {
     background: url("../images/background.jpg") repeat scroll 0 0 transparent;
 }
@@ -45,8 +48,6 @@ legend{
     height:160px;
 }
 
-
-
 .error{
     color: red;
 }
@@ -66,8 +67,6 @@ legend{
 }
 */
 
-@font-face { font-family:"UVNBaiSau_Nh"; src: url('../font/UVNBaiSau_Nh.ttf'); }
-@font-face { font-family:"UVNBaiSau_R"; src: url('../font/UVNBaiSau_R.ttf'); }
 .header {
     background-color: #0d1953;
     height: 45px;
@@ -144,8 +143,6 @@ legend{
 	font-size:22px;
 }
 
-
-
 .space{
     height: 30px;
 }
@@ -166,7 +163,6 @@ legend{
     /* For IE 8*/
     -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#99000000, endColorstr=#99000000)";
 }
-
 
 .wrapper .content .inner_content{
     margin: 0 20px 0 20px;
@@ -240,8 +236,6 @@ legend{
     font-size: 15px;
 	font-family:'verdana';
 }
-
-
 
 .wrapper .content .inner_content .box .product_box{
     float: left;
