@@ -61,7 +61,7 @@
                 <?=CHtml::link('Giới thiệu', '/site/about')?>
             </li>
             <li class="maniNav">
-                <?=CHtml::link('Thanh Toán', '/site/payment')?>
+                <?=CHtml::link('Thanh Toán', '/cart/index')?>
             </li>
             <li class="maniNav">
                 <?=CHtml::link('Liên hệ', '/site/contact')?>
@@ -94,14 +94,17 @@
             <div class='banner'>
             <?php
             $categories = Categories::model()->findAll();
-            if(isset($_GET['type']) && $_GET['type']!=null) {
-                $categories = array();
-                array_push($categories, Categories::model()->find('name=:name', array(':name'=>$_GET['type'])));
-            }
-            if(isset($_GET['id']) && $_GET['id']!=null) {
-                $product = Products::model()->findByPk($_GET['id']);
-                $categories = array();
-                array_push($categories, Categories::model()->find('id=:id', array(':id'=>$product->category_id)));
+            $controllerId = $this->getId();
+            if($controllerId !== 'article'){
+                if(isset($_GET['type']) && $_GET['type']!=null) {
+                    $categories = array();
+                    array_push($categories, Categories::model()->find('name=:name', array(':name'=>$_GET['type'])));
+                }
+                if(isset($_GET['id']) && $_GET['id']!=null) {
+                    $product = Products::model()->findByPk($_GET['id']);
+                    $categories = array();
+                    array_push($categories, Categories::model()->find('id=:id', array(':id'=>$product->category_id)));
+                }
             }
             ?>
             	<div id="SliderName_2" class="SliderName_2">

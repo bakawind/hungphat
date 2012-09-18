@@ -48,7 +48,7 @@ foreach($categories as $c) {
                 if(isset($news)){
                     foreach($news as $n) {
             ?>
-                <div><a href='/article/view/<?=$n->id?>'><?=$n->title?></a></div>
+                <div><a href='/article/display/<?=$n->id?>'><?=$n->title?></a></div>
                 <hr/>
             <?php
                     }
