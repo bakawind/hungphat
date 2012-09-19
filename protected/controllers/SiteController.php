@@ -161,7 +161,7 @@ class SiteController extends Controller
 	}
 
 	public function actionYahoo(){
-		$this->render('yahoo');
+		return $this->renderPartial('yahoo');
 	}
 
 	public function actionArticle(){
