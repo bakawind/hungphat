@@ -92,21 +92,21 @@
         <div class='content'>
             <div class='space'></div>
             <div class='banner'>
-            <?php
-            $categories = Categories::model()->findAll();
-            $controllerId = $this->getId();
-            if($controllerId !== 'article'){
-                if(isset($_GET['type']) && $_GET['type']!=null) {
-                    $categories = array();
-                    array_push($categories, Categories::model()->find('name=:name', array(':name'=>$_GET['type'])));
+                <?php
+                $categories = Categories::model()->findAll();
+                $controllerId = $this->getId();
+                if($controllerId !== 'article'){
+                    if(isset($_GET['type']) && $_GET['type']!=null) {
+                        $categories = array();
+                        array_push($categories, Categories::model()->find('name=:name', array(':name'=>$_GET['type'])));
+                    }
+                    if(isset($_GET['id']) && $_GET['id']!=null) {
+                        $product = Products::model()->findByPk($_GET['id']);
+                        $categories = array();
+                        array_push($categories, Categories::model()->find('id=:id', array(':id'=>$product->category_id)));
+                    }
                 }
-                if(isset($_GET['id']) && $_GET['id']!=null) {
-                    $product = Products::model()->findByPk($_GET['id']);
-                    $categories = array();
-                    array_push($categories, Categories::model()->find('id=:id', array(':id'=>$product->category_id)));
-                }
-            }
-            ?>
+                ?>
             	<div id="SliderName_2" class="SliderName_2">
                     <?php
                         foreach($categories as $c) {
@@ -114,7 +114,7 @@
             		    <!--<div class="SliderName_2Description">Fist banner</div>-->
                         <?=CHtml::image($c->banner, $c->caption, array('width'=>"900", 'height'=>"350", 'title'=>$c->caption, 'usemap'=>"#img1map"))?>
                     <?php } ?>
-            	</div>
+            	</div><!-- slider -->
             	<div class="c"></div>
             	<div id="SliderNameNavigation_2"></div>
             	<div class="c"></div>
@@ -133,7 +133,7 @@
             	</script>
             </div><!--close banner-->
             <div class='space'></div>
-	            <?php echo $content; ?>
+                <?php echo $content; ?>
             <div class='small_space'></div>
         </div><!--close content -->
     </div><!--close wrapper-->
