@@ -139,7 +139,7 @@ class SiteController extends Controller
 			$articleResult = new CActiveDataProvider('Article', array(
 			        'criteria'=>$criteria1,
                     'pagination'=>array(
-                        'pageSize'=>10,
+                        'pageSize'=>3,
                     ),
 		    ));
 			
@@ -153,7 +153,7 @@ class SiteController extends Controller
 			$productResult = new CActiveDataProvider('Products', array(
 			        'criteria'=>$criteria2,
                     'pagination'=>array(
-                        'pageSize'=>10,
+                        'pageSize'=>3,
                     ),
 		    ));
 
