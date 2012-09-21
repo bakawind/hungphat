@@ -131,20 +131,25 @@ class SiteController extends Controller
 		if(isset($_GET['text'])){
 			$searchValue = $_GET['text'];
 
-			$criteria1=new CDbCriteria;
-			$criteria1->condition="title LIKE '%" . $searchValue
-						. "%' OR content LIKE '%" . $searchValue . "%'";
+			$criteria1=new CDbCriteria;			
+			$criteria1->addSearchCondition('title',$searchValue, true,'OR','LIKE');
+			$criteria1->addSearchCondition('content',$searchValue, true,'OR','LIKE');			
+			$criteria1->order = "modified_date DESC";
+			
 			$articleResult = new CActiveDataProvider('Article', array(
 			        'criteria'=>$criteria1,
                     'pagination'=>array(
                         'pageSize'=>10,
                     ),
 		    ));
+			
 
-			$criteria2=new CDbCriteria;
-			$criteria2->condition="code LIKE '%" . $searchValue
-						. "%' OR name LIKE '%" . $searchValue
-						. "%' OR description LIKE '%" . $searchValue . "%'";
+			$criteria2=new CDbCriteria;			
+			$criteria2->addSearchCondition('code',$searchValue, true,'OR','LIKE');
+			$criteria2->addSearchCondition('name',$searchValue, true,'OR','LIKE');
+			$criteria2->addSearchCondition('description',$searchValue, true,'OR','LIKE');
+			$criteria2->order = "modified_date DESC";
+			
 			$productResult = new CActiveDataProvider('Products', array(
 			        'criteria'=>$criteria2,
                     'pagination'=>array(
