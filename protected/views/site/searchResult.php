@@ -6,6 +6,7 @@ if ($articleResult->getTotalItemCount() == 0 && $productResult->getTotalItemCoun
 <?php
 } else {
     if ($articleResult->getTotalItemCount() > 0) {
+        echo "<h1> Kết quả cho Tin Tức</h1>";
 	    $this->widget('zii.widgets.CListView', array(
 	        'dataProvider'=>$articleResult,
 	        'itemView'=>'_single_result',
@@ -14,8 +15,10 @@ if ($articleResult->getTotalItemCount() == 0 && $productResult->getTotalItemCoun
     }
 ?>
 	<br class='clear' />
+
 <?php
     if ($productResult->getTotalItemCount() > 0) {
+        echo "<h1> Kết quả cho Sản Phẩm</h1>";
 	    $this->widget('zii.widgets.CListView', array(
 	        'dataProvider'=>$productResult,
 	        'itemView'=>'_single_result',
