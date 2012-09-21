@@ -9,35 +9,39 @@
 
 	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/slider_thumbnial.css" />
 	<script type="text/javascript" src="<?php echo Yii::app()->request->baseUrl; ?>/js/sliderman.1.3.7.js"></script>
+	<script type="text/javascript" src="<?php echo Yii::app()->request->baseUrl; ?>/js/jquery.min.js"></script>
 
 	<title><?php echo CHtml::encode($this->pageTitle); ?></title>
 
 	<script>
-	function loadXMLDoc()
-	{
-		var xmlhttp;
-		if (window.XMLHttpRequest){// code for IE7+, Firefox, Chrome, Opera, Safari
-		  xmlhttp=new XMLHttpRequest();
-		}
-		else{// code for IE6, IE5
-		  xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
-		}
-		xmlhttp.onreadystatechange=function(){
-			if (xmlhttp.readyState==4 && xmlhttp.status==200)
-			{
-				document.getElementById("online_service_id").innerHTML=xmlhttp.responseText;
-			}
-		};
+	//function loadXMLDoc()
+	//{
+	//	var xmlhttp;
+	//	if (window.XMLHttpRequest){// code for IE7+, Firefox, Chrome, Opera, Safari
+	//	  xmlhttp=new XMLHttpRequest();
+	//	}
+	//	else{// code for IE6, IE5
+	//	  xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+	//	}
+	//	xmlhttp.onreadystatechange=function(){
+	//		if (xmlhttp.readyState==4 && xmlhttp.status==200)
+	//		{
+	//			document.getElementById("online_service_id").innerHTML=xmlhttp.responseText;
+	//		}
+	//	};
 
-		xmlhttp.open("GET","/site/yahoo",true);
-		xmlhttp.send(null);
-		//document.getElementById("test_1").innerHTML=xmlhttp.responseText;
-	}
-</script>
+	//	xmlhttp.open("GET","/site/yahoo",true);
+	//	xmlhttp.send(null);
+	//	//document.getElementById("test_1").innerHTML=xmlhttp.responseText;
+	//}
+    //$(document).ready(function(){
+    //    loadXMLDoc();
+    //});
+    </script>
 
 </head>
 
-<body onload="loadXMLDoc()">
+<body>
 
 <div>
 
@@ -144,15 +148,19 @@
 			<div class='online_service' id="online_service_id">
 			<?php
                 $emails = $this->getEmail();
+                $id1 = explode('@', $emails['email1']);
+                $id1 = $id1[0];
+                $id2 = explode('@', $emails['email2']);
+                $id2 = $id2[0];
 			?>
 				<div class="yahoo">
-					<a href="ymsgr:SendIM?<?php echo $emails['email1']?>" title="<?php echo $emails['email1']?>">
-						<img src="/images/offline.png" >
+					<a href="ymsgr:SendIM?<?php echo $id1?>" title="<?php echo $id1?>">
+						<img src="/images/online.png" >
 					</a>
 				</div>
 				<div class="yahoo">
-					<a href="ymsgr:SendIM?<?php echo $emails['email2']?>" title="<?php echo $emails['email2']?>">
-						<img src="/images/offline.png" >
+					<a href="ymsgr:SendIM?<?php echo $id2?>" title="<?php echo $id2?>">
+						<img src="/images/online.png" >
 					</a>
 				</div>
 			</div>

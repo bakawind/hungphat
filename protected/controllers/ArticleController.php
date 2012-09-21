@@ -81,6 +81,7 @@ class ArticleController extends Controller
 		{
             $model->tmp = $model->image;
 			$model->attributes=$_POST['Article'];
+			$model->content=$_POST['Article']['content'];
 			$model->modified_date= "" . date("Y/m/d H:i:s");
 
 			if($model->save()){
@@ -112,6 +113,7 @@ class ArticleController extends Controller
 		{
             $model->tmp['image'] = $model->image;
 			$model->attributes=$_POST['Article'];
+			$model->content=$_POST['Article']['content'];
 			$model->modified_date= "" . date("Y/m/d H:i:s");
 
 			if($model->save()){
@@ -136,7 +138,7 @@ class ArticleController extends Controller
 		{
 			// we only allow deletion via POST request
 			$model = $this->loadModel($id);
-			
+
 			Util::deleteImage($model->image, 'article');
 			$model->delete();
 
