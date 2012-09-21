@@ -90,9 +90,11 @@ class ProductsController extends Controller
 
             if (isset($category) && isset($priceRange)){
 		        $criteria=new CDbCriteria;
-				$criteria->condition='price >=' . $priceRange->from_price . ' AND price <=' . $priceRange->to_price;
+				
+				$criteria->addBetweenCondition('price', $priceRange->from_price, $priceRange->to_price, 'AND');
 		        $criteria->compare('category_id',$category->id);
 				$criteria->order='price desc';
+				
 		        $dataProvider = new CActiveDataProvider('Products', array(
 			        'criteria'=>$criteria,
                     'pagination'=>array(
@@ -101,7 +103,7 @@ class ProductsController extends Controller
 		        ));
                 $this->render('list', array('dataProvider'=>$dataProvider));
             }else{
-				$error='Price Range không tồn tại';
+				$error='Khoảng giá không tồn tại';
 				$this->render('../site/error',array('code'=>$error));
 			}
         }
