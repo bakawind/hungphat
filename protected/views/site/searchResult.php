@@ -1,4 +1,4 @@
-﻿<div class='inner_content solid_background'>
+<div class='inner_content solid_background'>
 <?php
 if ($articleResult->getTotalItemCount() == 0 && $productResult->getTotalItemCount() == 0) {
 ?>
