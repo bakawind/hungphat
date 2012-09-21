@@ -116,7 +116,9 @@
                         foreach($categories as $c) {
                     ?>
             		    <!--<div class="SliderName_2Description">Fist banner</div>-->
+                        <a href='/products/list?type=<?=$c->name?>'>
                         <?=CHtml::image($c->banner, $c->caption, array('width'=>"900", 'height'=>"350", 'title'=>$c->caption, 'usemap'=>"#img1map"))?>
+                        </a>
                     <?php } ?>
             	</div><!-- slider -->
             	<div class="c"></div>
