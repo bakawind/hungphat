@@ -96,7 +96,7 @@
 				<?php
 				if($model->image!=null || $photoData->ItemCount!=0) {?>
 					<div id="carousel-wrapper">
-						<img id="shadow" src="../../img/gui/carousel_shadow.png" />
+						
 						<div id="carousel">
 							<?php
 								if($model->image!=null){ ?>
