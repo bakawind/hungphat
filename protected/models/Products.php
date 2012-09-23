@@ -116,7 +116,7 @@ class Products extends Model
 		$criteria->compare('id',$this->id);
 		$criteria->compare('code',$this->code,true);
 		$criteria->compare('name',$this->name,true);
-		$criteria->compare('price',$this->price);
+		$criteria->compare('price',$this->price,true);
 		$criteria->compare('description',$this->description,true);
 		$criteria->compare('image',$this->image,true);
 		$criteria->compare('modified_date',$this->modified_date,true);

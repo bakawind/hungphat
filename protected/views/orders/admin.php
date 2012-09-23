@@ -53,7 +53,13 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
             'filter'=>array('0'=>'Mới','1'=>'Đang xử lý','2'=>'Đóng'),
             'value'=>'Orders::model()->getStatusName($data->status)',
         ),
-		'total',		
+		//'total',	
+		array(
+            'name'=>'total',
+            'header'=>'Total',            
+            'value'=>'Util::displayMoney($data->total) . " đ"',
+        ),
+
 		array(
 			'class'=>'CButtonColumn',
 		),

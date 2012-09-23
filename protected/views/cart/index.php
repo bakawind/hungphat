@@ -57,9 +57,9 @@ if(isset($cart) && $cart!=null){
 <tr>
     <td width='50px'></td>
     <td width='250px'></td>
-    <td width='50px'></td>
-    <td width='50px'><b>Tổng cộng:</b></td>
-    <td width='50px'><b><?=$cart->getTotal()?></b></td>
+    
+    <td colspan=2><b>Tổng cộng:</b></td>
+    <td width='50px'><b><?= Util::displayMoney($cart->getTotal()) . ' đ' ?></b></td>
     <td width='50px'></td>
 </tr>
 </table>

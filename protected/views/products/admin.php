@@ -45,7 +45,12 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 		'id',
 		'code',
 		'name',
-		'price',
+		//'price',
+		array(
+            'name'=>'price',
+            'header'=>'Price',            
+            'value'=>'Util::displayMoney($data->price) . " đ"',
+        ),
 		//'available',
 		array(
             'name'=>'available',

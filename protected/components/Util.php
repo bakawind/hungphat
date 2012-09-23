@@ -32,6 +32,22 @@ class Util{
 		else if ($status === '00')
 			return false;
     }
+	
+	public static function displayMoney($money){
+		$moneyString='';			
+		$arr = str_split($money, 1);
+		$count = 0;		
+		
+		for($i=count($arr)-1; $i>=0; $i--){
+			$moneyString=$arr[$i] . $moneyString;			
+			$count+=1;
+			if($count%3 == 0 && $i>0){
+				$moneyString= '.' . $moneyString;	
+				$count=0;
+			}				
+		}		
+		return $moneyString;
+	}
 
     /**
      * $model: CModel that needs to upload file

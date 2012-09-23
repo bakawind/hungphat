@@ -22,7 +22,17 @@ $this->menu=array(
 	'data'=>$model,
 	'attributes'=>array(
 		'id',
-		'from_price',
-		'to_price',
+		//'from_price',
+		array(// Hung - view image
+            'label'=>'From Price',
+            'type'=>'raw',
+            'value'=>Util::displayMoney($model->from_price) . ' đ',
+        ),	
+		//'to_price',
+		array(// Hung - view image
+            'label'=>'To Price',
+            'type'=>'raw',
+            'value'=>Util::displayMoney($model->to_price) . ' đ',
+        ),	
 	),
 )); ?>

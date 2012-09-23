@@ -30,8 +30,18 @@ $this->menu=array(
             'type'=>'raw',
             'value'=>Orders::model()->getStatusName($model->status),
         ),
-		'total',
-		'created_date',
+		//'total',
+		array(// Hung - view image
+            'label'=>'Total',
+            'type'=>'raw',
+            'value'=>Util::displayMoney($model->total) . ' đ',
+        ),		
+		//'created_date',
+		array(			
+			'type'=>'raw',
+			'label'=>'Created date',                                
+			'value'=> date("d-m-Y H:i:s",strtotime($model->created_date)),			
+			),
 	),
 )); ?>
 
@@ -42,12 +52,11 @@ $this->widget('zii.widgets.grid.CGridView', array(
 	'columns'=>array(
 		'id',
 		'quantity',
-		'product_id',
+		//'product_id',
 		array(			
 			'type'=>'raw',
 			'header'=>'Product Code',                                
-			'value'=>'Products::model()->getProductCode($data->product_id)',
-			//'value'=>'$data->product_id',
+			'value'=>'Products::model()->getProductCode($data->product_id)',			
 			'name'=>'product_code',				
 			),	
 		array(

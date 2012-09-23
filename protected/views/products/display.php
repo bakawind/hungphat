@@ -66,7 +66,7 @@
 				</tr>
 				<tr >
 					<td class='spec'> Giá </td>
-					<td class='price'> <?= $model->price ?> </td>
+					<td class='price'> <?= Util::displayMoney($model->price) ?> đ </td>					
 				</tr>
 				<tr >
 					<td class='spec'> Tình Trạng </td>
