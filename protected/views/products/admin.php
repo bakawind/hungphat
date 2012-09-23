@@ -46,14 +46,26 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 		'code',
 		'name',
 		'price',
-		'available',
+		//'available',
+		array(
+            'name'=>'available',
+            'header'=>'Available',
+            'filter'=>array('0'=>'Hết hàng','1'=>'Còn hàng'),
+            'value'=>'Products::model()->getAvailableString($data->available)',
+        ),
 		array(			
 			'type'=>'raw',
 			'header'=>'Picture',                                
 			'value'=> 'CHtml::image($data->image,$data->image, array("width"=>100))',			
 			),		
 		//'modified_date',
-		'category_id',
+		//'category_id',
+		array(
+            'name'=>'category_id',
+            'header'=>'Category',
+            'filter'=>CHtml::listData(Categories::model()->findAll(), 'id', 'caption'),
+            'value'=>'Categories::model()->getCategoryCaption($data->category_id)',
+        ),
 		
 		array(
 			'class'=>'CButtonColumn',

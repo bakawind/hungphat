@@ -185,7 +185,8 @@ class ProductsController extends Controller
 		{
 			$model->tmp['image'] = $model->image;
 			$model->attributes=$_POST['Products'];
-			$model->modified_date= $this->getCurrentDate();
+			if($model->available == 1)
+				$model->modified_date= $this->getCurrentDate();
 
 			if($model->save()){
 				Util::uploadPhoto($model, 'image', 'product');

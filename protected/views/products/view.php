@@ -23,15 +23,30 @@ $this->menu=array(
 		'name',
 		'price',
 		'description',
-		'image',
+		//'image',
 		array(// Hung - view image
             'label'=>'Show Image',
             'type'=>'raw',
             'value'=>$model->getThumbnail(),
         ),
-		'modified_date',
-		'category_id',
-		'available',
+		//'modified_date',		
+		array(			
+			'type'=>'raw',
+			'label'=>'Modified date',                                
+			'value'=> date("d-m-Y H:i:s",strtotime($model->modified_date)),			
+			),	
+		//'category_id',
+		array(			
+			'type'=>'raw',
+			'label'=>'Category',                                
+			'value'=> Categories::model()->getCategoryCaption($model->category_id),			
+			),	
+		//'available',
+		array(
+            'label'=>'Available',
+            'type'=>'raw',
+            'value'=>Products::model()->getAvailableString($model->available),
+        ),
 	),
 )); ?>
 <br/>

@@ -88,23 +88,36 @@ class Orders extends CActiveRecord
 	{
 		// Warning: Please modify the following code to remove attributes that
 		// should not be searched.
-
+		
 		$criteria=new CDbCriteria;
-
 		$criteria->compare('id',$this->id);
 		$criteria->compare('name',$this->name,true);
 		$criteria->compare('email',$this->email,true);
 		$criteria->compare('address',$this->address,true);
 		$criteria->compare('phone',$this->phone,true);
 		$criteria->compare('status',$this->status);
-		$criteria->compare('total',$this->total);
-		$criteria->compare('created_date',$this->created_date,true);
+		$criteria->compare('total',$this->total, true);
+		$criteria->compare('created_date',$this->created_date,true);		
 		
-		if($sortByTime == true){
-			$criteria->order='created_date desc';
-		}
+		/*if($sortByTime == true){
+			$criteria->defaultOrder='created_date desc';
+		}*/
 		return new CActiveDataProvider($this, array(
-			'criteria'=>$criteria,
+			'criteria'=>$criteria,			
+			'sort'=>array(
+                'defaultOrder'=>'created_date DESC',
+            ),
 		));
+	}
+	
+	public function getStatusName($status){
+		$name;
+		if($status == 0)
+			$name = 'Mới';
+		else if($status == 1)
+			$name = 'Đang xử lý';
+		else if($status == 2)
+			$name = 'Đóng';
+		return $name;		
 	}
 }

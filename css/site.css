@@ -448,6 +448,9 @@ legend{
     float: left;
     width: 65%;
 }
+.container .small_cart a{
+    color: #0d1953;
+}
 .container .small_cart img{
     width: auto;
     height: 55px;

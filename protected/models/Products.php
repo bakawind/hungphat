@@ -123,12 +123,15 @@ class Products extends Model
 		$criteria->compare('category_id',$this->category_id);
 		$criteria->compare('available',$this->available,true);
 
-		if($sortByTime == true){
-			$criteria->order='modified_date desc';
-		}
+		/*if($sortByTime == true){
+			$criteria->defaultOrder='modified_date desc';
+		}*/		
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
+			'sort'=>array(
+                'defaultOrder'=>'modified_date DESC',
+            ),
 		));
 	}
 
@@ -136,5 +139,14 @@ class Products extends Model
 	{
 		$productModel = Products::model()->findByPk($id);
 		return $productModel->code;
+	}
+	
+	public function getAvailableString($status){
+		$name;
+		if($status == 0)
+			$name = 'Hết hàng';
+		else if($status == 1)
+			$name = 'Còn hàng';		
+		return $name;		
 	}
 }

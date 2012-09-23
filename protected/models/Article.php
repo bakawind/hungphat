@@ -103,12 +103,15 @@ class Article extends Model
 		$criteria->compare('modified_date',$this->modified_date,true);
 		$criteria->compare('image',$this->image,true);
 
-		if($sortByTime == true){
+		/*if($sortByTime == true){
 			$criteria->order ='modified_date DESC ';
-		}
+		}*/
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
+			'sort'=>array(
+                'defaultOrder'=>'modified_date DESC',
+            ),
 		));
 	}
 
