@@ -35,30 +35,43 @@ $this->menu=array(
             'label'=>'Total',
             'type'=>'raw',
             'value'=>Util::displayMoney($model->total) . ' đ',
-        ),		
+        ),
 		//'created_date',
-		array(			
+		array(
 			'type'=>'raw',
-			'label'=>'Created date',                                
-			'value'=> date("d-m-Y H:i:s",strtotime($model->created_date)),			
+			'label'=>'Created date',
+			'value'=> date("d-m-Y H:i:s",strtotime($model->created_date)),
 			),
 	),
 )); ?>
 
-<?php 
+<?php
 $this->widget('zii.widgets.grid.CGridView', array(
 	'id'=>'orderDetail-grid',
-	'dataProvider'=>$orderDetails,		
+	'dataProvider'=>$orderDetails,
 	'columns'=>array(
 		'id',
-		'quantity',
 		//'product_id',
-		array(			
+		array(
 			'type'=>'raw',
-			'header'=>'Product Code',                                
-			'value'=>'Products::model()->getProductCode($data->product_id)',			
-			'name'=>'product_code',				
-			),	
+			'header'=>'Product Code',
+			'value'=>'Products::model()->getProductCode($data->product_id)',
+			'name'=>'product_code',
+			),
+		'quantity',
+		array(
+			'type'=>'raw',
+			'header'=>'Unit Price',
+			'value'=>'$data->product->price',
+			'name'=>'product_price',
+			),
+		array(
+			'type'=>'raw',
+			'header'=>'Total',
+			'value'=>'$data->product->price * $data->quantity',
+			'name'=>'total_price',
+            'footer'=>$model->total,
+			),
 		array(
             'class'=>'CButtonColumn',
             'template'=>'{view}{update}{delete}',
@@ -70,7 +83,7 @@ $this->widget('zii.widgets.grid.CGridView', array(
             "id"=>$data->id)',
         ),
 	),
-)); 
+));
 ?>
 <form action="../orderItems/create" method="post">
 	<input type="hidden" name="o_id" value="<?= $model->id ?>"/>
