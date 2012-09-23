@@ -65,7 +65,7 @@ class OrderItems extends CActiveRecord
 	{
 		return array(
 			'id' => 'ID',
-			'quantity' => 'Quantity',
+			'quantity' => 'Số lượng',
 			'product_id' => 'Product',
 			'order_id' => 'Order',
 		);

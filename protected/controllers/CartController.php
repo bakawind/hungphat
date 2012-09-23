@@ -99,7 +99,7 @@ class CartController extends Controller
         if($order->save()){
             $this->getCart()->toOrder($order);
             $this->getCart()->emptyCart();
-		    $this->redirect('/orders/view/'.$order->id);
+		    $this->redirect('/cart/viewOrder/?orderN='.$order->id);
         } else {
             foreach($order->errors as $e){
                 foreach($e as $key=>$value){
@@ -109,4 +109,19 @@ class CartController extends Controller
 		    return $this->render('index', array('cart'=>$this->getCart(), 'errors'=>$errors));
         }
     }
+
+	public function actionViewOrder($orderN)
+	{
+        $order = Orders::model()->findByPk($orderN);
+        $orderItems = new CActiveDataProvider('OrderItems', array(
+            'criteria'=>array(
+                'condition'=>'order_id='.$orderN,
+            ),
+        ));
+		$this->render('view',array(
+			'model'=>$order,
+			'orderItems'=>$orderItems,
+		));
+	}
+
 }
