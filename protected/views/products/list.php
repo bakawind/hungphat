@@ -9,7 +9,7 @@
 					<?php
 						$priceRangeModel = PriceRange::model()->findAll();
 						foreach($priceRangeModel as $d){ ?>
-							<option value="<?=$d->id?>"><?= $d->from_price . 'đ - ' . $d->to_price . 'đ'?> </option>
+							<option value="<?=$d->id?>"><?= Util::displayMoney($d->from_price) . 'đ - ' . Util::displayMoney($d->to_price) . 'đ'?> </option>
 					<? } ?>
 					<input type="hidden" value="<?= $_GET['type'] ?>" name="type" />
 					<input type="submit" value="Tìm" />

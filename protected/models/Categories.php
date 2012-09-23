@@ -102,4 +102,10 @@ class Categories extends Model
         if (!empty($this->image) && $this->image!='')
             return CHtml::image($this->image, $this->caption, array('max-width'=>'300px','max-height'=>'200px'));
     }
+	
+	public function getCategoryCaption($id)
+	{
+		$model = $this->findByPk($id);
+		return $model->caption;
+	}
 }

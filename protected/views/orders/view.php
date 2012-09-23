@@ -11,6 +11,7 @@ $this->menu=array(
 	array('label'=>'Delete Orders', 'url'=>'#', 'linkOptions'=>array('submit'=>array('delete','id'=>$model->id),'confirm'=>'Are you sure you want to delete this item?')),
 	array('label'=>'Manage Orders', 'url'=>array('admin')),
 );
+
 ?>
 
 <h1>View Orders #<?php echo $model->id; ?></h1>
@@ -23,23 +24,40 @@ $this->menu=array(
 		'email',
 		'address',
 		'phone',
-		'status',
-		'total',
-		'created_date',
+		//'status',
+		array(// Hung - view image
+            'label'=>'Status',
+            'type'=>'raw',
+            'value'=>Orders::model()->getStatusName($model->status),
+        ),
+		//'total',
+		array(// Hung - view image
+            'label'=>'Total',
+            'type'=>'raw',
+            'value'=>Util::displayMoney($model->total) . ' đ',
+        ),		
+		//'created_date',
+		array(			
+			'type'=>'raw',
+			'label'=>'Created date',                                
+			'value'=> date("d-m-Y H:i:s",strtotime($model->created_date)),			
+			),
 	),
 )); ?>
 
 <?php 
 $this->widget('zii.widgets.grid.CGridView', array(
-	'id'=>'order-detail-grid',
-	'dataProvider'=>$orderDetails,	
+	'id'=>'orderDetail-grid',
+	'dataProvider'=>$orderDetails,		
 	'columns'=>array(
 		'id',
-		'quantity',			
+		'quantity',
+		//'product_id',
 		array(			
 			'type'=>'raw',
 			'header'=>'Product Code',                                
 			'value'=>'Products::model()->getProductCode($data->product_id)',			
+			'name'=>'product_code',				
 			),	
 		array(
             'class'=>'CButtonColumn',

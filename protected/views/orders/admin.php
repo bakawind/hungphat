@@ -45,13 +45,21 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 		'id',
 		'name',
 		'email',
-		'address',
-		'phone',
-		'status',
-		'total',
-		/*
-		'total',
-		*/
+		//'address',
+		'phone',		
+		array(
+            'name'=>'status',
+            'header'=>'Status',
+            'filter'=>array('0'=>'Mới','1'=>'Đang xử lý','2'=>'Đóng'),
+            'value'=>'Orders::model()->getStatusName($data->status)',
+        ),
+		//'total',	
+		array(
+            'name'=>'total',
+            'header'=>'Total',            
+            'value'=>'Util::displayMoney($data->total) . " đ"',
+        ),
+
 		array(
 			'class'=>'CButtonColumn',
 		),

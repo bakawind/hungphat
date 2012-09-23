@@ -66,7 +66,7 @@
 				</tr>
 				<tr >
 					<td class='spec'> Giá </td>
-					<td class='price'> <?= $model->price ?> </td>
+					<td class='price'> <?= Util::displayMoney($model->price) ?> đ </td>					
 				</tr>
 				<tr >
 					<td class='spec'> Tình Trạng </td>
@@ -96,7 +96,7 @@
 				<?php
 				if($model->image!=null || $photoData->ItemCount!=0) {?>
 					<div id="carousel-wrapper">
-						<img id="shadow" src="../../img/gui/carousel_shadow.png" />
+						
 						<div id="carousel">
 							<?php
 								if($model->image!=null){ ?>

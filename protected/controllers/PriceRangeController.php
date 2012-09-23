@@ -132,8 +132,7 @@ class PriceRangeController extends Controller
 	 * Manages all models.
 	 */
 	public function actionAdmin()
-	{
-		
+	{		
 		$model=new PriceRange('search');
 		$model->unsetAttributes();  // clear any default values
 		if(isset($_GET['PriceRange']))

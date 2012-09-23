@@ -11,6 +11,9 @@ $this->menu=array(
 	array('label'=>'Delete Products', 'url'=>'#', 'linkOptions'=>array('submit'=>array('delete','id'=>$model->id),'confirm'=>'Are you sure you want to delete this item?')),
 	array('label'=>'Manage Products', 'url'=>array('admin')),
 );
+
+//Util::uploadPhoto($model, 'image', 'product');
+Util::displayMoney($model->price);
 ?>
 
 <h1>View Products #<?php echo $model->id; ?></h1>
@@ -21,17 +24,37 @@ $this->menu=array(
 		'id',
 		'code',
 		'name',
-		'price',
+		//'price',
+		array(// Hung - view image
+            'label'=>'Price',
+            'type'=>'raw',
+            'value'=>Util::displayMoney($model->price) . ' đ',
+        ),		
 		'description',
-		'image',
+		//'image',
 		array(// Hung - view image
             'label'=>'Show Image',
             'type'=>'raw',
             'value'=>$model->getThumbnail(),
         ),
-		'modified_date',
-		'category_id',
-		'available',
+		//'modified_date',		
+		array(			
+			'type'=>'raw',
+			'label'=>'Modified date',                                
+			'value'=> date("d-m-Y H:i:s",strtotime($model->modified_date)),			
+			),	
+		//'category_id',
+		array(			
+			'type'=>'raw',
+			'label'=>'Category',                                
+			'value'=> Categories::model()->getCategoryCaption($model->category_id),			
+			),	
+		//'available',
+		array(
+            'label'=>'Available',
+            'type'=>'raw',
+            'value'=>Products::model()->getAvailableString($model->available),
+        ),
 	),
 )); ?>
 <br/>

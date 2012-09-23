@@ -46,8 +46,18 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 	'filter'=>$model,
 	'columns'=>array(
 		'id',
-		'from_price',
-		'to_price',
+		//'from_price',
+		array(
+            'name'=>'from_price',
+            'header'=>'From Price',            
+            'value'=>'Util::displayMoney($data->from_price) . " đ"',
+        ),
+		//'to_price',
+		array(
+            'name'=>'to_price',
+            'header'=>'To Price',            
+            'value'=>'Util::displayMoney($data->to_price) . " đ"',
+        ),
 		array(
 			'class'=>'CButtonColumn',
 		),

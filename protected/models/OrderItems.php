@@ -103,7 +103,7 @@ class OrderItems extends CActiveRecord
 
 		$criteria->compare('id',$this->id);
 		$criteria->compare('quantity',$this->quantity);
-		$criteria->compare('product_id',$this->product_id);
+		$criteria->compare('product_id',$this->product_id);		
 		$criteria->compare('order_id',$search_value);
 
 		return new CActiveDataProvider($this, array(

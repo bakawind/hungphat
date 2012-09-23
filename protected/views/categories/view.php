@@ -44,22 +44,22 @@ $this->widget('zii.widgets.grid.CGridView', array(
 		'id',
 		'code',
 		'name',
-		'image',
+		//'image',
 		'price',
 		array(
 			'type'=>'raw',
 			'header'=>'Picture',
-			'value'=> 'CHtml::image($data->image,$data->image, array("width"=>100))',
+			'value'=> 'CHtml::image($data->image,$data->image, array("width"=>150))',
 			),
 		/*
 		array(
             'class'=>'CButtonColumn',
             'template'=>'{view}{update}{delete}',
-            'viewButtonUrl' => 'array("productPhotos/view",
+            'viewButtonUrl' => 'array("products/view",
             "id"=>$data->id)',
-            'updateButtonUrl' => 'array("productPhotos/update",
+            'updateButtonUrl' => 'array("products/update",
             "id"=>$data->id)',
-            'deleteButtonUrl' => 'array("productPhotos/delete",
+            'deleteButtonUrl' => 'array("products/delete",
             "id"=>$data->id)',
         ),*/
 	),

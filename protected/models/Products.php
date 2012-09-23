@@ -116,19 +116,22 @@ class Products extends Model
 		$criteria->compare('id',$this->id);
 		$criteria->compare('code',$this->code,true);
 		$criteria->compare('name',$this->name,true);
-		$criteria->compare('price',$this->price);
+		$criteria->compare('price',$this->price,true);
 		$criteria->compare('description',$this->description,true);
 		$criteria->compare('image',$this->image,true);
 		$criteria->compare('modified_date',$this->modified_date,true);
 		$criteria->compare('category_id',$this->category_id);
 		$criteria->compare('available',$this->available,true);
 
-		if($sortByTime == true){
-			$criteria->order='modified_date desc';
-		}
+		/*if($sortByTime == true){
+			$criteria->defaultOrder='modified_date desc';
+		}*/		
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
+			'sort'=>array(
+                'defaultOrder'=>'modified_date DESC',
+            ),
 		));
 	}
 
@@ -136,5 +139,14 @@ class Products extends Model
 	{
 		$productModel = Products::model()->findByPk($id);
 		return $productModel->code;
+	}
+	
+	public function getAvailableString($status){
+		$name;
+		if($status == 0)
+			$name = 'Hết hàng';
+		else if($status == 1)
+			$name = 'Còn hàng';		
+		return $name;		
 	}
 }

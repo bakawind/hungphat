@@ -44,18 +44,6 @@ class OrdersController extends Controller
 		);
 	}
 
-	/**
-	 * Displays a particular model.
-	 * @param integer $id the ID of the model to be displayed
-	 */
-	public function actionView($id)
-	{
-        $this->layout='//layouts/column2';
-		$this->render('view',array(
-			'model'=>$this->loadModel($id),
-			'orderDetails'=>$this->loadOrderDetails($id),
-		));
-	}
 
 	/**
 	 * Creates a new model.
@@ -141,6 +129,7 @@ class OrdersController extends Controller
 	{
         $this->layout='//layouts/column2';
 		$dataProvider=new CActiveDataProvider('Orders');
+			
 		$this->render('index',array(
 			'dataProvider'=>$dataProvider,
 		));
@@ -159,6 +148,24 @@ class OrdersController extends Controller
 
 		$this->render('admin',array(
 			'model'=>$model,
+		));
+	}
+	
+	
+	/**
+	 * Displays a particular model.
+	 * @param integer $id the ID of the model to be displayed
+	 */
+	public function actionView($id)
+	{
+        $this->layout='//layouts/column2';
+		
+		if(isset($_GET['OrderItems']))
+			$model->attributes=$_GET['OrderItems'];
+
+		$this->render('view',array(
+			'model'=>$this->loadModel($id),
+			'orderDetails'=>$this->loadOrderDetails($id),
 		));
 	}
 
