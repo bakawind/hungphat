@@ -4,7 +4,7 @@ if(get_class($data) === 'Article'){
 ?>
 	<?= CHtml::link(CHtml::image($data->image), array('/article/display', 'id'=>$data->id), array('class'=>'thumb')) ?>
     <div class='news_content'>
-	    <h3><?php echo CHtml::link('Title: ' . $data->title, array('/article/display', 'id'=>$data->id)); ?></h3>
+	    <h3><?php echo CHtml::link('Tiêu đề: ' . $data->title, array('/article/display', 'id'=>$data->id)); ?></h3>
         <br/>
 	    <p>
             <?= Util::limitWord($data->content, 100) ?>
@@ -17,7 +17,7 @@ if(get_class($data) === 'Article'){
 ?>
 	<?= CHtml::link(CHtml::image($data->image), array('/products/display', 'id'=>$data->id), array('class'=>'thumb')) ?>
     <div class='news_content'>
-	    <h3><?php echo CHtml::link('Code: ' . $data->code . ' --- Name: ' . $data->name, array('/products/display', 'id'=>$data->id)); ?></h3>
+	    <h3><?php echo CHtml::link('Mã: ' . $data->code . ' --- Tên sản phẩm: ' . $data->name, array('/products/display', 'id'=>$data->id)); ?></h3>
         <br/>
 	    <p>
             <?= Util::limitWord($data->description, 100) ?>
