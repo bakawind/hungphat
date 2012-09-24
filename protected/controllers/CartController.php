@@ -99,6 +99,7 @@ class CartController extends Controller
         if($order->save()){
             $this->getCart()->toOrder($order);
             $this->getCart()->emptyCart();
+            Yii::app()->user->setFlash('cart','Xin cám ơn quý khách. Chúng tôi sẽ liên lạc với quý khách trong thời gian sớm nhất.');
 		    $this->redirect('/cart/viewOrder/?orderN='.$order->id);
         } else {
             foreach($order->errors as $e){

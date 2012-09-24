@@ -185,5 +185,28 @@
 		</div>
 	</div><!--close footer-->
 
+<?
+    $flash = Yii::app()->user->getFlashes();
+    if(!empty($flash)){
+?>
+    <div id="notification">
+        <div>
+            <?php foreach($flash as $key => $message) { ?>
+                <p><?= $message ?></p>
+            <?  } ?>
+        <span class='close'>[<a href='#' onclick='notify()'>close</a>]</span>
+        <br/>
+        </div>
+    </div>
+    <script>
+    function notify() {
+        el = document.getElementById("notification");
+        el.style.visibility = (el.style.visibility == "hidden") ? "visible" : "hidden";
+    }
+    </script>
+<?
+    }
+?>
+
 </body>
 </html>

@@ -3,6 +3,9 @@
 
 body {
     background: url("../images/background.jpg") repeat scroll 0 0 transparent;
+    height:100%;
+    margin:0;
+    padding:0;
 }
 
 select {
@@ -603,7 +606,6 @@ legend{
 }
 
 
-
 .news {
 	margin: 0px 0px 15px 0px;
 	width: 100%;
@@ -633,4 +635,32 @@ legend{
 .news .news_content p{
 	color:#0d1953;
     font-size:14px;
+}
+
+
+
+#notification {
+     visibility: visible;
+     position: absolute;
+     left: 0px;
+     top: 0px;
+     width:100%;
+     height:100%;
+     text-align:center;
+     z-index: 1000;
+     background-image:url("../images/background-trans.png");
+}
+#notification div {
+     width:600px;
+     margin: 200px auto;
+     background-color: #fff;
+     border:1px solid #000;
+     border-radius: 8px 8px 8px 8px;
+     border-width: 2px;
+     border-color: #65acc4;
+     padding:15px;
+     text-align:center;
+}
+#notification span.close {
+    float : right;
 }
