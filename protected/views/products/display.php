@@ -85,7 +85,11 @@
 				<tr>
 					<td colspan=2 class="spec"> <p> <?= $model->description ?> </p> </td>
 				</tr>
-				<tr><td colspan=2><?=CHtml::link('Thêm vào giỏ', '/cart/add/'.$model->id, array('class'=>'add_to_card'))?></td></tr>
+				<tr>
+				<?php if($model->available){?>
+					<td colspan=2><?=CHtml::link('Thêm vào giỏ', '/cart/add/'.$model->id, array('class'=>'add_to_card'))?></td>				
+				<?}?>
+				</tr>
 			</table>
 			<br class='clear' />
 		</div> <!--end detail-->
