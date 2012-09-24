@@ -40,10 +40,10 @@
 	</div>
 
 	<div class="row">
-		<?php echo $form->labelEx($model,'status'); ?>		
-		<?=	$form->dropDownList($model,'status', array('0'=>'Mới', '1'=>'Đang xử lý', '2'=>'Đóng')); ?>
+		<?php echo $form->labelEx($model,'status'); ?>
+        <?=$form->dropDownList($model,'status', array('0'=>'Mới', '1'=>'Đang xử lý', '2'=>'Đóng')); ?>
 		<?php echo $form->error($model,'status'); ?>
-	</div>	
+	</div>
 
 
 	<div class="row">

@@ -38,7 +38,7 @@ class OrderItems extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('quantity, order_id, product_code', 'required'),
+			array('quantity, order_id', 'required'),
 			array('id, quantity, product_id, order_id', 'numerical', 'integerOnly'=>true),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
@@ -54,6 +54,7 @@ class OrderItems extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
+            'product'=>array(self::HAS_ONE, 'Products', 'id'),
 		);
 	}
 
@@ -64,13 +65,13 @@ class OrderItems extends CActiveRecord
 	{
 		return array(
 			'id' => 'ID',
-			'quantity' => 'Quantity',
+			'quantity' => 'Số lượng',
 			'product_id' => 'Product',
 			'order_id' => 'Order',
 		);
 	}
-	
-	
+
+
 
 
 	/**
@@ -93,7 +94,7 @@ class OrderItems extends CActiveRecord
 			'criteria'=>$criteria,
 		));
 	}
-	
+
 	public function searchBy($search_value) //Hung - create data depend on foreign key products_id
 	{
 		// Warning: Please modify the following code to remove attributes that
@@ -103,7 +104,7 @@ class OrderItems extends CActiveRecord
 
 		$criteria->compare('id',$this->id);
 		$criteria->compare('quantity',$this->quantity);
-		$criteria->compare('product_id',$this->product_id);		
+		$criteria->compare('product_id',$this->product_id);
 		$criteria->compare('order_id',$search_value);
 
 		return new CActiveDataProvider($this, array(

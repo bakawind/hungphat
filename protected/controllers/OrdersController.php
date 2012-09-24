@@ -26,12 +26,12 @@ class OrdersController extends Controller
 	public function accessRules()
 	{
 		return array(
-			array('allow',  // allow all users to perform 'index' and 'view' actions
-				'actions'=>array('index','view'),
-				'users'=>array('*'),
-			),
+			//array('allow',  // allow all users to perform 'index' and 'view' actions
+			//	'actions'=>array('index','view'),
+			//	'users'=>array('*'),
+			//),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('create','update'),
+				'actions'=>array('index','view', 'create','update'),
 				'users'=>array('@'),
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
@@ -106,12 +106,12 @@ class OrdersController extends Controller
 		{
 			// we only allow deletion via POST request
 			$model = $this->loadModel($id);
-			
+
 			$orderItemsModels = OrderItems::model()->findAll('order_id=:order_id', array(':order_id'=>$model->id));
-			foreach($orderItemsModels as $singleData){				
+			foreach($orderItemsModels as $singleData){
 				$singleData->delete();
 			}
-			
+
 			$model->delete();
 
 			// if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
@@ -129,7 +129,7 @@ class OrdersController extends Controller
 	{
         $this->layout='//layouts/column2';
 		$dataProvider=new CActiveDataProvider('Orders');
-			
+
 		$this->render('index',array(
 			'dataProvider'=>$dataProvider,
 		));
@@ -150,8 +150,8 @@ class OrdersController extends Controller
 			'model'=>$model,
 		));
 	}
-	
-	
+
+
 	/**
 	 * Displays a particular model.
 	 * @param integer $id the ID of the model to be displayed
@@ -159,13 +159,19 @@ class OrdersController extends Controller
 	public function actionView($id)
 	{
         $this->layout='//layouts/column2';
-		
+
 		if(isset($_GET['OrderItems']))
 			$model->attributes=$_GET['OrderItems'];
 
+        $order = $this->loadModel($id);
+        $orderItems = new CActiveDataProvider('OrderItems', array(
+            'criteria'=>array(
+                'condition'=>'order_id='.$id,
+            ),
+        ));
 		$this->render('view',array(
-			'model'=>$this->loadModel($id),
-			'orderDetails'=>$this->loadOrderDetails($id),
+			'model'=>$order,
+			'orderDetails'=>$orderItems,
 		));
 	}
 
