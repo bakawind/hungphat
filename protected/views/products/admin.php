@@ -21,6 +21,20 @@ $('.search-form form').submit(function(){
 	return false;
 });
 ");
+
+Yii::app()->clientScript->registerScript('ajaxupdate', "
+$('#products-grid a.ajaxupdate').live('click', function() {		
+        $.fn.yiiGridView.update('products-grid', {
+                type: 'POST',
+                url: $(this).attr('href'),
+                success: function() {
+                        $.fn.yiiGridView.update('products-grid');
+                }
+        });
+        return false;
+});
+");
+
 ?>
 
 <h1>Manage Products</h1>
@@ -42,7 +56,12 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 	'dataProvider'=>$model->search(),
 	'filter'=>$model,
 	'columns'=>array(
-		'id',
+		//'id',		
+		array(
+			'header'=>'&nbsp;Up&nbsp;',
+			'type'=>'raw',
+			'value'=>'CHtml::link(CHtml::image("../images/up.png"), array("products/up", "id"=>$data->id), array("class"=>"ajaxupdate"));',			
+			),
 		'code',
 		'name',
 		//'price',

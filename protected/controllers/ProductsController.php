@@ -31,7 +31,7 @@ class ProductsController extends Controller
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('create','update'),
+				'actions'=>array('create','update','up'),
 				'users'=>array('@'),
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
@@ -186,7 +186,7 @@ class ProductsController extends Controller
 			$model->tmp['image'] = $model->image;
 			$model->attributes=$_POST['Products'];
 			if($model->available == 1)
-				$model->modified_date= $this->getCurrentDate();
+				//$model->modified_date= $this->getCurrentDate();
 
 			if($model->save()){
 				Util::uploadPhoto($model, 'image', 'product');
@@ -228,7 +228,20 @@ class ProductsController extends Controller
 		else
 			throw new CHttpException(400,'Invalid request. Please do not repeat this request again.');
 	}
-
+	
+	public function actionUp($id){
+		if(Yii::app()->request->isPostRequest)
+		{
+			$model = $this->loadModel($id);
+			$model->modified_date= $this->getCurrentDate();
+			if($model->update())			
+				$this->redirect(array('admin'));
+			if(!isset($_GET['ajax']))
+				$this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('admin'));
+		}
+		else
+			throw new CHttpException(400,'Invalid request. Please do not repeat this request again.');		
+	}
 	
 
 	/**
