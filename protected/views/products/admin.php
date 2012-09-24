@@ -60,7 +60,7 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 		array(
 			'header'=>'&nbsp;Up&nbsp;',
 			'type'=>'raw',
-			'value'=>'CHtml::link(CHtml::image("../images/up.png"), array("products/up", "id"=>$data->id), array("class"=>"ajaxupdate"));',			
+			'value'=>'CHtml::link(CHtml::image("../images/up.png"), array("products/up", "id"=>$data->id), array("class"=>"ajaxupdate"))',			
 			),
 		'code',
 		'name',
