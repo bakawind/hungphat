@@ -121,7 +121,7 @@ class SiteController extends Controller
                 $model->body = $model->body.'\nEmail: '.$model->email;
                 $model->body = $model->body.'\nPhone: '.$model->phone;
 				$headers="From: {$model->email}\r\nReply-To: {$model->email}";
-				mail(Yii::app()->params['adminEmail'],$model->subject,$model->body,$headers);
+				//mail(Yii::app()->params['adminEmail'],$model->subject,$model->body,$headers);
 				Yii::app()->user->setFlash('contact','Xin cám ơn quý khách. Chúng tôi sẽ liên lạc với quý khách trong thời gian sớm nhất.');
 				$this->refresh();
 			}
