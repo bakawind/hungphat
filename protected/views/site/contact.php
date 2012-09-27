@@ -2,37 +2,45 @@
     <?=CHtml::image('/images/contact.png')?>
     <div class='contact_form'>
         <h1>Hãy liên hệ với chúng tôi</h1>
-        <form id='contact_us' method='POST' action=''>
+        <?php $form=$this->beginWidget('CActiveForm', array(
+	        'id'=>'contact-form',
+	        'enableClientValidation'=>true,
+	        'clientOptions'=>array(
+		        'validateOnSubmit'=>true,
+	        ),
+        )); ?>
+	        <div class="note">Những mục <span class="required">*</span> không được bỏ trống.</div>
+            <br/>
             <table>
                 <tr>
-                    <td>Tên:</td>
-                    <td><input type='textfield'/></td>
+                    <td> <?php echo $form->labelEx($model,'name'); ?> </td>
+                    <td> <?php echo $form->textField($model,'name'); ?> </td>
                 </tr>
                 <tr>
-                    <td>Địa chỉ:</td>
-                    <td><input type='textfield'/></td>
+                    <td> <?php echo $form->labelEx($model,'address'); ?> </td>
+                    <td> <?php echo $form->textField($model,'address'); ?> </td>
                 </tr>
                 <tr>
-                    <td>Email:</td>
-                    <td><input type='textfield'/></td>
+                    <td> <?php echo $form->labelEx($model,'email'); ?> </td>
+                    <td> <?php echo $form->textField($model,'email'); ?> </td>
                 </tr>
                 <tr>
-                    <td>Điện thoại:</td>
-                    <td><input type='textfield'/></td>
+                    <td> <?php echo $form->labelEx($model,'phone'); ?> </td>
+                    <td> <?php echo $form->textField($model,'phone'); ?> </td>
                 </tr>
                 <tr>
-                    <td>Tiêu đề::</td>
-                    <td><input type='textfield'/></td>
+                    <td> <?php echo $form->labelEx($model,'subject'); ?> </td>
+                    <td> <?php echo $form->textField($model,'subject'); ?> </td>
                 </tr>
                 <tr>
-                    <td>Nội dung:</td>
-                    <td><textarea></textarea></td>
+                    <td> <?php echo $form->labelEx($model,'body'); ?> </td>
+                    <td> <?php echo $form->textArea($model,'body'); ?> </td>
                 </tr>
                 <tr>
                     <td> </td>
                     <td><input type='submit' value='Gửi'/></td>
                 </tr>
             </table>
-        </form>
+        <?php $this->endWidget(); ?>
     </div>
 </div>

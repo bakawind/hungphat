@@ -27,7 +27,7 @@ class ProductsController extends Controller
 	{
 		return array(
 			array('allow',  // allow all users to perform 'index' and 'view' actions
-				'actions'=>array('index','view', 'list', 'display', 'SearchPrice'),
+				'actions'=>array('index','view', 'list', 'display', 'searchPrice'),
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
@@ -90,18 +90,18 @@ class ProductsController extends Controller
 
             if (isset($category) && isset($priceRange)){
 		        $criteria=new CDbCriteria;
-				
+
 				$criteria->addBetweenCondition('price', $priceRange->from_price, $priceRange->to_price, 'AND');
 		        $criteria->compare('category_id',$category->id);
 				$criteria->order='price desc';
-				
+
 		        $dataProvider = new CActiveDataProvider('Products', array(
 			        'criteria'=>$criteria,
                     'pagination'=>array(
                         'pageSize'=>6,
                     ),
 		        ));
-                $this->render('list', array('dataProvider'=>$dataProvider));
+                $this->render('list', array('dataProvider'=>$dataProvider, 'range'=>$rangeID));
             }else{
 				$error='Khoảng giá không tồn tại';
 				$this->render('../site/error',array('code'=>$error));
@@ -146,7 +146,7 @@ class ProductsController extends Controller
 		{
 			$model->attributes=$_POST['Products'];
 			$model->modified_date= $this->getCurrentDate();
-						
+
 			if($model->save()){
 				$model->addError('code', 'code invalid');
 				Util::uploadPhoto($model, 'image', 'product');
@@ -211,13 +211,13 @@ class ProductsController extends Controller
 		{
 			// we only allow deletion via POST request
 			$model = $this->loadModel($id);
-			
+
 			$productPhotoModels = ProductPhotos::model()->findAll('product_id=:product_id', array(':product_id'=>$model->id));
 			foreach($productPhotoModels as $singleData){
 				Util::deleteImage($singleData->url, 'product_photo');
 				$singleData->delete();
 			}
-						
+
 			Util::deleteImage($model->image, 'product');
 			$model->delete();
 
@@ -228,21 +228,21 @@ class ProductsController extends Controller
 		else
 			throw new CHttpException(400,'Invalid request. Please do not repeat this request again.');
 	}
-	
+
 	public function actionUp($id){
 		if(Yii::app()->request->isPostRequest)
 		{
 			$model = $this->loadModel($id);
 			$model->modified_date= $this->getCurrentDate();
-			if($model->update())			
+			if($model->update())
 				$this->redirect(array('admin'));
 			if(!isset($_GET['ajax']))
 				$this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('admin'));
 		}
 		else
-			throw new CHttpException(400,'Invalid request. Please do not repeat this request again.');		
+			throw new CHttpException(400,'Invalid request. Please do not repeat this request again.');
 	}
-	
+
 
 	/**
 	 * Lists all models.

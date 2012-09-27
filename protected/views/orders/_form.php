@@ -41,10 +41,9 @@
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'status'); ?>
-        <?=$form->dropDownList($model,'status', array('0'=>'Mới', '1'=>'Đang xử lý', '2'=>'Đóng')); ?>
+        <?=$form->dropDownList($model, 'status', array('0'=>'New', '1'=>'In progress', '2'=>'Closed')) ?>
 		<?php echo $form->error($model,'status'); ?>
 	</div>
-
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'total'); ?>

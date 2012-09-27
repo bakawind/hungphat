@@ -4,12 +4,12 @@
 		<tr>
 			<td>Tìm theo giá</td>
 			<td>
-				<form action="SearchPrice" method="GET">
-					<select name="range" >
+				<form action="SearchPrice" method="GET" id='priceForm'>
+					<select name="range" onchange='priceSearch()'>
 					<?php
 						$priceRangeModel = PriceRange::model()->findAll();
 						foreach($priceRangeModel as $d){ ?>
-							<option value="<?=$d->id?>"><?= Util::displayMoney($d->from_price) . 'đ - ' . Util::displayMoney($d->to_price) . 'đ'?> </option>
+							<option value="<?=$d->id?>" <?= (isset($range) && $range==$d->id) ? 'selected="selected"' : '' ?> ><?= Util::displayMoney($d->from_price) . 'đ - ' . Util::displayMoney($d->to_price) . 'đ'?> </option>
 					<? } ?>
 					<input type="hidden" value="<?= $_GET['type'] ?>" name="type" />
 					<input type="submit" value="Tìm" />
@@ -19,6 +19,11 @@
 		</tr>
 	</table>
 
+<script>
+function priceSearch(){
+    document.forms["priceForm"].submit();
+}
+</script>
 
 
 	</div>

@@ -118,9 +118,11 @@ class SiteController extends Controller
 			$model->attributes=$_POST['ContactForm'];
 			if($model->validate())
 			{
+                $model->body = $model->body.'\nEmail: '.$model->email;
+                $model->body = $model->body.'\nPhone: '.$model->phone;
 				$headers="From: {$model->email}\r\nReply-To: {$model->email}";
-				mail(Yii::app()->params['adminEmail'],$model->subject,$model->body,$headers);
-				Yii::app()->user->setFlash('contact','Thank you for contacting us. We will respond to you as soon as possible.');
+				//mail(Yii::app()->params['adminEmail'],$model->subject,$model->body,$headers);
+				Yii::app()->user->setFlash('contact','Xin cám ơn quý khách. Chúng tôi sẽ liên lạc với quý khách trong thời gian sớm nhất.');
 				$this->refresh();
 			}
 		}
@@ -131,25 +133,25 @@ class SiteController extends Controller
 		if(isset($_GET['text'])){
 			$searchValue = $_GET['text'];
 
-			$criteria1=new CDbCriteria;			
+			$criteria1=new CDbCriteria;
 			$criteria1->addSearchCondition('title',$searchValue, true,'OR','LIKE');
-			$criteria1->addSearchCondition('content',$searchValue, true,'OR','LIKE');			
+			$criteria1->addSearchCondition('content',$searchValue, true,'OR','LIKE');
 			$criteria1->order = "modified_date DESC";
-			
+
 			$articleResult = new CActiveDataProvider('Article', array(
 			        'criteria'=>$criteria1,
                     'pagination'=>array(
                         'pageSize'=>3,
                     ),
 		    ));
-			
 
-			$criteria2=new CDbCriteria;			
+
+			$criteria2=new CDbCriteria;
 			$criteria2->addSearchCondition('code',$searchValue, true,'OR','LIKE');
 			$criteria2->addSearchCondition('name',$searchValue, true,'OR','LIKE');
 			$criteria2->addSearchCondition('description',$searchValue, true,'OR','LIKE');
 			$criteria2->order = "modified_date DESC";
-			
+
 			$productResult = new CActiveDataProvider('Products', array(
 			        'criteria'=>$criteria2,
                     'pagination'=>array(

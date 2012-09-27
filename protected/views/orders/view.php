@@ -62,15 +62,15 @@ $this->widget('zii.widgets.grid.CGridView', array(
 		array(
 			'type'=>'raw',
 			'header'=>'Unit Price',
-			'value'=>'$data->product->price',
+			'value'=>'Util::displayMoney(Products::model()->findByPk($data->product_id)->price)." đ"',
 			'name'=>'product_price',
 			),
 		array(
 			'type'=>'raw',
 			'header'=>'Total',
-			'value'=>'$data->product->price * $data->quantity',
+			'value'=>'Util::displayMoney(Products::model()->findByPk($data->product_id)->price * $data->quantity)." đ"',
 			'name'=>'total_price',
-            'footer'=>$model->total,
+            'footer'=>Util::displayMoney($model->total).' đ',
 			),
 		array(
             'class'=>'CButtonColumn',

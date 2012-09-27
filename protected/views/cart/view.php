@@ -49,6 +49,4 @@ $this->widget('zii.widgets.grid.CGridView', array(
 	),
 ));
 ?>
-<br/>
-<div>Xin cám ơn quý khách! Chúng tôi sẽ liên lạc với quý khách thông qua điện thoại và email trong thời gian sớm nhất.</div>
 </div>
